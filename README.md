@@ -7,5 +7,8 @@ Repositório que armazenará todo conteúdo do curso de Programação de Computa
 
 
 # Programação com C
+A programação em c consiste do básico ao avançado.
 # Programação com Java
+Aprogramação em java consiste do básico ao avançado usando interface gráfica swint ou javaFX.
 # Programação para Android
+Desenvolvimento de aplicações android nativa com android studio.
