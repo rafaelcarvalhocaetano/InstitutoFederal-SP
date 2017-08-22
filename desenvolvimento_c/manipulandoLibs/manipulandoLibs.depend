@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1503426201 source:c:\dev\ifsp\desenvolvimento_c\manipulandolibs\main.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+
