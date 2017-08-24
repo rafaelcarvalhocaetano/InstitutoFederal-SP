@@ -21,12 +21,21 @@ int main()
 
     //if(nome1 == nome2){
     //strcmp compara a posição na memoria para variaveis do tipo string..
-    if(strcmp(nome1, nome2) == 0){
-        printf("\nNomes iguais ...");
+    //strcasecmp = verifica letras maiusculas e minusculas ...
+    if(strcasecmp(nome1, nome2) == 0){
+        printf("\nNomes iguais ...\n");
     }else{
-        printf("\nNomes diferentes ...");
+        printf("\nNomes diferentes ...\n");
     }
 
+    //onde será copiado e para onde será armazando ..
+    strcpy(nome2, nome1);
+    printf("Vetor 2: %s \n\n", nome2);
+
+    //STRLEN = é igual a lenght do java que conta a quantidade de letras ...
+    printf("Nome tem %d de letras \n\n", strlen(nome1));
+    strcat(nome1, nome2);
+    printf("\n\nNome: %s\n", nome1);
 
     system("pause");
     return 0;
