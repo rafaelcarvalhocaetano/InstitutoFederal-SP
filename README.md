@@ -18,5 +18,14 @@ A programação em c consiste do básico ao avançado.
 
 # Programação com Java
 Aprogramação em java consiste do básico ao avançado usando interface gráfica swint ou javaFX.
+(buscar em outro repositório)...
+
+- Hello world
+ - Tipos de variáveis
+ - Estrutura de Repetição - FOR
+ - Estrutura de Repetição - WHILE E DO WHILE
+ - Calculadora com IF ELSE
+ - Calculadora com SWITCH
+ 
 # Programação para Android
 Desenvolvimento de aplicações android nativa com android studio.
