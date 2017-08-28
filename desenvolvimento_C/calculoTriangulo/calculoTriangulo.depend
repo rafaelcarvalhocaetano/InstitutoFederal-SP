@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1503952099 source:c:\dev\ifsp\desenvolvimento_c\calculotriangulo\main.c
+	<stdio.h>
+	<stdlib.h>
+
