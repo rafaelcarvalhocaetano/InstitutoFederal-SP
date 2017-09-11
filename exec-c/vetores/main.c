@@ -21,9 +21,30 @@ int main(int argc, char** argv) {
 
     
     int numero[8];
-    int cont;
+    int i;
     int ocorrencia = 0;
     int valor;
+    
+    
+    printf("Digite um numero : \n");
+    scanf("%d", &valor);
+    
+    //recebe
+    for(i=0; i<8; i++){
+        printf("Digite o valor do ARRAY [%d]: ", i);
+        scanf("%d", &numero[i]);
+    }
+    
+    //imprime e soma mais um na ocorrencia
+    for(i=0; i<8; i++){
+        if(numero[i] == valor){
+            ocorrencia ++;
+        }
+    }
+    
+    printf("Exite(m) %d ocorrencias \n", ocorrencia);
+    
+    
     
     /*
      
@@ -44,11 +65,13 @@ int main(int argc, char** argv) {
     numero[0] = 1;
     numero[1] = 2;
     numero[2] = 3;
+    
+    printf("OS VALORES SAO %d %d %d", numero[0], numero[1], numero[2]);
      
      */
     
     
-    printf("OS VALORES SAO %d %d %d", numero[0], numero[1], numero[2]);
+   
     
     
     
