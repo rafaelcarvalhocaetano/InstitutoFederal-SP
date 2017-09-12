@@ -15,6 +15,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 void multiplicar(int c){
     //Apresenta o valor da soma do vetor
     printf("\nO VALOR DA MULTIPLICACAO EH : %d\n", c);
@@ -50,8 +51,7 @@ int main() {
     //Este loop for, realiza a multiplicação dos valores do vetor e também a soma
     for (i = 0; i < 5; i++) {
         mult *= vetor[i];
-        soma += vetor[i];
-       
+        soma += vetor[i]; 
     }
     //Chamando a função que somará os valores do vetor, que está fora do método principal
     somar(soma);
