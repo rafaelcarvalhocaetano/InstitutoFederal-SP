@@ -8,6 +8,9 @@ Repositório que armazenará todo conteúdo do curso de Programação de Computa
 
 # Programação com C
 A programação em c consiste do básico ao avançado.
+
+- Projeto Final em C.
+
  
 
 # Programação com Java
