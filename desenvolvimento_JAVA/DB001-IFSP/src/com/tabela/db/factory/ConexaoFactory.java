@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.tabela.db.factory;
 
 import java.sql.Connection;
@@ -16,9 +12,9 @@ import java.sql.SQLException;
 public class ConexaoFactory {
     
     
-    private static final String URL = "jdbc:mysql://localhost:3306/tabelaifsp";
-    private static final String PASS = "";
+     private static final String PASS = "q1w2e3r4";
     private static final String USER = "root";
+    private static final String URL = "jdbc:mysql://localhost:3306/tabelaifsp";
     
     
     public static Connection getConnection() throws SQLException{
@@ -27,7 +23,7 @@ public class ConexaoFactory {
           
         Connection con = DriverManager.getConnection(URL, USER, PASS);
         
-        return null;
+        return con;
    }
     public static void closeConnection(Connection c){
         if(c != null){

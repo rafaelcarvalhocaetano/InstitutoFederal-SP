@@ -1,7 +1,7 @@
 
 package com.tabela.db.bean;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  *
@@ -12,7 +12,7 @@ public class Cliente {
     private int id;
     private String nome;
     private String sobreNome;
-    private Date dataNascimento;
+    private String dataNascimento;
 
     /**
      * @return the id
@@ -59,28 +59,18 @@ public class Cliente {
     /**
      * @return the dataNascimento
      */
-    public Date getDataNascimento() {
+    public String getDataNascimento() {
         return dataNascimento;
     }
 
     /**
      * @param dataNascimento the dataNascimento to set
      */
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
-    @Override
-    public int hashCode() {
-        return super.hashCode(); //To change body of generated methods, choose Tools | Templates.
-    }
+   
+    
 
-    @Override
-    public String toString() {
-        return super.toString(); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    
-    
-    
 }
