@@ -66,6 +66,16 @@ public class TesteJUnit {
         }
         */
        
+       //EXCLUIR
+       
+       TabelaDAO dao = new TabelaDAO();
+       Cliente c = new Cliente();
+       
+       c.setNome("Rafael");
+       
+       dao.excluir(c.getNome());
+       
+       
 
     }
     

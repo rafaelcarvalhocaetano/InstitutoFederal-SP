@@ -8,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -65,7 +67,7 @@ public class TabelaDAO {
         StringBuilder sql = new StringBuilder();
         Cliente c = null;
         
-        sql.append("SELECT c.nome, c.sobreNome, c.dataNascimento FROM cliente c WHERE id = ? ");
+        sql.append("SELECT c.nome, c.sobreNome, c.dataNascimento FROM cliente c WHERE nome = ? ");
 
         Connection con = ConexaoFactory.getConnection();
 
@@ -89,6 +91,26 @@ public class TabelaDAO {
     
     public void excluir(String ca){
         
+        StringBuilder sql = new StringBuilder();
+        sql.append("DELETE FROM cliente WHERE id = ? ");
+        
+        try {
+            Connection con = ConexaoFactory.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql.toString());
+            
+            ps.setString(1, ca);
+            ps.executeUpdate();
+            
+            System.out.println("EXCLUIR");
+        } catch (SQLException ex) {
+            System.out.println("Erro no excluir"+ex);
+        }
+        
+        
+        
+        
+
+       
     }
 
 }
