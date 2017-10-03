@@ -1,6 +1,12 @@
 
 package com.tabela.db.view;
 
+import com.tabela.db.bean.Cliente;
+import com.tabela.db.dao.TabelaDAO;
+import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+
 /**
  *
  * @author Rafael Carvalho Caetano
@@ -10,6 +16,32 @@ public class View extends javax.swing.JFrame {
    
     public View() {
         initComponents();
+        
+        DefaultTableModel modelo = (DefaultTableModel) tabela.getModel();
+        tabela.setRowSorter(new TableRowSorter(modelo));
+        
+        read();
+    }
+    
+    
+    public void read(){
+        DefaultTableModel modelo1 = (DefaultTableModel) tabela.getModel();
+        modelo1.setNumRows(0);
+        TabelaDAO dao = new TabelaDAO();
+        
+        try {
+            for(Cliente c : dao.listar()){
+                modelo1.addRow(new Object[]{
+                    c.getId(),
+                    c.getNome(),
+                    c.getSobreNome(),
+                    c.getDataNascimento()
+                });
+            }
+        } catch (SQLException ex) {
+            System.out.println("Erro ao listar ...");
+        }
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -140,6 +172,11 @@ public class View extends javax.swing.JFrame {
         btnSalvar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tabela/db/img/icons8-Plus Filled-30.png"))); // NOI18N
         btnSalvar.setText("SALVAR");
+        btnSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSalvarMouseClicked(evt);
+            }
+        });
 
         tabela.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         tabela.setModel(new javax.swing.table.DefaultTableModel(
@@ -240,6 +277,24 @@ public class View extends javax.swing.JFrame {
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
        System.exit(0);
     }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void btnSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseClicked
+       
+        TabelaDAO dao = new TabelaDAO();
+        Cliente c = new Cliente();
+        
+        c.setNome(nome.getText());
+        c.setSobreNome(snome.getText());
+        c.setDataNascimento(data.getText());
+        
+        dao.salvar(c);
+        read();
+        
+        nome.setText("");
+        snome.setText("");
+        data.setText("");
+       
+    }//GEN-LAST:event_btnSalvarMouseClicked
 
     
     public static void main(String args[]) {
