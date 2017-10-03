@@ -168,6 +168,11 @@ public class View extends javax.swing.JFrame {
         btnExcluir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tabela/db/img/icons8-Delete-30.png"))); // NOI18N
         btnExcluir.setText("EXCLUIR - TABELA");
+        btnExcluir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnExcluirMouseClicked(evt);
+            }
+        });
 
         btnSalvar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tabela/db/img/icons8-Plus Filled-30.png"))); // NOI18N
@@ -192,6 +197,11 @@ public class View extends javax.swing.JFrame {
         ));
         tabela.setGridColor(new java.awt.Color(255, 255, 255));
         tabela.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        tabela.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tabelaKeyReleased(evt);
+            }
+        });
         jScrollPane2.setViewportView(tabela);
 
         btnExcluirListagem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -295,6 +305,32 @@ public class View extends javax.swing.JFrame {
         data.setText("");
        
     }//GEN-LAST:event_btnSalvarMouseClicked
+
+    private void tabelaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tabelaKeyReleased
+       
+        if(tabela.getSelectedRow() != -1){
+            nome.setText(tabela.getValueAt(tabela.getSelectedRow(), 0).toString());
+            snome.setText(tabela.getValueAt(tabela.getSelectedRow(), 1).toString());
+            data.setText(tabela.getValueAt(tabela.getSelectedRow(), 2).toString());
+        }
+    }//GEN-LAST:event_tabelaKeyReleased
+
+    private void btnExcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExcluirMouseClicked
+       
+        if(tabela.getSelectedRow() != -1){
+            Cliente c = new Cliente();
+            TabelaDAO dao = new TabelaDAO();
+            
+            c.setId((int) tabela.getValueAt(tabela.getSelectedRow(), 0));
+            c.setNome(nome.getText());
+            c.setSobreNome(snome.getText());
+            c.setDataNascimento(data.getText());
+            
+            dao.excluir(c);
+            read();
+            
+        }
+    }//GEN-LAST:event_btnExcluirMouseClicked
 
     
     public static void main(String args[]) {

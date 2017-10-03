@@ -8,8 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -39,7 +37,7 @@ public class TabelaDAO {
     public List<Cliente> listar() throws SQLException {
 
         StringBuilder sql = new StringBuilder();
-        sql.append("SELECT c.nome, c.sobreNome, c.dataNascimento FROM cliente c ");
+        sql.append("SELECT c.id, c.nome, c.sobreNome, c.dataNascimento FROM cliente c ");
 
         Connection con = ConexaoFactory.getConnection();
 
@@ -52,7 +50,8 @@ public class TabelaDAO {
         while (rs.next()) {
 
             Cliente c = new Cliente();
-
+            
+            c.setId(rs.getInt("c.id"));
             c.setNome(rs.getString("c.nome"));
             c.setSobreNome(rs.getString("c.sobreNome"));
             c.setDataNascimento(rs.getString("c.dataNascimento"));
@@ -89,7 +88,7 @@ public class TabelaDAO {
         return itens;        
     }
     
-    public void excluir(String ca){
+    public void excluir(Cliente ca){
         
         StringBuilder sql = new StringBuilder();
         sql.append("DELETE FROM cliente WHERE id = ? ");
@@ -98,7 +97,7 @@ public class TabelaDAO {
             Connection con = ConexaoFactory.getConnection();
             PreparedStatement ps = con.prepareStatement(sql.toString());
             
-            ps.setString(1, ca);
+            ps.setInt(1, ca.getId());
             ps.executeUpdate();
             
             System.out.println("EXCLUIR");
