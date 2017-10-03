@@ -2,7 +2,6 @@ package com.tabela.db.teste;
 
 import com.tabela.db.bean.Cliente;
 import com.tabela.db.dao.TabelaDAO;
-import java.sql.SQLException;
 
 /**
  *
@@ -64,7 +63,7 @@ public class TesteJUnit {
         } catch (SQLException ex) {
             System.out.println("Erro ao listar ..."+ex);
         }
-        */
+        
        
        //EXCLUIR
        
@@ -75,7 +74,7 @@ public class TesteJUnit {
        
        dao.excluir(c.getNome());
        
-       
+       */
 
     }
     
