@@ -1,7 +1,7 @@
 package com.tabela.db.teste;
 
 import com.tabela.db.bean.Cliente;
-import com.tabela.db.dao.TabelaDAO;
+import com.tabela.db.dao.ClienteDAO;
 
 /**
  *
@@ -15,7 +15,7 @@ public class TesteJUnit {
         // SALVAR
         
         Cliente c = new Cliente();
-        TabelaDAO dao = new TabelaDAO();
+        ClienteDAO dao = new ClienteDAO();
         
         
         c.setNome("Rafael");
@@ -34,7 +34,7 @@ public class TesteJUnit {
        
        // LISTAR SIMPLES
        
-       TabelaDAO dao = new TabelaDAO();
+       ClienteDAO dao = new ClienteDAO();
        
         try {
             for(Cliente c : dao.listar()){
@@ -50,7 +50,7 @@ public class TesteJUnit {
         
         // LISTAR POR ID
        
-        TabelaDAO dao = new TabelaDAO();
+        ClienteDAO dao = new ClienteDAO();
        
         try {
             for(Cliente c : dao.listarPorID("1")){
@@ -67,7 +67,7 @@ public class TesteJUnit {
        
        //EXCLUIR
        
-       TabelaDAO dao = new TabelaDAO();
+       ClienteDAO dao = new ClienteDAO();
        Cliente c = new Cliente();
        
        c.setNome("Rafael");

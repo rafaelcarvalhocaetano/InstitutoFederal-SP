@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author Rafael Carvalho Caetano
  */
-public class TabelaDAO {
+public class ClienteDAO {
 
     public void salvar(Cliente c) {
         StringBuilder sql = new StringBuilder();
@@ -88,7 +88,24 @@ public class TabelaDAO {
         return itens;        
     }
     
-    public void excluir(Cliente ca){
+    public void excluirNome(Cliente ca){
+        
+        StringBuilder sql = new StringBuilder();
+        sql.append("DELETE FROM cliente WHERE nome = ? ");
+        
+        try {
+            Connection con = ConexaoFactory.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql.toString());
+            
+            ps.setString(1, ca.getNome());
+            ps.executeUpdate();
+            
+            System.out.println("EXCLUIR");
+        } catch (SQLException ex) {
+            System.out.println("Erro no excluir"+ex);
+        }
+    }
+    public void excluirID(Cliente ca){
         
         StringBuilder sql = new StringBuilder();
         sql.append("DELETE FROM cliente WHERE id = ? ");
@@ -104,12 +121,6 @@ public class TabelaDAO {
         } catch (SQLException ex) {
             System.out.println("Erro no excluir"+ex);
         }
-        
-        
-        
-        
-
-       
     }
 
 }

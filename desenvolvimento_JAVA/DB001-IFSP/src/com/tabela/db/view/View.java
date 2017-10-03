@@ -2,7 +2,7 @@
 package com.tabela.db.view;
 
 import com.tabela.db.bean.Cliente;
-import com.tabela.db.dao.TabelaDAO;
+import com.tabela.db.dao.ClienteDAO;
 import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -21,13 +21,14 @@ public class View extends javax.swing.JFrame {
         tabela.setRowSorter(new TableRowSorter(modelo));
         
         read();
+        ll();
     }
     
     
     public void read(){
         DefaultTableModel modelo1 = (DefaultTableModel) tabela.getModel();
         modelo1.setNumRows(0);
-        TabelaDAO dao = new TabelaDAO();
+        ClienteDAO dao = new ClienteDAO();
         
         try {
             for(Cliente c : dao.listar()){
@@ -42,6 +43,19 @@ public class View extends javax.swing.JFrame {
             System.out.println("Erro ao listar ...");
         }
         
+    }
+    
+    public void ll(){
+        ClienteDAO dao = new ClienteDAO();
+        
+        try {
+
+            for (Cliente c : dao.listar()) {
+                listagem.addItem(c.getNome());
+            }
+        } catch (SQLException ex) {
+            System.out.println("Erro ...");
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -67,7 +81,8 @@ public class View extends javax.swing.JFrame {
         btnSalvar = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
-        btnExcluirListagem = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        id = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -163,7 +178,7 @@ public class View extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
-        listagem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        listagem.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         btnExcluir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tabela/db/img/icons8-Delete-30.png"))); // NOI18N
@@ -197,6 +212,11 @@ public class View extends javax.swing.JFrame {
         ));
         tabela.setGridColor(new java.awt.Color(255, 255, 255));
         tabela.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        tabela.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaMouseClicked(evt);
+            }
+        });
         tabela.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 tabelaKeyReleased(evt);
@@ -204,9 +224,13 @@ public class View extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tabela);
 
-        btnExcluirListagem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnExcluirListagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tabela/db/img/icons8-Delete-30 (1).png"))); // NOI18N
-        btnExcluirListagem.setText("EXCLUIR");
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("ID :");
+
+        id.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        id.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        id.setText("ID");
 
         javax.swing.GroupLayout p1Layout = new javax.swing.GroupLayout(p1);
         p1.setLayout(p1Layout);
@@ -215,33 +239,38 @@ public class View extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane2)
             .addGroup(p1Layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addGroup(p1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(p1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(nome)
-                    .addComponent(snome)
-                    .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, p1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnSalvar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 188, Short.MAX_VALUE)
-                .addComponent(btnExcluir)
-                .addGap(123, 123, 123)
-                .addComponent(listagem, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnExcluirListagem)
-                .addContainerGap())
+                .addGroup(p1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(p1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnSalvar)
+                        .addGap(50, 50, 50)
+                        .addComponent(btnExcluir)
+                        .addGap(51, 51, 51)
+                        .addComponent(listagem, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(p1Layout.createSequentialGroup()
+                        .addGap(123, 123, 123)
+                        .addGroup(p1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(p1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(nome)
+                            .addComponent(snome)
+                            .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(208, Short.MAX_VALUE))
         );
         p1Layout.setVerticalGroup(
             p1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(p1Layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(20, 20, 20)
+                .addGroup(p1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(id))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(p1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -253,20 +282,14 @@ public class View extends javax.swing.JFrame {
                 .addGroup(p1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
-                .addGroup(p1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(p1Layout.createSequentialGroup()
-                        .addComponent(btnSalvar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(p1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(p1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnExcluirListagem)
-                            .addComponent(listagem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnExcluir))))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addGroup(p1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSalvar)
+                    .addComponent(btnExcluir)
+                    .addComponent(listagem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -290,7 +313,7 @@ public class View extends javax.swing.JFrame {
 
     private void btnSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseClicked
        
-        TabelaDAO dao = new TabelaDAO();
+        ClienteDAO dao = new ClienteDAO();
         Cliente c = new Cliente();
         
         c.setNome(nome.getText());
@@ -319,18 +342,27 @@ public class View extends javax.swing.JFrame {
        
         if(tabela.getSelectedRow() != -1){
             Cliente c = new Cliente();
-            TabelaDAO dao = new TabelaDAO();
+            ClienteDAO dao = new ClienteDAO();
             
             c.setId((int) tabela.getValueAt(tabela.getSelectedRow(), 0));
             c.setNome(nome.getText());
             c.setSobreNome(snome.getText());
             c.setDataNascimento(data.getText());
             
-            dao.excluir(c);
+            dao.excluirID(c);
             read();
             
         }
     }//GEN-LAST:event_btnExcluirMouseClicked
+
+    private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
+       if(tabela.getSelectedRow() != -1){
+           id.setText(tabela.getValueAt(tabela.getSelectedRow(), 0).toString());
+           nome.setText(tabela.getValueAt(tabela.getSelectedRow(), 1).toString());
+           snome.setText(tabela.getValueAt(tabela.getSelectedRow(), 2).toString());
+           data.setText(tabela.getValueAt(tabela.getSelectedRow(), 3).toString());
+       }
+    }//GEN-LAST:event_tabelaMouseClicked
 
     
     public static void main(String args[]) {
@@ -344,9 +376,9 @@ public class View extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnExcluir;
-    private javax.swing.JLabel btnExcluirListagem;
     private javax.swing.JLabel btnSalvar;
     private javax.swing.JFormattedTextField data;
+    private javax.swing.JLabel id;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -354,6 +386,7 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
