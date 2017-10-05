@@ -1,6 +1,7 @@
 
 package bean;
 
+
 /**
  *
  * @author Rafael Carvalho Caetano
@@ -112,4 +113,10 @@ public class Cadastro {
     public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
-}
+    
+    
+
+   
+    
+
+   }
