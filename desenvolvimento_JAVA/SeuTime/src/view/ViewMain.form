@@ -3,10 +3,12 @@
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="enabled" type="boolean" value="false"/>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
-    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -69,13 +71,11 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jLabel1" pref="321" max="32767" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="nome" max="32767" attributes="0"/>
-                                      <Component id="snome" max="32767" attributes="0"/>
-                                      <Component id="time" max="32767" attributes="0"/>
-                                      <Component id="camisa" max="32767" attributes="0"/>
-                                      <Component id="cpf" alignment="0" pref="321" max="32767" attributes="0"/>
-                                  </Group>
+                                  <Component id="nome" max="32767" attributes="0"/>
+                                  <Component id="snome" max="32767" attributes="0"/>
+                                  <Component id="txtTime" max="32767" attributes="0"/>
+                                  <Component id="camisa" max="32767" attributes="0"/>
+                                  <Component id="cpf" alignment="0" pref="321" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -102,7 +102,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="time" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtTime" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -270,7 +270,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="snome">
         </Component>
-        <Component class="javax.swing.JTextField" name="time">
+        <Component class="javax.swing.JTextField" name="txtTime">
         </Component>
         <Component class="javax.swing.JTextField" name="camisa">
         </Component>
