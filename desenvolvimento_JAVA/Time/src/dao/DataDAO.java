@@ -5,8 +5,11 @@ import domain.Data;
 import factory.ConexaoFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -37,11 +40,28 @@ public class DataDAO {
             ex.printStackTrace();
             
         }
-        
-        
     }
     
     
     
-    
+    public List<Data> listar() throws SQLException{
+        
+        
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT data FROM timestamp");
+       
+        Connection con = ConexaoFactory.getConection();
+        PreparedStatement ps = con.prepareStatement(sql.toString());
+        
+        ResultSet rs = ps.executeQuery();
+        ArrayList<Data> lista = new ArrayList<>();
+        
+        while(rs.next()){
+        
+            Data d = new Data();
+            d.setData(rs.getDate("data"));
+            lista.add(d);
+        }
+        return lista;
+    }
 }

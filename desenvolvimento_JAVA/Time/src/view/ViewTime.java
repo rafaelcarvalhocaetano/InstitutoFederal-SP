@@ -3,12 +3,14 @@ package view;
 
 import dao.DataDAO;
 import domain.Data;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,6 +22,27 @@ public class ViewTime extends javax.swing.JFrame {
    
     public ViewTime() {
         initComponents();
+        t.start();
+       
+    }
+    Thread t = new Thread(){
+        @Override
+        public void run() {
+            read();
+        }
+    };
+    
+    public void read(){
+        DataDAO dao = new DataDAO();
+        try {
+            for(Data d : dao.listar()){
+                d.getData();
+                System.out.println("DATA : "+d.getData());
+                lista.addItem(d.getData().toString());
+            }
+        } catch (SQLException ex) {
+            System.out.println("erro ...");
+        }
     }
 
    
@@ -31,6 +54,7 @@ public class ViewTime extends javax.swing.JFrame {
         txtData = new javax.swing.JFormattedTextField();
         btnSalvar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        lista = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -66,6 +90,8 @@ public class ViewTime extends javax.swing.JFrame {
             }
         });
 
+        lista.setBorder(null);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -74,8 +100,11 @@ public class ViewTime extends javax.swing.JFrame {
                 .addGap(60, 60, 60)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(408, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(63, 63, 63)
+                        .addComponent(lista, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(127, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
@@ -87,7 +116,9 @@ public class ViewTime extends javax.swing.JFrame {
                 .addGap(4, 4, 4)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lista, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44)
                 .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(45, Short.MAX_VALUE))
@@ -110,22 +141,28 @@ public class ViewTime extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
        
-        try {
-            DataDAO dao = new DataDAO();
-            Data d = new Data();
+        if (txtData.getText() != null) {
             
-            //Formatando a data par a padrão pt_BR e convertendo para String que recebe o txtData
-            DateFormat form = new SimpleDateFormat("dd/MM/yyyy");
-            Date hj = form.parse(txtData.getText());
+            try {
+                DataDAO dao = new DataDAO();
+                Data d = new Data();
 
-            d.setData(hj);
-            dao.salvar(d);
+                //Formatando a data par a padrão pt_BR e convertendo para String que recebe o txtData
+                DateFormat form = new SimpleDateFormat("dd/MM/yyyy");
+                Date hj = form.parse(txtData.getText());
+
+                d.setData(hj);
+                dao.salvar(d);
+                read();
+                JOptionPane.showMessageDialog(rootPane, "SALVO NA VIEW COM SUCESSO");
+            } catch (ParseException ex) {
+                System.out.println("Erro no BTN");
+                ex.printStackTrace();
+
+            }
             
-            JOptionPane.showMessageDialog(rootPane, "SALVO NA VIEW COM SUCESSO");
-        } catch (ParseException ex) {
-            System.out.println("Erro no BTN");
-            ex.printStackTrace();
-            
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "CAMPOS OBRIGATÓRIOS");
         }
 
 
@@ -149,6 +186,7 @@ public class ViewTime extends javax.swing.JFrame {
     private javax.swing.JButton btnSalvar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JComboBox<String> lista;
     private javax.swing.JFormattedTextField txtData;
     // End of variables declaration//GEN-END:variables
 }
