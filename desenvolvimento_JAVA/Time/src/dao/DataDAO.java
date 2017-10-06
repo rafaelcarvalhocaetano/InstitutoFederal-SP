@@ -10,6 +10,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -42,8 +44,6 @@ public class DataDAO {
         }
     }
     
-    
-    
     public List<Data> listar() throws SQLException{
         
         
@@ -63,5 +63,24 @@ public class DataDAO {
             lista.add(d);
         }
         return lista;
+    }
+    
+    public void excluir(Data d){
+        
+        StringBuilder sql = new StringBuilder();
+        sql.append("DELETE FROM timestamp WHERE data = ? ");
+        
+        Connection con;
+        try {
+            con = ConexaoFactory.getConection();
+            PreparedStatement ps = con.prepareStatement(sql.toString());
+            ps.setDate(1, new java.sql.Date(d.getData().getTime()));
+            ps.executeUpdate();
+            
+            //JOptionPane.showMessageDialog(null, "EXCLUIDO COM SUCESSO");
+        } catch (SQLException ex) {
+            System.out.println("erro no excluir");
+        }
+        
     }
 }
