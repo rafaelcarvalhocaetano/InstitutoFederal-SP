@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -65,18 +66,15 @@ public class ComboDAO {
         return itens;
     }
     
-    public void excluir(Combo c ){
+    public void excluir(String c ){
         StringBuilder sql = new StringBuilder();
-        sql.append("DELETE FROM tabela WHERE idade = ? ");
+        sql.append("DELETE FROM tabela WHERE idade = '"+c+"' ");
         
         try {
             Connection con = ConexaoFactory.getCon();
             PreparedStatement ps = con.prepareStatement(sql.toString());
-            
-            ps.setDate(1, (java.sql.Date) c.getData());
+           
             ps.executeUpdate();
-            
-            System.out.println("EXCLUIRDO NO DAO");
             
         } catch (SQLException e) {
             System.out.println("ERRO NO EXCLUIR DAO");

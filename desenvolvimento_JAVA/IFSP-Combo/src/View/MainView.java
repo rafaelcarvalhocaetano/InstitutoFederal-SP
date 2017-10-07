@@ -4,7 +4,6 @@ package View;
 import Model.ComboDAO;
 import domain.Combo;
 import java.sql.SQLException;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -22,6 +21,7 @@ public class MainView extends javax.swing.JFrame {
     public MainView() {
         initComponents();
         read();
+       
     }
     
     public void read(){
@@ -269,10 +269,19 @@ public class MainView extends javax.swing.JFrame {
        
         
         ComboDAO dao = new ComboDAO();
-        
-        
-        
-        
+        Combo c = new Combo();
+
+        if (combobox.getSelectedItem() == null) {
+            read();
+            JOptionPane.showMessageDialog(rootPane, "Campo obrigatório", "CAMPO", JOptionPane.ERROR_MESSAGE);
+            return;
+           
+        } else {
+            dao.excluir((String) combobox.getSelectedItem());
+            combobox.removeItemAt(combobox.getSelectedIndex());
+        }
+        System.out.println("EXCLUIDO");
+       
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     
