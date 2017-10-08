@@ -169,6 +169,11 @@ public class View extends javax.swing.JFrame {
         });
         tabela.setGridColor(new java.awt.Color(51, 51, 51));
         tabela.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        tabela.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tabelaKeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabela);
         if (tabela.getColumnModel().getColumnCount() > 0) {
             tabela.getColumnModel().getColumn(0).setResizable(false);
@@ -259,9 +264,7 @@ public class View extends javax.swing.JFrame {
             
             nome.setText("");
             idade.setText("");
-
         }
-
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
@@ -272,16 +275,22 @@ public class View extends javax.swing.JFrame {
            Teste t = new Teste();
            
            t.setId((int) tabela.getValueAt(tabela.getSelectedRow(), 0));
-           t.setNome(nome.getText());
-           t.setIdade(Integer.parseInt(idade.getText()));
            
+           t.setNome(tabela.getValueAt(tabela.getSelectedRow(), 1).toString());
+           t.setIdade((int) tabela.getValueAt(tabela.getSelectedRow(), 2));
+          
            dao.excluir(t);
-           
+           read();
        }
-        
-        
-        
     }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void tabelaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tabelaKeyReleased
+       if(tabela.getSelectedRow() != -1){
+           
+           nome.setText(tabela.getValueAt(tabela.getSelectedRow(), 0).toString());
+           idade.setText(tabela.getValueAt(tabela.getSelectedRow(), 1).toString());
+       }
+    }//GEN-LAST:event_tabelaKeyReleased
 
    
     public static void main(String args[]) {

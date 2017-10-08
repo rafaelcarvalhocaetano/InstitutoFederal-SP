@@ -60,13 +60,12 @@ public class TesteDAO {
     public void excluir(Teste t){
         
         StringBuilder sql = new StringBuilder();
-        sql.append("DELETE FROM pessoa WHERE id = (?)");
+        sql.append("DELETE FROM pessoa WHERE id = ? ");
         try {
             
             Connection conexao = ConexaoFactory.db();
             PreparedStatement ps = conexao.prepareStatement(sql.toString());
             ps.setInt(1, t.getId());
-            
             ps.executeUpdate();
             
             JOptionPane.showMessageDialog(null, "Excluído com sucesso", "CORRETO", JOptionPane.INFORMATION_MESSAGE);
