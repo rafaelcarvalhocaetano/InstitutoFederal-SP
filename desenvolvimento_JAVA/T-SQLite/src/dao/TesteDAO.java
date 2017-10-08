@@ -57,4 +57,23 @@ public class TesteDAO {
         return itens;
     }
     
+    public void excluir(Teste t){
+        
+        StringBuilder sql = new StringBuilder();
+        sql.append("DELETE FROM pessoa WHERE id = (?)");
+        try {
+            
+            Connection conexao = ConexaoFactory.db();
+            PreparedStatement ps = conexao.prepareStatement(sql.toString());
+            ps.setInt(1, t.getId());
+            
+            ps.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null, "Excluído com sucesso", "CORRETO", JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException e) {
+             JOptionPane.showMessageDialog(null, "Erro ao Excluir no DAO", "ERRO", JOptionPane.ERROR_MESSAGE);
+             e.printStackTrace();
+        }
+    }
+    
 }

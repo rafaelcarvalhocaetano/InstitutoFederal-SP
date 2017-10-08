@@ -54,7 +54,7 @@ public class View extends javax.swing.JFrame {
         btnSalvar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
-        btnSalvar1 = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -176,13 +176,13 @@ public class View extends javax.swing.JFrame {
             tabela.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        btnSalvar1.setBackground(new java.awt.Color(51, 51, 51));
-        btnSalvar1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnSalvar1.setForeground(new java.awt.Color(255, 255, 255));
-        btnSalvar1.setText("Excluir");
-        btnSalvar1.addActionListener(new java.awt.event.ActionListener() {
+        btnExcluir.setBackground(new java.awt.Color(51, 51, 51));
+        btnExcluir.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnExcluir.setForeground(new java.awt.Color(255, 255, 255));
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalvar1ActionPerformed(evt);
+                btnExcluirActionPerformed(evt);
             }
         });
 
@@ -197,7 +197,7 @@ public class View extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSalvar1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -218,7 +218,7 @@ public class View extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSalvar1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                    .addComponent(btnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -264,9 +264,24 @@ public class View extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnSalvarActionPerformed
 
-    private void btnSalvar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSalvar1ActionPerformed
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        
+       if(tabela.getSelectedRow() != -1){
+           
+           TesteDAO dao = new TesteDAO();
+           Teste t = new Teste();
+           
+           t.setId((int) tabela.getValueAt(tabela.getSelectedRow(), 0));
+           t.setNome(nome.getText());
+           t.setIdade(Integer.parseInt(idade.getText()));
+           
+           dao.excluir(t);
+           
+       }
+        
+        
+        
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
    
     public static void main(String args[]) {
@@ -279,8 +294,8 @@ public class View extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnSalvar;
-    private javax.swing.JButton btnSalvar1;
     private javax.swing.JTextField idade;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
