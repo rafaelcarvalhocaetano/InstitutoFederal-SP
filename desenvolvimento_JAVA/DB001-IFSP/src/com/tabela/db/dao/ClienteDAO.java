@@ -108,7 +108,7 @@ public class ClienteDAO {
     public void excluirID(Cliente ca){
         
         StringBuilder sql = new StringBuilder();
-        sql.append("DELETE FROM cliente WHERE id = ? ");
+        sql.append("DELETE FROM cliente WHERE id = (?) ");
         
         try {
             Connection con = ConexaoFactory.getConnection();
