@@ -4,7 +4,6 @@ package conexao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import javax.swing.JOptionPane;
 /**
  *
  * @author Rafael Carvalho Caetano
@@ -12,17 +11,20 @@ import javax.swing.JOptionPane;
 public class ConexaoFactory {
     
     
-    public static Connection getCon(){
+    private static Connection con = null;
+    
+    public static Connection db() throws SQLException{
         try {
-            DriverManager.registerDriver(new org.sqlite.JDBC());
-            Connection con = DriverManager.getConnection("jdbc:sqlite:teste.sqlite");
-            JOptionPane.showMessageDialog(null, "CONECTADO ... ");
-            return con;
+            Class.forName("org.sqlite.JDBC");
+            String url = "jdbc:sqlite:../T-SQLite/db/sqlitejava.db";
+            //String url = "jdbc:sqlite:sqlitejava.sqlite";
             
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "ERRO NA CONEXAO", "ERRO",JOptionPane.ERROR_MESSAGE);
-            return null;
+            Connection cc = DriverManager.getConnection(url);
+            System.out.println("CONECTADO");
+            return cc;
+        } catch (ClassNotFoundException ex) {
+            System.out.println("Erro conexao");
+          return null;
         }
     }
-    
 }
