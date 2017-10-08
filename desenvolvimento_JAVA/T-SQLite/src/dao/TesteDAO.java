@@ -51,6 +51,7 @@ public class TesteDAO {
 
             t.setId(rs.getInt("id"));
             t.setNome(rs.getString("nome"));
+            t.setIdade(rs.getInt("idade"));
             itens.add(t);
         }
         return itens;
