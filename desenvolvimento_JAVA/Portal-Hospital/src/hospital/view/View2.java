@@ -99,6 +99,7 @@ public class View2 extends javax.swing.JFrame {
         jTextField1.setBorder(null);
 
         jPasswordField1.setFont(new java.awt.Font("Andalus", 1, 14)); // NOI18N
+        jPasswordField1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jPasswordField1.setBorder(null);
 
         jButton1.setBackground(new java.awt.Color(51, 102, 255));
