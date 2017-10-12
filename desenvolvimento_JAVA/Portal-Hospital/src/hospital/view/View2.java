@@ -25,7 +25,7 @@ public class View2 extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        texto = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -92,9 +92,9 @@ public class View2 extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(51, 102, 255));
         jLabel5.setText("Logar Aqui");
 
-        jLabel6.setFont(new java.awt.Font("Andalus", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(51, 102, 255));
-        jLabel6.setText("Painel de Menbros");
+        texto.setFont(new java.awt.Font("Andalus", 1, 14)); // NOI18N
+        texto.setForeground(new java.awt.Color(51, 102, 255));
+        texto.setText("Painel de Menbros");
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/img/icons8-Male User-30.png"))); // NOI18N
 
@@ -123,7 +123,7 @@ public class View2 extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(73, Short.MAX_VALUE)
-                .addComponent(jLabel6)
+                .addComponent(texto)
                 .addGap(77, 77, 77))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,7 +152,7 @@ public class View2 extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(texto, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(77, 77, 77)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextField1)
@@ -246,7 +246,6 @@ public class View2 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
@@ -256,5 +255,6 @@ public class View2 extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel texto;
     // End of variables declaration//GEN-END:variables
 }
