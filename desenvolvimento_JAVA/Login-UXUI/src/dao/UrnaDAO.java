@@ -1,10 +1,12 @@
-
 package dao;
 
 /**
  *
  * @author Rafael Carvalho Caetano
  */
-public class HospitalDAO {
+public class UrnaDAO {
+    
+    
+    
     
 }

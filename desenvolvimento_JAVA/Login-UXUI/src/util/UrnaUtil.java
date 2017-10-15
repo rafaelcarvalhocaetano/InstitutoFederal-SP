@@ -1,10 +1,10 @@
 
-package domain;
+package util;
 
 /**
  *
  * @author Rafael Carvalho Caetano
  */
-public class Hospital {
+public class UrnaUtil {
     
 }
