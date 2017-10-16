@@ -5,10 +5,10 @@ package view;
  *
  * @author Rafael Carvalho Caetano
  */
-public class Partido extends javax.swing.JFrame {
+public class Leitor extends javax.swing.JFrame {
 
     
-    public Partido() {
+    public Leitor() {
         initComponents();
     }
 
@@ -44,19 +44,19 @@ public class Partido extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Partidos");
+        setTitle("Leitor");
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel3.setBackground(new java.awt.Color(0, 102, 204));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/partidos.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eleitor.png"))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Partidos");
+        jLabel2.setText("Leitor");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -112,7 +112,7 @@ public class Partido extends javax.swing.JFrame {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Partido().setVisible(true);
+                new Leitor().setVisible(true);
             }
         });
     }

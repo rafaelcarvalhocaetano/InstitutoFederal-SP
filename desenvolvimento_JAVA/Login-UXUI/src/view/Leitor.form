@@ -38,7 +38,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
-    <Property name="title" type="java.lang.String" value="Partidos"/>
+    <Property name="title" type="java.lang.String" value="Leitor"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -129,7 +129,7 @@
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/partidos.png"/>
+                  <Image iconType="3" name="/img/eleitor.png"/>
                 </Property>
               </Properties>
             </Component>
@@ -142,7 +142,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Partidos"/>
+                <Property name="text" type="java.lang.String" value="Leitor"/>
               </Properties>
             </Component>
           </SubComponents>
