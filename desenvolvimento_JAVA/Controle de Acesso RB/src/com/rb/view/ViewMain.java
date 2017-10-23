@@ -19,9 +19,9 @@ public class ViewMain extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         PainelMAin = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        MAX = new javax.swing.JLabel();
+        Close = new javax.swing.JLabel();
+        MIN = new javax.swing.JLabel();
 
         jLabel2.setText("jLabel2");
 
@@ -41,27 +41,27 @@ public class ViewMain extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/img/1 (15).png"))); // NOI18N
-        jLabel1.setMaximumSize(new java.awt.Dimension(20, 20));
-        jLabel1.setPreferredSize(new java.awt.Dimension(20, 20));
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        MAX.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
+        MAX.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/img/1 (15).png"))); // NOI18N
+        MAX.setMaximumSize(new java.awt.Dimension(20, 20));
+        MAX.setPreferredSize(new java.awt.Dimension(20, 20));
+        MAX.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
+                MAXMouseClicked(evt);
             }
         });
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/img/1 (8).png"))); // NOI18N
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+        Close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/img/1 (8).png"))); // NOI18N
+        Close.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel3MouseClicked(evt);
+                CloseMouseClicked(evt);
             }
         });
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/img/1 (27).png"))); // NOI18N
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+        MIN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/img/1 (27).png"))); // NOI18N
+        MIN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel4MouseClicked(evt);
+                MINMouseClicked(evt);
             }
         });
 
@@ -73,11 +73,11 @@ public class ViewMain extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 513, Short.MAX_VALUE)
-                .addComponent(jLabel4)
+                .addComponent(MIN)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(MAX, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
-                .addComponent(jLabel3))
+                .addComponent(Close))
         );
         PainelMAinLayout.setVerticalGroup(
             PainelMAinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -87,9 +87,9 @@ public class ViewMain extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(PainelMAinLayout.createSequentialGroup()
                 .addGroup(PainelMAinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Close, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(MIN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(MAX, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 493, Short.MAX_VALUE))
         );
 
@@ -108,21 +108,24 @@ public class ViewMain extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+    private void CloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CloseMouseClicked
        dispose();
-    }//GEN-LAST:event_jLabel3MouseClicked
+    }//GEN-LAST:event_CloseMouseClicked
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        setExtendedState(MAXIMIZED_BOTH);
-    }//GEN-LAST:event_jLabel1MouseClicked
-
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        if(evt.isControlDown()){
-            setExtendedState(ICONIFIED);
+    private void MAXMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MAXMouseClicked
+        if(evt.getClickCount() == 1){
+            this.setExtendedState(MAXIMIZED_BOTH);
         }
+        if(evt.getClickCount() == 2){
+            this.setExtendedState(NORMAL);
+        }
+    }//GEN-LAST:event_MAXMouseClicked
+
+    private void MINMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MINMouseClicked
         
+        setExtendedState(ICONIFIED);
         
-    }//GEN-LAST:event_jLabel4MouseClicked
+    }//GEN-LAST:event_MINMouseClicked
 
     public static void main(String args[]) {
        
@@ -134,11 +137,11 @@ public class ViewMain extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Close;
+    private javax.swing.JLabel MAX;
+    private javax.swing.JLabel MIN;
     private javax.swing.JPanel PainelMAin;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
