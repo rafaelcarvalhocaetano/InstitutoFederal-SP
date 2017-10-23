@@ -8,12 +8,15 @@ package com.rb.util;
 public class RBUtil {
     /*
     setExtendedState(ICONIFIED); --> minimiza a tela
+    
     setExtendedState(MAXIMIZED_BOTH); --> maximiza a tela
+    
     diponse --> fecha somente o painel em uso
+    
     System.exit(0); --> fecha o programa
     
     Padrão de Cores
-    AZUL --> #2980b9
+    AZUL --> 41,128,185
     
     
     */
