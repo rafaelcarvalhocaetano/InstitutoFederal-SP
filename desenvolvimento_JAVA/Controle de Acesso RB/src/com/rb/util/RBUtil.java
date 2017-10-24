@@ -16,7 +16,7 @@ public class RBUtil {
     System.exit(0); --> fecha o programa
     
     Padrão de Cores
-    AZUL --> 41,128,185
+    AZUL --> [51,51,51]
     
     
     */
