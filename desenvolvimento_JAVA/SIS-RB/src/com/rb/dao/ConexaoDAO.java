@@ -20,7 +20,7 @@ public class ConexaoDAO {
     public void salvar(Chave c){
         
         StringBuilder sql = new StringBuilder();
-        sql.append("INSERT INTO nome, setor, dataretirada, hretirada, hentrada, datadevolucao, vigilante ");
+        sql.append("INSERT INTO chave (nome, setor, dataretirada, hretirada, hentrada, datadevolucao, vigilante) VALUES (?,?,?,?,?,?,?) ");
         
         try {
             Connection con = ConexaoFactory.db();
@@ -36,11 +36,10 @@ public class ConexaoDAO {
             
             ps.executeUpdate();
             
-            System.out.println("SALVO COM SUCESSO ... ");
+            System.out.println("SQL OK ... ");
             
         } catch (SQLException ex) {
             ex.printStackTrace();
-            System.out.println("Erro");
         }
     }
     
