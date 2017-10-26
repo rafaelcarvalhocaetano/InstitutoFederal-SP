@@ -6,8 +6,7 @@ package com.rb.domain;
  */
 public class VeiculosLeveRB {
     
-     private Integer id;
-    
+    private Integer id;
     private String nome;
     private String destino;
     private String data;
