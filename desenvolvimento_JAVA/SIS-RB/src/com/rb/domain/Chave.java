@@ -10,10 +10,10 @@ public class Chave {
     private Integer id;
     private String nome;
     private String setor;
-    private String dataretirada;
-    private String hsaida;
-    private String hentrada;
-    private String dataDevolucao;
+    private String data;
+    private String saida;
+    private String entrada;
+    private String datadevolucao;
     private String vigilante;
 
     /**
@@ -59,59 +59,59 @@ public class Chave {
     }
 
     /**
-     * @return the dataretirada
+     * @return the data
      */
-    public String getDataretirada() {
-        return dataretirada;
+    public String getData() {
+        return data;
     }
 
     /**
-     * @param dataretirada the dataretirada to set
+     * @param data the data to set
      */
-    public void setDataretirada(String dataretirada) {
-        this.dataretirada = dataretirada;
+    public void setData(String data) {
+        this.data = data;
     }
 
     /**
-     * @return the hsaida
+     * @return the saida
      */
-    public String getHsaida() {
-        return hsaida;
+    public String getSaida() {
+        return saida;
     }
 
     /**
-     * @param hsaida the hsaida to set
+     * @param saida the saida to set
      */
-    public void setHsaida(String hsaida) {
-        this.hsaida = hsaida;
+    public void setSaida(String saida) {
+        this.saida = saida;
     }
 
     /**
-     * @return the hentrada
+     * @return the entrada
      */
-    public String getHentrada() {
-        return hentrada;
+    public String getEntrada() {
+        return entrada;
     }
 
     /**
-     * @param hentrada the hentrada to set
+     * @param entrada the entrada to set
      */
-    public void setHentrada(String hentrada) {
-        this.hentrada = hentrada;
+    public void setEntrada(String entrada) {
+        this.entrada = entrada;
     }
 
     /**
-     * @return the dataDevolucao
+     * @return the datadevolucao
      */
-    public String getDataDevolucao() {
-        return dataDevolucao;
+    public String getDatadevolucao() {
+        return datadevolucao;
     }
 
     /**
-     * @param dataDevolucao the dataDevolucao to set
+     * @param datadevolucao the datadevolucao to set
      */
-    public void setDataDevolucao(String dataDevolucao) {
-        this.dataDevolucao = dataDevolucao;
+    public void setDatadevolucao(String datadevolucao) {
+        this.datadevolucao = datadevolucao;
     }
 
     /**
@@ -127,7 +127,6 @@ public class Chave {
     public void setVigilante(String vigilante) {
         this.vigilante = vigilante;
     }
-    
-    
+
     
 }
