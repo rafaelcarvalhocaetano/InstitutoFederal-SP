@@ -7,6 +7,9 @@ package relatoriosjreport;
 
 import dao.UserDAO;
 import domain.Usuario;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -21,6 +24,27 @@ public class PDF extends javax.swing.JFrame {
         initComponents();
         DefaultTableModel modelo = (DefaultTableModel) tabela.getModel();
         tabela.setRowSorter(new TableRowSorter(modelo));
+        
+        read();
+    }
+    
+    
+    public void read(){
+        DefaultTableModel m = (DefaultTableModel) tabela.getModel();
+        m.setNumRows(0);
+        UserDAO dao = new UserDAO();
+        try {
+            for(Usuario u : dao.listar()){
+                m.addRow(new Object[]{
+                    u.getId(),
+                    u.getNome(),
+                    u.getPlaca(),
+                    u.getLocal()                
+                });
+            }
+        } catch (SQLException ex) {
+            System.out.println("Erro ao listar a tabela");
+        }
     }
 
    
@@ -36,9 +60,9 @@ public class PDF extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        salvar = new javax.swing.JButton();
+        excluir = new javax.swing.JButton();
+        update = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
 
@@ -61,19 +85,29 @@ public class PDF extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel3.setText("LOCAL");
 
-        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jButton2.setText("Salvar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        salvar.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        salvar.setText("Salvar");
+        salvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                salvarActionPerformed(evt);
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jButton3.setText("Excluir");
+        excluir.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        excluir.setText("Excluir");
+        excluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                excluirActionPerformed(evt);
+            }
+        });
 
-        jButton4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jButton4.setText("Atualizar");
+        update.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        update.setText("Atualizar");
+        update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateActionPerformed(evt);
+            }
+        });
 
         tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -88,6 +122,11 @@ public class PDF extends javax.swing.JFrame {
         ));
         tabela.setGridColor(new java.awt.Color(255, 255, 255));
         tabela.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        tabela.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabela);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -125,11 +164,11 @@ public class PDF extends javax.swing.JFrame {
                                 .addGap(104, 104, 104))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton4)
+                        .addComponent(update)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)
+                        .addComponent(excluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)))
+                        .addComponent(salvar)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -147,9 +186,9 @@ public class PDF extends javax.swing.JFrame {
                     .addComponent(local, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(60, 60, 60)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(salvar)
+                    .addComponent(excluir)
+                    .addComponent(update))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
@@ -172,7 +211,7 @@ public class PDF extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarActionPerformed
         UserDAO dao = new UserDAO();
         Usuario u = new Usuario();
         
@@ -185,9 +224,52 @@ public class PDF extends javax.swing.JFrame {
         nome.setText("");
         placa.setText("");
         local.setText("");
+        read();
         System.out.println("Salvo com sucesso");
         
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_salvarActionPerformed
+
+    private void excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirActionPerformed
+        if(tabela.getSelectedRow() != -1){
+            Usuario u = new Usuario();
+            UserDAO dao = new UserDAO();
+            
+            u.setId((int) tabela.getValueAt(tabela.getSelectedRow(), 0));
+            u.setNome(nome.getText());
+            u.setPlaca(placa.getText());
+            u.setLocal(local.getText());
+            
+            dao.excluir(u);
+            read();
+            System.out.println("EXCLUIRDO COM SUCESSO NA VIEW");
+            
+        }
+    }//GEN-LAST:event_excluirActionPerformed
+
+    private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
+        if (tabela.getSelectedRow() != -1) {
+            nome.setText(tabela.getValueAt(tabela.getSelectedRow(), 1).toString());
+            placa.setText(tabela.getValueAt(tabela.getSelectedRow(), 2).toString());
+            local.setText(tabela.getValueAt(tabela.getSelectedRow(), 3).toString());
+        }
+    }//GEN-LAST:event_tabelaMouseClicked
+
+    private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
+       if(tabela.getSelectedRow() != -1){
+           Usuario u = new Usuario();
+           UserDAO dao = new UserDAO();
+           
+          u.setId((int) tabela.getValueAt(tabela.getSelectedRow(), 0));
+           u.setNome(nome.getText());
+           u.setPlaca(placa.getText());
+           u.setLocal(local.getText());
+           
+           dao.atualizar(u);
+           read();
+           System.out.println("ATUALIZADO VIEW");
+           
+       }
+    }//GEN-LAST:event_updateActionPerformed
 
    
     public static void main(String args[]) {
@@ -200,10 +282,8 @@ public class PDF extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton excluir;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -212,6 +292,8 @@ public class PDF extends javax.swing.JFrame {
     private javax.swing.JTextField local;
     private javax.swing.JTextField nome;
     private javax.swing.JTextField placa;
+    private javax.swing.JButton salvar;
     private javax.swing.JTable tabela;
+    private javax.swing.JButton update;
     // End of variables declaration//GEN-END:variables
 }
