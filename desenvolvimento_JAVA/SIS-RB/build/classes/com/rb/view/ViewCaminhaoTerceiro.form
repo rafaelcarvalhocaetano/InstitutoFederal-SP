@@ -214,7 +214,7 @@
               <Font name="Times New Roman" size="12" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="PLACA"/>
+            <Property name="text" type="java.lang.String" value="CAVALO"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
@@ -501,7 +501,7 @@
               <Font name="Times New Roman" size="12" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="MODELO"/>
+            <Property name="text" type="java.lang.String" value="CARRETA"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField4">

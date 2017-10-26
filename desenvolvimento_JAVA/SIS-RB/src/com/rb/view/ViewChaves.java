@@ -1,6 +1,6 @@
 package com.rb.view;
 
-import com.rb.dao.ConexaoDAO;
+import com.rb.dao.ChaveDAO;
 import com.rb.domain.Chave;
 import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
@@ -21,7 +21,7 @@ public class ViewChaves extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) tabelaChave.getModel();
         modelo.setNumRows(0);
 
-        ConexaoDAO dao = new ConexaoDAO();
+        ChaveDAO dao = new ChaveDAO();
 
         try {
             for (Chave c : dao.listar()) {
@@ -356,7 +356,7 @@ public class ViewChaves extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Chave c = new Chave();
-        ConexaoDAO dao = new ConexaoDAO();
+        ChaveDAO dao = new ChaveDAO();
         
         c.setNome(nome.getText());
         c.setSetor(setor.getText());

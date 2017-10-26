@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author Rafael Carvalho Caetano
  */
-public class ConexaoDAO {
+public class ChaveDAO {
     
     
     public void salvar(Chave c){
