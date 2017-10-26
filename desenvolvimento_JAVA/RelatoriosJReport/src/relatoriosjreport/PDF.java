@@ -259,7 +259,7 @@ public class PDF extends javax.swing.JFrame {
            Usuario u = new Usuario();
            UserDAO dao = new UserDAO();
            
-          u.setId((int) tabela.getValueAt(tabela.getSelectedRow(), 0));
+           u.setId((int) tabela.getValueAt(tabela.getSelectedRow(), 0));
            u.setNome(nome.getText());
            u.setPlaca(placa.getText());
            u.setLocal(local.getText());

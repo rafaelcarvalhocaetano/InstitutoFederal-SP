@@ -78,7 +78,7 @@ public class UserDAO {
      public void atualizar(Usuario u){
         StringBuilder sql = new StringBuilder();
         sql.append("UPDATE tabela ");
-        sql.append("SET nome = ?, placa = ?, local = ? ");
+        sql.append("SET nome=?, placa=?, local=? ");
         sql.append("WHERE id = ? ");
         try {
             Connection c = Conexao.db();
