@@ -242,8 +242,7 @@ public class ViewLogin extends javax.swing.JFrame {
     private void btnAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcessarActionPerformed
         
         LoginDAO dao = new LoginDAO();
-        ViewMain vm = new ViewMain();
-        
+        boolean flag = false;
         
         Login l1 = new Login();
         
@@ -258,18 +257,13 @@ public class ViewLogin extends javax.swing.JFrame {
             
             if (l.getUser().equals(usuario.getText()) && l.getPass().equals(password.getText())) {
                 
-                System.out.println("LOGADO");
                 dispose();
-                vm.setVisible(true);
-             }
+                flag = true;                
+                ViewMain vm = new ViewMain();
+                vm.setVisible(flag);
+               
+            }
         }
-        if (vm.setVisible(false)) {
-            JOptionPane.showMessageDialog(null, "Usuário ou Senha Errado ", "Erro ao Logar", JOptionPane.ERROR_MESSAGE);
-            usuario.setText("");
-            password.setText("");
-        }
-        
-        
     }//GEN-LAST:event_btnAcessarActionPerformed
 
    
