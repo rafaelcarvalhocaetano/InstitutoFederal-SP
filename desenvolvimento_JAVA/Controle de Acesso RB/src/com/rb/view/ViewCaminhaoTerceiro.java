@@ -4,9 +4,9 @@ package com.rb.view;
  *
  * @author Rafael Carvalho
  */
-public class ViewVisitante extends javax.swing.JFrame {
+public class ViewCaminhaoTerceiro extends javax.swing.JFrame {
 
-    public ViewVisitante() {
+    public ViewCaminhaoTerceiro() {
         initComponents();
     }
 
@@ -125,19 +125,19 @@ public class ViewVisitante extends javax.swing.JFrame {
         TabelaCaminhao.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         TabelaCaminhao.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "PLACA", "NOME", "DATA", "H. ENTRADA", "C / V", "H. SAÍDA", "C / V", "EMPRESA", "RG"
+                "PLACA", "MODELO/CARRETA", "NOME", "RG", "DATA", "H. ENTRADA", "C/V", "H. SAÍDA", "C/V"
             }
         ));
         TabelaCaminhao.setGridColor(new java.awt.Color(0, 0, 0));
@@ -153,7 +153,6 @@ public class ViewVisitante extends javax.swing.JFrame {
             TabelaCaminhao.getColumnModel().getColumn(6).setResizable(false);
             TabelaCaminhao.getColumnModel().getColumn(7).setResizable(false);
             TabelaCaminhao.getColumnModel().getColumn(8).setResizable(false);
-            TabelaCaminhao.getColumnModel().getColumn(9).setResizable(false);
         }
 
         jButton1.setBackground(new java.awt.Color(51, 51, 51));
@@ -199,23 +198,23 @@ public class ViewVisitante extends javax.swing.JFrame {
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("VEÍCULOS E PEDESTRES");
+        jLabel2.setText("VEÍCULOS TERCEIRO - CAMINHÕES");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(359, 359, 359)
+                .addGap(292, 292, 292)
                 .addComponent(jLabel2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(21, 21, 21)
                 .addComponent(jLabel2)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -374,7 +373,7 @@ public class ViewVisitante extends javax.swing.JFrame {
        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ViewVisitante().setVisible(true);
+                new ViewCaminhaoTerceiro().setVisible(true);
             }
         });
     }
