@@ -7,7 +7,6 @@ package com.rb.domain;
 public class FuncionariosRB {
     
     private Integer id;
-    
     private String nome;
     private String modelo;
     private String data;
