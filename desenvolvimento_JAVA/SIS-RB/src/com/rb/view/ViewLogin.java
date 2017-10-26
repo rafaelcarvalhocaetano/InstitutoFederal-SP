@@ -2,11 +2,6 @@ package com.rb.view;
 
 import com.rb.dao.LoginDAO;
 import com.rb.domain.Login;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -254,16 +249,20 @@ public class ViewLogin extends javax.swing.JFrame {
             return;
         }
         for (Login l : dao.listarL(usuario.getText(), password.getText())) {
-            
+
             if (l.getUser().equals(usuario.getText()) && l.getPass().equals(password.getText())) {
-                
+
                 dispose();
-                flag = true;                
+                flag = true;
                 ViewMain vm = new ViewMain();
+                JOptionPane.showMessageDialog(rootPane, "Acesso Liberado", "Controle de Acesso RB", JOptionPane.PLAIN_MESSAGE);
+
                 vm.setVisible(flag);
-               
+
             }
         }
+        usuario.setText("");
+        password.setText("");
     }//GEN-LAST:event_btnAcessarActionPerformed
 
    
