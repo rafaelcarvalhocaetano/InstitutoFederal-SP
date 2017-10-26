@@ -34,6 +34,7 @@ public class ViewPEF extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
+        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jButton1.setText("GERAR -- PDF");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -43,7 +44,7 @@ public class ViewPEF extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(273, 273, 273)
                 .addComponent(jButton1)
-                .addContainerGap(267, Short.MAX_VALUE))
+                .addContainerGap(257, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

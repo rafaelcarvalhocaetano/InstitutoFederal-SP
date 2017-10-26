@@ -46,7 +46,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="273" max="-2" attributes="0"/>
                   <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="267" max="32767" attributes="0"/>
+                  <EmptySpace pref="257" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -63,6 +63,9 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Times New Roman" size="12" style="1"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="GERAR -- PDF"/>
           </Properties>
         </Component>
