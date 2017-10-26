@@ -29,10 +29,10 @@ public class ViewChaves extends javax.swing.JFrame {
                     c.getId(),
                     c.getNome(),
                     c.getSetor(),
-                    c.getDataretirada(),
-                    c.getHsaida(),
-                    c.getHentrada(),
-                    c.getDataDevolucao(),
+                   // c.getDataretirada(),
+                   // c.getHsaida(),
+                  //  c.getHentrada(),
+                  //  c.getDataDevolucao(),
                     c.getVigilante()
                 });
             }
@@ -360,10 +360,10 @@ public class ViewChaves extends javax.swing.JFrame {
         
         c.setNome(nome.getText());
         c.setSetor(setor.getText());
-        c.setDataretirada(retirada.getText());
-        c.setHsaida(hsaida.getText());
-        c.setHentrada(hentrada.getText());
-        c.setDataDevolucao(dataDevolucao.getText());
+       // c.setDataretirada(retirada.getText());
+       // c.setHsaida(hsaida.getText());
+       // c.setHentrada(hentrada.getText());
+        //c.setDataDevolucao(dataDevolucao.getText());
         c.setVigilante(vigilante.getText());
         
         dao.salvar(c);

@@ -28,11 +28,11 @@ public class ChaveDAO {
             
             ps.setString(1, c.getNome());
             ps.setString(2, c.getSetor());
-            ps.setString(3, c.getDataretirada());
-            ps.setString(4, c.getHsaida());
-            ps.setString(5, c.getHentrada());
-            ps.setString(6, c.getDataDevolucao());
-            ps.setString(7, c.getVigilante());
+            //ps.setString(3, c.getDataretirada());
+           // ps.setString(4, c.getHsaida());
+            //ps.setString(5, c.getHentrada());
+            //ps.setString(6, c.getDataDevolucao());
+            //ps.setString(7, c.getVigilante());
             
             ps.executeUpdate();
             
@@ -56,10 +56,10 @@ public class ChaveDAO {
             Chave c = new Chave();
             c.setId(rs.getInt("id"));
             c.setNome(rs.getString("nome"));
-            c.setDataretirada(rs.getString("dataretirada"));
-            c.setHsaida(rs.getString("hretirada"));
-            c.setHentrada(rs.getString("hentrada"));
-            c.setDataDevolucao(rs.getString("datadevolucao"));
+          //  c.setDataretirada(rs.getString("dataretirada"));
+          //  c.setHsaida(rs.getString("hretirada"));
+          //  c.setHentrada(rs.getString("hentrada"));
+          //  c.setDataDevolucao(rs.getString("datadevolucao"));
             c.setVigilante(rs.getString("vigilante"));
             
             itens.add(c);

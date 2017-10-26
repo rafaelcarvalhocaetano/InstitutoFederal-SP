@@ -1,10 +1,22 @@
 package com.rb.view;
 
+import com.rb.dao.LoginDAO;
+import com.rb.domain.Login;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Rafael Carvalho
  */
 public class ViewLogin extends javax.swing.JFrame {
+    
+    private String user;
+    public String[] u = new String[3];
+    private String senha;
+    public String[] s = new String[3];
 
     public ViewLogin() {
         initComponents();
@@ -28,7 +40,7 @@ public class ViewLogin extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         usuario = new javax.swing.JTextField();
-        pass = new javax.swing.JPasswordField();
+        password = new javax.swing.JPasswordField();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         btnAcessar = new javax.swing.JButton();
@@ -114,8 +126,8 @@ public class ViewLogin extends javax.swing.JFrame {
             }
         });
 
-        pass.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        pass.setBorder(null);
+        password.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        password.setBorder(null);
 
         jSeparator1.setForeground(new java.awt.Color(51, 51, 51));
 
@@ -128,6 +140,11 @@ public class ViewLogin extends javax.swing.JFrame {
         btnAcessar.setText("Acessar");
         btnAcessar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnAcessar.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        btnAcessar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAcessarActionPerformed(evt);
+            }
+        });
 
         btnMini.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/img/icons8-Minus-30.png"))); // NOI18N
         btnMini.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -155,7 +172,7 @@ public class ViewLogin extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pass, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
+                            .addComponent(password, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
                             .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jSeparator1)
                             .addComponent(usuario)
@@ -190,7 +207,7 @@ public class ViewLogin extends javax.swing.JFrame {
                 .addGap(39, 39, 39)
                 .addComponent(jLabel7)
                 .addGap(18, 18, 18)
-                .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -225,6 +242,35 @@ public class ViewLogin extends javax.swing.JFrame {
         setExtendedState(ICONIFIED);
     }//GEN-LAST:event_btnMiniMouseClicked
 
+    private void btnAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcessarActionPerformed
+        
+        LoginDAO dao = new LoginDAO();
+
+        if (usuario.getText().isEmpty() || password.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Campos Obrigatórios", "Campos Obrigatórios", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try {
+
+            if (user.equals(usuario.getText()) && senha.equals(password.getText())) {
+                System.out.println("LOGADO");
+                dispose();
+
+                ViewMain vm = new ViewMain();
+                vm.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuário ou Senha Errado ", "Erro ao Logar", JOptionPane.ERROR_MESSAGE);
+                usuario.setText("");
+                password.setText("");
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return;
+        }
+    }//GEN-LAST:event_btnAcessarActionPerformed
+
    
     public static void main(String args[]) {
        
@@ -253,7 +299,7 @@ public class ViewLogin extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
-    private javax.swing.JPasswordField pass;
+    private javax.swing.JPasswordField password;
     private javax.swing.JTextField usuario;
     // End of variables declaration//GEN-END:variables
 }
