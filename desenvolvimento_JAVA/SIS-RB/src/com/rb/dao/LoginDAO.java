@@ -21,27 +21,27 @@ public class LoginDAO {
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT * FROM login");
       
-            Connection conexao = ConexaoFactory.db();
-            PreparedStatement ps = conexao.prepareStatement(sql.toString());
+        Connection conexao = ConexaoFactory.db();
+        PreparedStatement ps = conexao.prepareStatement(sql.toString());
 
-            ResultSet rs = ps.executeQuery();
+        ResultSet rs = ps.executeQuery();
 
-            ArrayList<Login> itens = new ArrayList<>();
-            while (rs.next()) {
-                Login l = new Login();
-                l.setId(rs.getInt("id"));
-                l.setUser(rs.getString("user"));
-                l.setPass(rs.getString("pass"));
+        ArrayList<Login> itens = new ArrayList<>();
+        while (rs.next()) {
+            Login l = new Login();
+            l.setId(rs.getInt("id"));
+            l.setUser(rs.getString("user"));
+            l.setPass(rs.getString("pass"));
 
-                itens.add(l);
-            }
-            return itens;
+            itens.add(l);
+        }
+        return itens;
     }
-    
-    public List<Login> listarUS(String a, String b) throws SQLException {
+    public List<Login> listarL(String a, String b){
         StringBuilder sql = new StringBuilder();
-        sql.append("SELECT l.user, l.pass FROM login l ");
-      
+        sql.append("SELECT * FROM login WHERE  user=? AND pass=?");
+        
+        try {
             Connection conexao = ConexaoFactory.db();
             PreparedStatement ps = conexao.prepareStatement(sql.toString());
             ps.setString(1, a);
@@ -50,17 +50,20 @@ public class LoginDAO {
 
             ArrayList<Login> itens = new ArrayList<>();
             while (rs.next()) {
+
                 Login l = new Login();
-                //l.setId(rs.getInt("id"));
+
                 l.setUser(rs.getString("user"));
                 l.setPass(rs.getString("pass"));
 
                 itens.add(l);
             }
             return itens;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Usuário ou Senha Errado ", "Erro ao Logar", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
     }
-    
-    
     
     public void create(Login l){
         

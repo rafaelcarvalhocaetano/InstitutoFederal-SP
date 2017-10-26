@@ -3,6 +3,8 @@ package com.rb.view;
 import com.rb.dao.LoginDAO;
 import com.rb.domain.Login;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -12,12 +14,7 @@ import javax.swing.JOptionPane;
  * @author Rafael Carvalho
  */
 public class ViewLogin extends javax.swing.JFrame {
-    
-    private String user;
-    public String[] u = new String[3];
-    private String senha;
-    public String[] s = new String[3];
-
+   
     public ViewLogin() {
         initComponents();
     }
@@ -245,30 +242,34 @@ public class ViewLogin extends javax.swing.JFrame {
     private void btnAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcessarActionPerformed
         
         LoginDAO dao = new LoginDAO();
+        ViewMain vm = new ViewMain();
+        
+        
+        Login l1 = new Login();
+        
+        l1.setUser(usuario.getText());
+        l1.setPass(password.getText());
 
         if (usuario.getText().isEmpty() || password.getText().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Campos Obrigatórios", "Campos Obrigatórios", JOptionPane.ERROR_MESSAGE);
             return;
         }
-
-        try {
-
-            if (user.equals(usuario.getText()) && senha.equals(password.getText())) {
+        for (Login l : dao.listarL(usuario.getText(), password.getText())) {
+            
+            if (l.getUser().equals(usuario.getText()) && l.getPass().equals(password.getText())) {
+                
                 System.out.println("LOGADO");
                 dispose();
-
-                ViewMain vm = new ViewMain();
                 vm.setVisible(true);
-            } else {
-                JOptionPane.showMessageDialog(null, "Usuário ou Senha Errado ", "Erro ao Logar", JOptionPane.ERROR_MESSAGE);
-                usuario.setText("");
-                password.setText("");
-            }
-
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            return;
+             }
         }
+        if (vm.setVisible(false)) {
+            JOptionPane.showMessageDialog(null, "Usuário ou Senha Errado ", "Erro ao Logar", JOptionPane.ERROR_MESSAGE);
+            usuario.setText("");
+            password.setText("");
+        }
+        
+        
     }//GEN-LAST:event_btnAcessarActionPerformed
 
    
