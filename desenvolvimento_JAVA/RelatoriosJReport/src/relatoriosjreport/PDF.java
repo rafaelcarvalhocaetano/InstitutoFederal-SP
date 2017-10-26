@@ -5,11 +5,19 @@
  */
 package relatoriosjreport;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 import dao.UserDAO;
 import domain.Usuario;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -274,9 +282,47 @@ public class PDF extends javax.swing.JFrame {
 
     private void btnPDFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPDFMouseClicked
        
+        Document d = new Document();
+        UserDAO dao = new UserDAO();
+           // Usuario u = new Usuario();
+            
         
-        
-        
+        try {
+            PdfWriter.getInstance(d, new FileOutputStream("controle.pdf"));
+                        
+            d.open();
+            
+            d.setPageSize(PageSize.A4);
+            
+            try {
+              
+            for(Usuario u : dao.listar()){
+               
+               d.add(new Paragraph(u.getId()));
+               
+
+               d.add(new Paragraph(u.getNome()));
+               d.add(new Paragraph(u.getPlaca()));
+               d.add(new Paragraph(u.getLocal()));
+               
+            }
+            d.newPage();
+            
+            
+           
+        } catch (SQLException ex) {
+            System.out.println("erro listar");
+        }
+        } catch (FileNotFoundException | DocumentException e) {
+            System.out.println("erro");
+        }finally{
+            d.close();
+        }
+        try {
+            Desktop.getDesktop().open(new File("controle.pdf"));
+        } catch (IOException ex) {
+             System.out.println("erro");
+        }
     }//GEN-LAST:event_btnPDFMouseClicked
 
    
