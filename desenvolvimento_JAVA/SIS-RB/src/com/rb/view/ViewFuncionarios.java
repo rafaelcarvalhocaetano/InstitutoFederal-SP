@@ -5,6 +5,7 @@ import com.rb.domain.FuncionariosRB;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -174,11 +175,21 @@ public class ViewFuncionarios extends javax.swing.JFrame {
         btnDelete.setBackground(new java.awt.Color(51, 51, 51));
         btnDelete.setForeground(new java.awt.Color(255, 255, 255));
         btnDelete.setText("EXCLUIR");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         btnUpdate.setBackground(new java.awt.Color(51, 51, 51));
         btnUpdate.setForeground(new java.awt.Color(255, 255, 255));
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/imgWrite/icons8-Ball Point Pen Filled-10.png"))); // NOI18N
         btnUpdate.setText("ATUALIZAR");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
 
         btnRelatorios.setBackground(new java.awt.Color(51, 51, 51));
         btnRelatorios.setForeground(new java.awt.Color(255, 255, 255));
@@ -386,6 +397,11 @@ public class ViewFuncionarios extends javax.swing.JFrame {
         FuncionarioDAO dao = new FuncionarioDAO();
         FuncionariosRB f = new FuncionariosRB();
         
+        if(data.getText().isEmpty() || nome.getText().isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Campos Obrigatórios", "ERRO", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
         f.setNome(nome.getText());
         f.setModelo(modelo.getText());
         f.setData(data.getText());
@@ -444,6 +460,51 @@ public class ViewFuncionarios extends javax.swing.JFrame {
             obs.setText(tblFuncionarios.getValueAt(tblFuncionarios.getSelectedRow(), 6).toString());
         }
     }//GEN-LAST:event_tblFuncionariosKeyReleased
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        if(tblFuncionarios.getSelectedRow() != -1){
+            
+            FuncionarioDAO dao = new FuncionarioDAO();
+            FuncionariosRB f = new FuncionariosRB();
+            
+            f.setId((Integer) tblFuncionarios.getValueAt(tblFuncionarios.getSelectedRow(), 0));
+            
+            f.setNome(nome.getText());
+            f.setModelo(modelo.getText());
+            f.setData(data.getText());
+            f.setEntrada(entrada.getText());
+            f.setSaida(saida.getText());
+            f.setObs(obs.getText());
+            
+            dao.update(f);
+            read();           
+        }        
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        if(tblFuncionarios.getSelectedRow() != -1){
+            
+            FuncionarioDAO dao = new FuncionarioDAO();
+            FuncionariosRB f = new FuncionariosRB();
+            
+            f.setId((Integer) tblFuncionarios.getValueAt(tblFuncionarios.getSelectedRow(), 0));
+            
+            f.setNome(nome.getText());
+            f.setModelo(modelo.getText());
+            f.setData(data.getText());
+            f.setEntrada(entrada.getText());
+            f.setSaida(saida.getText());
+            f.setObs(obs.getText());
+            
+            int i;
+            
+            i = JOptionPane.showConfirmDialog(rootPane, "Deseja Excluir o Item Selecionado", "CONFIRMAÇÃO", JOptionPane.INFORMATION_MESSAGE);
+            if(i == JOptionPane.YES_OPTION){
+                dao.delete(f);
+                read();
+            }
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
    
     public static void main(String args[]) {

@@ -63,7 +63,7 @@ public class FuncionarioDAO {
     }
     public void update(FuncionariosRB c){
         StringBuilder sql = new StringBuilder();
-        sql.append("UPDATE veiculoLeve SET ");
+        sql.append("UPDATE funcionarios SET ");
         sql.append("nome=?, modelo=?, entrada=?, saida=?, obs=? ");
         sql.append("WHERE id = ? ");
         
