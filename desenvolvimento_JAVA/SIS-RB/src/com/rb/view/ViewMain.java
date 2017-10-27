@@ -18,7 +18,7 @@ public class ViewMain extends javax.swing.JFrame {
         initComponents();
         read();
     }
-    public void read(){
+    private void read(){
         DefaultTableModel tbl = (DefaultTableModel) tblCRB.getModel();
         tbl.setNumRows(0);
         
@@ -292,6 +292,11 @@ public class ViewMain extends javax.swing.JFrame {
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/imgWrite/icons8-Car-10.png"))); // NOI18N
         jButton6.setText("FIORINO");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton7.setBackground(new java.awt.Color(51, 51, 51));
         jButton7.setForeground(new java.awt.Color(255, 255, 255));
@@ -687,6 +692,12 @@ public class ViewMain extends javax.swing.JFrame {
         ViewCaminhaoTerceiro vc = new ViewCaminhaoTerceiro();
         vc.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        dispose();
+        ViewLeveRB vl = new ViewLeveRB();
+        vl.setVisible(true);
+    }//GEN-LAST:event_jButton6ActionPerformed
 
    
     public static void main(String args[]) {

@@ -1,7 +1,6 @@
 package com.rb.dao;
 
 import com.rb.conexao.ConexaoFactory;
-import com.rb.domain.CaminhaoT;
 import com.rb.domain.VeiculosLeveRB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
