@@ -291,6 +291,11 @@ public class ViewMain extends javax.swing.JFrame {
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/imgWrite/icons8-Plus Math-10.png"))); // NOI18N
         jButton5.setText("CAMINHÃO");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setBackground(new java.awt.Color(51, 51, 51));
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
@@ -680,6 +685,12 @@ public class ViewMain extends javax.swing.JFrame {
         vv.setVisible(true);
        
     }//GEN-LAST:event_btnVisitanteActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        dispose();
+        ViewCaminhaoTerceiro vc = new ViewCaminhaoTerceiro();
+        vc.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
 
    
     public static void main(String args[]) {

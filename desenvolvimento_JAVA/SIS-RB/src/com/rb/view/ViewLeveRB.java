@@ -1,5 +1,13 @@
 package com.rb.view;
 
+import com.rb.dao.VeiculoLeveDAO;
+import com.rb.domain.VeiculosLeveRB;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Rafael Carvalho
@@ -8,6 +16,35 @@ public class ViewLeveRB extends javax.swing.JFrame {
 
     public ViewLeveRB() {
         initComponents();
+        
+        read();
+    }
+    
+    private void read(){
+        DefaultTableModel tbl = (DefaultTableModel) tblLeve.getModel();
+        tbl.setNumRows(0);
+        
+        VeiculoLeveDAO dao = new VeiculoLeveDAO();
+        try {
+            for(VeiculosLeveRB v : dao.listar()){
+                tbl.addRow(new Object[]{
+                    v.getId(),
+                    v.getNome(),
+                    v.getDestino(),
+                    v.getData(),
+                    v.getSaida(),
+                    v.getKmsaida(),
+                    v.getEntrada(),
+                    v.getKmentrada(),
+                    v.getAut(),
+                    v.getObs()
+                });
+                
+            }
+        } catch (SQLException ex) {
+            System.out.println("Erro READ");
+        }
+        
     }
 
     
@@ -22,28 +59,28 @@ public class ViewLeveRB extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        nome = new javax.swing.JTextField();
+        aut = new javax.swing.JTextField();
+        saida = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TabelaCaminhao = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jTextField6 = new javax.swing.JTextField();
+        tblLeve = new javax.swing.JTable();
+        btnSalvar = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        entrada = new javax.swing.JTextField();
         btnRelatorios = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jFormattedTextField3 = new javax.swing.JFormattedTextField();
-        jTextField5 = new javax.swing.JTextField();
+        data = new javax.swing.JFormattedTextField();
+        destino = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        kmsaida = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        kmentrada = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        obs = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -80,24 +117,29 @@ public class ViewLeveRB extends javax.swing.JFrame {
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("AUTORIZADO");
 
-        jTextField1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        jTextField1.setSelectionColor(new java.awt.Color(0, 0, 0));
+        nome.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        nome.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        nome.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        nome.setSelectionColor(new java.awt.Color(0, 0, 0));
 
-        jTextField2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField2.setSelectionColor(new java.awt.Color(0, 0, 0));
+        aut.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        aut.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        aut.setSelectionColor(new java.awt.Color(0, 0, 0));
 
-        jTextField4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jTextField4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField4.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        jTextField4.setSelectionColor(new java.awt.Color(0, 0, 0));
+        saida.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        saida.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        saida.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        saida.setSelectionColor(new java.awt.Color(0, 0, 0));
+        saida.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                saidaMouseClicked(evt);
+            }
+        });
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
 
-        TabelaCaminhao.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        TabelaCaminhao.setModel(new javax.swing.table.DefaultTableModel(
+        tblLeve.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        tblLeve.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
@@ -114,35 +156,50 @@ public class ViewLeveRB extends javax.swing.JFrame {
                 "NOME", "DESTINO", "DATA", "H. SAÍDA", "KM SAÍDA", "H. ENTRADA", "KM ENTRADA", "AUTORIZADO", "OBS"
             }
         ));
-        TabelaCaminhao.setGridColor(new java.awt.Color(0, 0, 0));
-        TabelaCaminhao.setSelectionBackground(new java.awt.Color(153, 153, 153));
-        jScrollPane1.setViewportView(TabelaCaminhao);
-        if (TabelaCaminhao.getColumnModel().getColumnCount() > 0) {
-            TabelaCaminhao.getColumnModel().getColumn(0).setResizable(false);
-            TabelaCaminhao.getColumnModel().getColumn(1).setResizable(false);
-            TabelaCaminhao.getColumnModel().getColumn(3).setResizable(false);
-            TabelaCaminhao.getColumnModel().getColumn(4).setResizable(false);
-            TabelaCaminhao.getColumnModel().getColumn(5).setResizable(false);
-            TabelaCaminhao.getColumnModel().getColumn(6).setResizable(false);
-            TabelaCaminhao.getColumnModel().getColumn(7).setResizable(false);
-            TabelaCaminhao.getColumnModel().getColumn(8).setResizable(false);
+        tblLeve.setGridColor(new java.awt.Color(0, 0, 0));
+        tblLeve.setSelectionBackground(new java.awt.Color(153, 153, 153));
+        jScrollPane1.setViewportView(tblLeve);
+        if (tblLeve.getColumnModel().getColumnCount() > 0) {
+            tblLeve.getColumnModel().getColumn(0).setResizable(false);
+            tblLeve.getColumnModel().getColumn(1).setResizable(false);
+            tblLeve.getColumnModel().getColumn(3).setResizable(false);
+            tblLeve.getColumnModel().getColumn(4).setResizable(false);
+            tblLeve.getColumnModel().getColumn(5).setResizable(false);
+            tblLeve.getColumnModel().getColumn(6).setResizable(false);
+            tblLeve.getColumnModel().getColumn(7).setResizable(false);
+            tblLeve.getColumnModel().getColumn(8).setResizable(false);
         }
 
-        jButton1.setBackground(new java.awt.Color(51, 51, 51));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("SALVAR");
+        btnSalvar.setBackground(new java.awt.Color(51, 51, 51));
+        btnSalvar.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalvar.setText("SALVAR");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
 
-        jButton2.setBackground(new java.awt.Color(51, 51, 51));
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("EXCLUIR");
+        btnDelete.setBackground(new java.awt.Color(51, 51, 51));
+        btnDelete.setForeground(new java.awt.Color(255, 255, 255));
+        btnDelete.setText("EXCLUIR");
 
-        jButton3.setBackground(new java.awt.Color(51, 51, 51));
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/imgWrite/icons8-Ball Point Pen Filled-10.png"))); // NOI18N
-        jButton3.setText("ATUALIZAR");
+        btnUpdate.setBackground(new java.awt.Color(51, 51, 51));
+        btnUpdate.setForeground(new java.awt.Color(255, 255, 255));
+        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/imgWrite/icons8-Ball Point Pen Filled-10.png"))); // NOI18N
+        btnUpdate.setText("ATUALIZAR");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
 
-        jTextField6.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jTextField6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        entrada.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        entrada.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        entrada.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                entradaMouseClicked(evt);
+            }
+        });
 
         btnRelatorios.setBackground(new java.awt.Color(51, 51, 51));
         btnRelatorios.setForeground(new java.awt.Color(255, 255, 255));
@@ -179,20 +236,25 @@ public class ViewLeveRB extends javax.swing.JFrame {
         jLabel1.setText("DATA");
 
         try {
-            jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            data.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextField3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jFormattedTextField3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        data.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        data.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        data.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dataMouseClicked(evt);
+            }
+        });
 
-        jTextField5.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        destino.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("DESTINO");
 
-        jTextField7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        kmsaida.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -202,13 +264,13 @@ public class ViewLeveRB extends javax.swing.JFrame {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("KM ENTRADA");
 
-        jTextField8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        kmentrada.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         jLabel12.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("OBS");
 
-        jTextField9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        obs.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -228,50 +290,50 @@ public class ViewLeveRB extends javax.swing.JFrame {
                             .addComponent(jScrollPane1)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField1)
+                                    .addComponent(nome)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField5)
+                                    .addComponent(destino)
                                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(saida, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField7)
+                                    .addComponent(kmsaida)
                                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(entrada, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField8)
+                                    .addComponent(kmentrada)
                                     .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField2)
+                                    .addComponent(aut)
                                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField9)
+                                    .addComponent(obs)
                                     .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnRelatorios)
                                 .addGap(440, 440, 440)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)))
+                                .addComponent(btnSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)))
                         .addContainerGap())))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(420, 420, 420)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -285,7 +347,7 @@ public class ViewLeveRB extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -293,46 +355,46 @@ public class ViewLeveRB extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(destino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(19, 19, 19))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel8)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(kmsaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel7)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(entrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel11)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(kmentrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel5)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(saida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel9)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(aut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel12)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(obs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnRelatorios, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -359,6 +421,86 @@ public class ViewLeveRB extends javax.swing.JFrame {
         setExtendedState(ICONIFIED);
     }//GEN-LAST:event_btnMiniMouseClicked
 
+    private void dataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dataMouseClicked
+        Date hoje = new Date();
+        SimpleDateFormat datahoje = new SimpleDateFormat("dd/MM/yyyy");
+        data.setText(datahoje.format(hoje));
+    }//GEN-LAST:event_dataMouseClicked
+
+    private void saidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saidaMouseClicked
+        String hsaida = new SimpleDateFormat("HH:mm").format(new Date(System.currentTimeMillis()));
+        saida.setText(hsaida);
+    }//GEN-LAST:event_saidaMouseClicked
+
+    private void entradaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_entradaMouseClicked
+        String horarioEntrada = new SimpleDateFormat("HH:mm").format(new Date(System.currentTimeMillis()));
+        entrada.setText(horarioEntrada);
+    }//GEN-LAST:event_entradaMouseClicked
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        VeiculoLeveDAO dao = new VeiculoLeveDAO();
+        VeiculosLeveRB r = new VeiculosLeveRB();
+        
+        if(data.getText().isEmpty() || nome.getText().isEmpty() || destino.getText().isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Campos Obrigatórios", "ERRO", JOptionPane.ERROR_MESSAGE);
+            return;
+        }else{
+            
+            r.setNome(nome.getText());
+            r.setDestino(destino.getText());
+            r.setData(data.getText());
+            r.setSaida(saida.getText());
+            r.setKmsaida(kmsaida.getText());
+            r.setEntrada(entrada.getText());
+            r.setKmentrada(kmentrada.getText());
+            r.setAut(aut.getText());
+            r.setObs(obs.getText());
+            
+            dao.create(r);
+            read();
+            
+            nome.setText("");
+            destino.setText("");
+            saida.setText("");
+            kmsaida.setText("");
+            entrada.setText("");
+            kmentrada.setText("");
+            aut.setText("");
+            obs.setText("");
+        }
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        
+        if(tblLeve.getSelectedRow() != -1) {
+
+            VeiculoLeveDAO dao = new VeiculoLeveDAO();
+            VeiculosLeveRB r = new VeiculosLeveRB();
+
+            r.setNome(nome.getText());
+            r.setDestino(destino.getText());
+            r.setSaida(saida.getText());
+            r.setKmsaida(kmsaida.getText());
+            r.setEntrada(entrada.getText());
+            r.setKmentrada(kmentrada.getText());
+            r.setAut(aut.getText());
+            r.setObs(obs.getText());
+
+            dao.update(r);
+            read();
+
+            nome.setText("");
+            destino.setText("");
+            saida.setText("");
+            kmsaida.setText("");
+            entrada.setText("");
+            kmentrada.setText("");
+            aut.setText("");
+            obs.setText("");
+
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
    
     public static void main(String args[]) {
        
@@ -370,14 +512,16 @@ public class ViewLeveRB extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable TabelaCaminhao;
+    private javax.swing.JTextField aut;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JLabel btnFechar;
     private javax.swing.JLabel btnMini;
     private javax.swing.JButton btnRelatorios;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JFormattedTextField jFormattedTextField3;
+    private javax.swing.JButton btnSalvar;
+    private javax.swing.JButton btnUpdate;
+    private javax.swing.JFormattedTextField data;
+    private javax.swing.JTextField destino;
+    private javax.swing.JTextField entrada;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -391,13 +535,11 @@ public class ViewLeveRB extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField kmentrada;
+    private javax.swing.JTextField kmsaida;
+    private javax.swing.JTextField nome;
+    private javax.swing.JTextField obs;
+    private javax.swing.JTextField saida;
+    private javax.swing.JTable tblLeve;
     // End of variables declaration//GEN-END:variables
 }
