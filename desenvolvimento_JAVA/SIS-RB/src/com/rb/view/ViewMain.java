@@ -1,5 +1,9 @@
 package com.rb.view;
 
+import com.rb.dao.CaminhaoRBDAO;
+import com.rb.domain.CaminhaoRB;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Rafael Carvalho
@@ -8,6 +12,18 @@ public class ViewMain extends javax.swing.JFrame {
 
     public ViewMain() {
         initComponents();
+    }
+    public void read(){
+        DefaultTableModel tbl = (DefaultTableModel) TabelaCaminhaoRB.getModel();
+        tbl.setNumRows(0);
+        
+        CaminhaoRBDAO dao = new CaminhaoRBDAO();
+        
+        for(CaminhaoRB rb: dao.listar()){
+            tbl.addRow(new Object[]{
+                
+            });
+        }
     }
 
     
