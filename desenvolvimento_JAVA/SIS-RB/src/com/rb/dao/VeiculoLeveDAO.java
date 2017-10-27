@@ -29,15 +29,15 @@ public class VeiculoLeveDAO {
             Connection conexao = ConexaoFactory.db();
             PreparedStatement ps = conexao.prepareStatement(sql.toString());
             
-            ps.setString(3, c.getNome());
-            ps.setString(4, c.getDestino());
-            ps.setString(7, c.getData());
-            ps.setString(8, c.getSaida());
+            ps.setString(1, c.getNome());
+            ps.setString(2, c.getDestino());
+            ps.setString(3, c.getData());
+            ps.setString(4, c.getSaida());
             ps.setString(5, c.getKmsaida());
             ps.setString(6, c.getEntrada());
-            ps.setString(9, c.getKmentrada());
-            ps.setString(10, c.getAut());
-            ps.setString(10, c.getObs());
+            ps.setString(7, c.getKmentrada());
+            ps.setString(8, c.getAut());
+            ps.setString(9, c.getObs());
             
             ps.executeUpdate();
         } catch (SQLException e) {
