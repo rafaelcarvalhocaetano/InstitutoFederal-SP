@@ -1,5 +1,13 @@
 package com.rb.view;
 
+import com.rb.dao.CaminhaoTerDAO;
+import com.rb.domain.CaminhaoT;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Rafael Carvalho
@@ -8,6 +16,36 @@ public class ViewCaminhaoTerceiro extends javax.swing.JFrame {
 
     public ViewCaminhaoTerceiro() {
         initComponents();
+        read();
+    }
+    
+     private void read(){
+        DefaultTableModel tbl = (DefaultTableModel) tblCTerceiro.getModel();
+        tbl.setNumRows(0);
+        
+         CaminhaoTerDAO dao = new CaminhaoTerDAO();
+        
+        try {
+            for(CaminhaoT rb: dao.listar()){
+                tbl.addRow(new Object[]{
+                    rb.getId(),
+                    rb.getCavalo(),
+                    rb.getCarreta(),
+                    rb.getNome(),
+                    rb.getData(),
+                    rb.getEntrada(),
+                    rb.getComoentrada(),
+                    rb.getSaida(),
+                    rb.getComosaida(),                    
+                    rb.getRg(),
+                    rb.getEmpresa()
+                    
+                });
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            System.out.println("Erro no READ()");
+        }
     }
 
     
@@ -24,26 +62,27 @@ public class ViewCaminhaoTerceiro extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
-        jTextField1 = new javax.swing.JTextField();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        cavalo = new javax.swing.JFormattedTextField();
+        nome = new javax.swing.JTextField();
+        combo2 = new javax.swing.JComboBox<>();
+        empresa = new javax.swing.JTextField();
+        rg = new javax.swing.JTextField();
+        saida = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TabelaCaminhao = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jTextField6 = new javax.swing.JTextField();
+        tblCTerceiro = new javax.swing.JTable();
+        btnSalvar = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        entrada = new javax.swing.JTextField();
         btnRelatorios = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        jFormattedTextField4 = new javax.swing.JFormattedTextField();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        combo1 = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jFormattedTextField3 = new javax.swing.JFormattedTextField();
+        data = new javax.swing.JFormattedTextField();
+        carreta = new javax.swing.JTextField();
+        id = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -89,87 +128,133 @@ public class ViewCaminhaoTerceiro extends javax.swing.JFrame {
         jLabel10.setText("RG");
 
         try {
-            jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("AAA-####")));
+            cavalo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("AAA-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jFormattedTextField2.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        jFormattedTextField2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jFormattedTextField2.setPreferredSize(new java.awt.Dimension(6, 20));
-        jFormattedTextField2.setSelectionColor(new java.awt.Color(0, 0, 0));
+        cavalo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        cavalo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        cavalo.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        cavalo.setPreferredSize(new java.awt.Dimension(6, 20));
+        cavalo.setSelectionColor(new java.awt.Color(0, 0, 0));
 
-        jTextField1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        jTextField1.setSelectionColor(new java.awt.Color(0, 0, 0));
+        nome.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        nome.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        nome.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        nome.setSelectionColor(new java.awt.Color(0, 0, 0));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "C", "V" }));
+        combo2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        combo2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "C", "V" }));
 
-        jTextField2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField2.setSelectionColor(new java.awt.Color(0, 0, 0));
+        empresa.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        empresa.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        empresa.setSelectionColor(new java.awt.Color(0, 0, 0));
 
-        jTextField3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jTextField3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField3.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        jTextField3.setSelectionColor(new java.awt.Color(0, 0, 0));
+        rg.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        rg.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        rg.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        rg.setSelectionColor(new java.awt.Color(0, 0, 0));
 
-        jTextField4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jTextField4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField4.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        jTextField4.setSelectionColor(new java.awt.Color(0, 0, 0));
+        saida.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        saida.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        saida.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        saida.setSelectionColor(new java.awt.Color(0, 0, 0));
+        saida.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                saidaMouseClicked(evt);
+            }
+        });
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
 
-        TabelaCaminhao.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        TabelaCaminhao.setModel(new javax.swing.table.DefaultTableModel(
+        tblCTerceiro.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        tblCTerceiro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "PLACA", "MODELO/CARRETA", "NOME", "RG", "DATA", "H. ENTRADA", "C/V", "H. SAÍDA", "C/V"
+                "ID", "Placa", "Carreta/Modelo", "Nome", "Data", "Entrada", "Carreg. / Vazio", "Saída", "Carreg. / Vazio", "RG", "Empresa"
             }
-        ));
-        TabelaCaminhao.setGridColor(new java.awt.Color(0, 0, 0));
-        TabelaCaminhao.setSelectionBackground(new java.awt.Color(153, 153, 153));
-        jScrollPane1.setViewportView(TabelaCaminhao);
-        if (TabelaCaminhao.getColumnModel().getColumnCount() > 0) {
-            TabelaCaminhao.getColumnModel().getColumn(0).setResizable(false);
-            TabelaCaminhao.getColumnModel().getColumn(1).setResizable(false);
-            TabelaCaminhao.getColumnModel().getColumn(2).setResizable(false);
-            TabelaCaminhao.getColumnModel().getColumn(3).setResizable(false);
-            TabelaCaminhao.getColumnModel().getColumn(4).setResizable(false);
-            TabelaCaminhao.getColumnModel().getColumn(5).setResizable(false);
-            TabelaCaminhao.getColumnModel().getColumn(6).setResizable(false);
-            TabelaCaminhao.getColumnModel().getColumn(7).setResizable(false);
-            TabelaCaminhao.getColumnModel().getColumn(8).setResizable(false);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblCTerceiro.setGridColor(new java.awt.Color(0, 0, 0));
+        tblCTerceiro.setSelectionBackground(new java.awt.Color(153, 153, 153));
+        tblCTerceiro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblCTerceiroMouseClicked(evt);
+            }
+        });
+        tblCTerceiro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tblCTerceiroKeyReleased(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblCTerceiro);
+        if (tblCTerceiro.getColumnModel().getColumnCount() > 0) {
+            tblCTerceiro.getColumnModel().getColumn(0).setResizable(false);
+            tblCTerceiro.getColumnModel().getColumn(1).setResizable(false);
+            tblCTerceiro.getColumnModel().getColumn(2).setResizable(false);
+            tblCTerceiro.getColumnModel().getColumn(3).setResizable(false);
+            tblCTerceiro.getColumnModel().getColumn(4).setResizable(false);
+            tblCTerceiro.getColumnModel().getColumn(5).setResizable(false);
+            tblCTerceiro.getColumnModel().getColumn(6).setResizable(false);
+            tblCTerceiro.getColumnModel().getColumn(7).setResizable(false);
+            tblCTerceiro.getColumnModel().getColumn(8).setResizable(false);
+            tblCTerceiro.getColumnModel().getColumn(9).setResizable(false);
+            tblCTerceiro.getColumnModel().getColumn(10).setResizable(false);
         }
 
-        jButton1.setBackground(new java.awt.Color(51, 51, 51));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("SALVAR");
+        btnSalvar.setBackground(new java.awt.Color(51, 51, 51));
+        btnSalvar.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalvar.setText("SALVAR");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
 
-        jButton2.setBackground(new java.awt.Color(51, 51, 51));
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("EXCLUIR");
+        btnDelete.setBackground(new java.awt.Color(51, 51, 51));
+        btnDelete.setForeground(new java.awt.Color(255, 255, 255));
+        btnDelete.setText("EXCLUIR");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
-        jButton3.setBackground(new java.awt.Color(51, 51, 51));
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/imgWrite/icons8-Ball Point Pen Filled-10.png"))); // NOI18N
-        jButton3.setText("ATUALIZAR");
+        btnUpdate.setBackground(new java.awt.Color(51, 51, 51));
+        btnUpdate.setForeground(new java.awt.Color(255, 255, 255));
+        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/imgWrite/icons8-Ball Point Pen Filled-10.png"))); // NOI18N
+        btnUpdate.setText("ATUALIZAR");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
 
-        jTextField6.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jTextField6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        entrada.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        entrada.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        entrada.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                entradaMouseClicked(evt);
+            }
+        });
 
         btnRelatorios.setBackground(new java.awt.Color(51, 51, 51));
         btnRelatorios.setForeground(new java.awt.Color(255, 255, 255));
@@ -180,17 +265,8 @@ public class ViewCaminhaoTerceiro extends javax.swing.JFrame {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("CARRETA");
 
-        try {
-            jFormattedTextField4.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        jFormattedTextField4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jFormattedTextField4.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        jFormattedTextField4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jFormattedTextField4.setSelectionColor(new java.awt.Color(0, 0, 0));
-
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "C", "V" }));
+        combo1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        combo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "C", "V" }));
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -222,11 +298,23 @@ public class ViewCaminhaoTerceiro extends javax.swing.JFrame {
         jLabel1.setText("DATA");
 
         try {
-            jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            data.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextField3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        data.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        data.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        data.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dataMouseClicked(evt);
+            }
+        });
+
+        carreta.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        carreta.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        id.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        id.setText("ID");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -246,54 +334,57 @@ public class ViewCaminhaoTerceiro extends javax.swing.JFrame {
                             .addComponent(jScrollPane1)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cavalo, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(8, 8, 8)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jFormattedTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(8, 8, 8)
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(carreta)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField1)
+                                    .addComponent(nome)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
-                                    .addComponent(jTextField4))
+                                    .addComponent(saida))
                                 .addGap(10, 10, 10)
-                                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(combo1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
-                                    .addComponent(jTextField6))
+                                    .addComponent(entrada))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(combo2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField2)
+                                    .addComponent(empresa)
                                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(10, 10, 10)
-                                        .addComponent(jTextField3))
+                                        .addComponent(rg))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnRelatorios)
                                 .addGap(440, 440, 440)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)))
+                                .addComponent(btnSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(id)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(420, 420, 420)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -303,11 +394,12 @@ public class ViewCaminhaoTerceiro extends javax.swing.JFrame {
                     .addComponent(btnMini))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                    .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(id))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -319,29 +411,28 @@ public class ViewCaminhaoTerceiro extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(empresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(rg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(saida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(entrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(combo1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(combo2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jFormattedTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jFormattedTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cavalo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(carreta, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel6))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRelatorios, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -362,11 +453,172 @@ public class ViewCaminhaoTerceiro extends javax.swing.JFrame {
 
     private void btnFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFecharMouseClicked
         dispose();
+        ViewMain v = new ViewMain();
+        v.setVisible(true);
     }//GEN-LAST:event_btnFecharMouseClicked
 
     private void btnMiniMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMiniMouseClicked
         setExtendedState(ICONIFIED);
     }//GEN-LAST:event_btnMiniMouseClicked
+
+    private void dataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dataMouseClicked
+        Date datah = new Date();
+        SimpleDateFormat hoje = new SimpleDateFormat("dd/MM/yyyy");
+        
+        data.setText(hoje.format(datah));
+    }//GEN-LAST:event_dataMouseClicked
+
+    private void saidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saidaMouseClicked
+        String hj = new SimpleDateFormat("HH:mm").format(new Date(System.currentTimeMillis()));
+        saida.setText(hj);
+    }//GEN-LAST:event_saidaMouseClicked
+
+    private void entradaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_entradaMouseClicked
+        String horario = new SimpleDateFormat("HH:mm").format(new Date(System.currentTimeMillis()));
+        
+        entrada.setText(horario);
+    }//GEN-LAST:event_entradaMouseClicked
+
+    private void tblCTerceiroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCTerceiroMouseClicked
+        if(tblCTerceiro.getSelectedRow() != -1){
+            
+            id.setText(tblCTerceiro.getValueAt(tblCTerceiro.getSelectedRow(), 0).toString());
+            cavalo.setText(tblCTerceiro.getValueAt(tblCTerceiro.getSelectedRow(), 1).toString());
+            carreta.setText(tblCTerceiro.getValueAt(tblCTerceiro.getSelectedRow(), 2).toString());
+            nome.setText(tblCTerceiro.getValueAt(tblCTerceiro.getSelectedRow(), 3).toString());
+            //data.setText(tblCRB.getValueAt(tblCRB.getSelectedRow(), 4).toString());
+            entrada.setText(tblCTerceiro.getValueAt(tblCTerceiro.getSelectedRow(), 5).toString());
+            combo2.setSelectedItem(tblCTerceiro.getValueAt(tblCTerceiro.getSelectedRow(), 6));
+            saida.setText(tblCTerceiro.getValueAt(tblCTerceiro.getSelectedRow(), 7).toString());
+            combo1.setSelectedItem(tblCTerceiro.getValueAt(tblCTerceiro.getSelectedRow(), 8).toString());
+            rg.setText(tblCTerceiro.getValueAt(tblCTerceiro.getSelectedRow(), 9).toString());
+            empresa.setText(tblCTerceiro.getValueAt(tblCTerceiro.getSelectedRow(), 10).toString());
+            
+        }
+    }//GEN-LAST:event_tblCTerceiroMouseClicked
+
+    private void tblCTerceiroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblCTerceiroKeyReleased
+         if(tblCTerceiro.getSelectedRow() != -1){
+            
+            id.setText(tblCTerceiro.getValueAt(tblCTerceiro.getSelectedRow(), 0).toString());
+            cavalo.setText(tblCTerceiro.getValueAt(tblCTerceiro.getSelectedRow(), 1).toString());
+            carreta.setText(tblCTerceiro.getValueAt(tblCTerceiro.getSelectedRow(), 2).toString());
+            nome.setText(tblCTerceiro.getValueAt(tblCTerceiro.getSelectedRow(), 3).toString());
+            //data.setText(tblCRB.getValueAt(tblCRB.getSelectedRow(), 4).toString());
+            entrada.setText(tblCTerceiro.getValueAt(tblCTerceiro.getSelectedRow(), 5).toString());
+            combo2.setSelectedItem(tblCTerceiro.getValueAt(tblCTerceiro.getSelectedRow(), 6));
+            saida.setText(tblCTerceiro.getValueAt(tblCTerceiro.getSelectedRow(), 7).toString());
+            combo1.setSelectedItem(tblCTerceiro.getValueAt(tblCTerceiro.getSelectedRow(), 8).toString());
+            
+            empresa.setText(tblCTerceiro.getValueAt(tblCTerceiro.getSelectedRow(), 9).toString());
+            rg.setText(tblCTerceiro.getValueAt(tblCTerceiro.getSelectedRow(), 10).toString());
+            
+        }
+    }//GEN-LAST:event_tblCTerceiroKeyReleased
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+       
+        if(data.getText().isEmpty() || nome.getText().isEmpty() || empresa.getText().isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Campos Obrigatórios", "ERRO", JOptionPane.ERROR_MESSAGE);
+            return;
+        }else{
+            CaminhaoT r = new CaminhaoT();
+            CaminhaoTerDAO dao = new CaminhaoTerDAO();
+            
+            r.setCavalo(cavalo.getText());
+            r.setCarreta(carreta.getText());
+            r.setNome(nome.getText());
+            r.setData(data.getText());
+            r.setEntrada(entrada.getText());
+            r.setComoentrada((String) combo2.getSelectedItem());
+            r.setSaida(saida.getText());
+            r.setComosaida((String) combo1.getSelectedItem());
+            r.setEmpresa(empresa.getText());
+            r.setRg(rg.getText());
+            
+            dao.create(r);
+            
+            id.setText("");
+            cavalo.setText("");
+            carreta.setText("");
+            nome.setText("");
+            saida.setText("");
+            entrada.setText("");
+            empresa.setText("");
+            rg.setText("");
+            
+            read();
+            
+        }
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        
+        if (tblCTerceiro.getSelectedRow() != -1) {
+            
+            CaminhaoT r = new CaminhaoT();
+            CaminhaoTerDAO dao = new CaminhaoTerDAO();
+            
+            r.setId((Integer) tblCTerceiro.getValueAt(tblCTerceiro.getSelectedRow(), 0));
+            
+            r.setCavalo(cavalo.getText());
+            r.setCarreta(carreta.getText());
+            r.setNome(nome.getText());
+            r.setData(data.getText());
+            r.setSaida(saida.getText());
+            r.setComosaida(combo1.getSelectedItem().toString());
+            r.setEntrada(entrada.getText());
+            r.setComoentrada(combo2.getSelectedItem().toString());
+            r.setEmpresa(empresa.getText());
+            r.setRg(rg.getText());
+           
+            JOptionPane.showConfirmDialog(rootPane, "CONFIRMAÇÂO", "Deseja excluir este item", JOptionPane.INFORMATION_MESSAGE);
+            dao.delete(r);
+            read();
+            
+            id.setText("");
+            cavalo.setText("");
+            carreta.setText("");
+            nome.setText("");
+            saida.setText("");
+            entrada.setText("");
+            empresa.setText("");
+            rg.setText("");
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        if (tblCTerceiro.getSelectedRow() != -1) {
+            
+            CaminhaoT r = new CaminhaoT();
+            CaminhaoTerDAO dao = new CaminhaoTerDAO();
+            
+            r.setId((Integer) tblCTerceiro.getValueAt(tblCTerceiro.getSelectedRow(), 0));
+            
+            r.setCavalo(cavalo.getText());
+            r.setCarreta(carreta.getText());
+            r.setNome(nome.getText());
+            r.setData(data.getText());
+            r.setSaida(saida.getText());
+            r.setComosaida(combo1.getSelectedItem().toString());
+            r.setEntrada(entrada.getText());
+            r.setComoentrada(combo2.getSelectedItem().toString());
+            r.setEmpresa(empresa.getText());
+            r.setRg(rg.getText());
+           
+            dao.update(r);
+            read();
+            
+            id.setText("");
+            cavalo.setText("");
+            carreta.setText("");
+            nome.setText("");
+            saida.setText("");
+            entrada.setText("");
+            empresa.setText("");
+            rg.setText("");
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
    
     public static void main(String args[]) {
@@ -379,18 +631,20 @@ public class ViewCaminhaoTerceiro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable TabelaCaminhao;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JLabel btnFechar;
     private javax.swing.JLabel btnMini;
     private javax.swing.JButton btnRelatorios;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
-    private javax.swing.JFormattedTextField jFormattedTextField3;
-    private javax.swing.JFormattedTextField jFormattedTextField4;
+    private javax.swing.JButton btnSalvar;
+    private javax.swing.JButton btnUpdate;
+    private javax.swing.JTextField carreta;
+    private javax.swing.JFormattedTextField cavalo;
+    private javax.swing.JComboBox<String> combo1;
+    private javax.swing.JComboBox<String> combo2;
+    private javax.swing.JFormattedTextField data;
+    private javax.swing.JTextField empresa;
+    private javax.swing.JTextField entrada;
+    private javax.swing.JLabel id;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -403,10 +657,9 @@ public class ViewCaminhaoTerceiro extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField nome;
+    private javax.swing.JTextField rg;
+    private javax.swing.JTextField saida;
+    private javax.swing.JTable tblCTerceiro;
     // End of variables declaration//GEN-END:variables
 }

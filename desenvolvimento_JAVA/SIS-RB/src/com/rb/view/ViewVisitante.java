@@ -449,6 +449,8 @@ public class ViewVisitante extends javax.swing.JFrame {
 
     private void btnFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFecharMouseClicked
         dispose();
+        ViewMain v = new ViewMain();
+        v.setVisible(true);
     }//GEN-LAST:event_btnFecharMouseClicked
 
     private void btnMiniMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMiniMouseClicked
