@@ -5,8 +5,6 @@ import com.rb.domain.CaminhaoRB;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -29,6 +27,7 @@ public class ViewMain extends javax.swing.JFrame {
         try {
             for(CaminhaoRB rb: dao.listar()){
                 tbl.addRow(new Object[]{
+                    rb.getId(),
                     rb.getCavalo(),
                     rb.getCarreta(),
                     rb.getNome(),
@@ -86,6 +85,7 @@ public class ViewMain extends javax.swing.JFrame {
         combo1 = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        id = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -203,23 +203,23 @@ public class ViewMain extends javax.swing.JFrame {
         tblCRB.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         tblCRB.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "CAVALO", "CARRETA", "NOME", "DATA", "HORA SAÍDA", "C / V", "HORA ENTRADA", "C / V", "DESTINO", "LACRE"
+                "id", "CAVALO", "CARRETA", "NOME", "DATA", "HORA SAÍDA", "C / V", "HORA ENTRADA", "C / V", "DESTINO", "LACRE"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -228,16 +228,17 @@ public class ViewMain extends javax.swing.JFrame {
         });
         tblCRB.setGridColor(new java.awt.Color(0, 0, 0));
         tblCRB.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        tblCRB.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblCRBMouseClicked(evt);
+            }
+        });
         tblCRB.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 tblCRBKeyReleased(evt);
             }
         });
         jScrollPane1.setViewportView(tblCRB);
-        if (tblCRB.getColumnModel().getColumnCount() > 0) {
-            tblCRB.getColumnModel().getColumn(7).setResizable(false);
-            tblCRB.getColumnModel().getColumn(8).setResizable(false);
-        }
 
         btnSalvar.setBackground(new java.awt.Color(51, 51, 51));
         btnSalvar.setForeground(new java.awt.Color(255, 255, 255));
@@ -251,6 +252,11 @@ public class ViewMain extends javax.swing.JFrame {
         btnDelete.setBackground(new java.awt.Color(51, 51, 51));
         btnDelete.setForeground(new java.awt.Color(255, 255, 255));
         btnDelete.setText("EXCLUIR");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         btnUpdate.setBackground(new java.awt.Color(51, 51, 51));
         btnUpdate.setForeground(new java.awt.Color(255, 255, 255));
@@ -324,6 +330,9 @@ public class ViewMain extends javax.swing.JFrame {
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
+        id.setBackground(new java.awt.Color(255, 255, 255));
+        id.setText("jLabel6");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -344,10 +353,12 @@ public class ViewMain extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cavalo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGap(3, 3, 3)
-                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(cavalo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(id)
+                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(carreta)
@@ -412,7 +423,9 @@ public class ViewMain extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(id))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17)
@@ -552,18 +565,81 @@ public class ViewMain extends javax.swing.JFrame {
         
         if(tblCRB.getSelectedRow() != -1){
             
-            cavalo.setText(tblCRB.getValueAt(tblCRB.getSelectedRow(), 0).toString());
-            carreta.setText(tblCRB.getValueAt(tblCRB.getSelectedRow(), 1).toString());
-            nome.setText(tblCRB.getValueAt(tblCRB.getSelectedRow(), 2).toString());
-            hsaida.setText(tblCRB.getValueAt(tblCRB.getSelectedRow(), 3).toString());
-            combo1.setSelectedItem(tblCRB.getValueAt(tblCRB.getSelectedRow(), 4).toString());
-            hentrada.setText(tblCRB.getValueAt(tblCRB.getSelectedRow(), 5).toString());
-            combo2.setSelectedItem(tblCRB.getValueAt(tblCRB.getSelectedRow(), 6).toString());
-            destino.setText(tblCRB.getValueAt(tblCRB.getSelectedRow(), 7).toString());
-            lacre.setText(tblCRB.getValueAt(tblCRB.getSelectedRow(), 8).toString());
+            
+            id.setText(tblCRB.getValueAt(tblCRB.getSelectedRow(), 0).toString());
+            cavalo.setText(tblCRB.getValueAt(tblCRB.getSelectedRow(), 1).toString());
+            carreta.setText(tblCRB.getValueAt(tblCRB.getSelectedRow(), 2).toString());
+            nome.setText(tblCRB.getValueAt(tblCRB.getSelectedRow(), 3).toString());
+            //data.setText(tblCRB.getValueAt(tblCRB.getSelectedRow(), 4).toString());
+            hsaida.setText(tblCRB.getValueAt(tblCRB.getSelectedRow(), 5).toString());
+            combo1.setSelectedItem(tblCRB.getValueAt(tblCRB.getSelectedRow(), 6).toString());
+            hentrada.setText(tblCRB.getValueAt(tblCRB.getSelectedRow(), 7).toString());
+            combo2.setSelectedItem(tblCRB.getValueAt(tblCRB.getSelectedRow(), 8));
+            destino.setText(tblCRB.getValueAt(tblCRB.getSelectedRow(), 9).toString());
+            lacre.setText(tblCRB.getValueAt(tblCRB.getSelectedRow(), 10).toString());
             
         }
     }//GEN-LAST:event_tblCRBKeyReleased
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        if (tblCRB.getSelectedRow() != -1) {
+            
+            CaminhaoRB r = new CaminhaoRB();
+            CaminhaoRBDAO dao = new CaminhaoRBDAO();
+            
+            r.setId((Integer) tblCRB.getValueAt(tblCRB.getSelectedRow(), 0));
+            
+            r.setCavalo(cavalo.getText());
+            r.setCarreta(carreta.getText());
+            r.setNome(nome.getText());
+            r.setData(data.getText());
+            r.setSaida(hsaida.getText());
+            r.setComosaida(combo1.getSelectedItem().toString());
+            r.setEntrada(hentrada.getText());
+            r.setComoentrada(combo2.getSelectedItem().toString());
+            r.setDestino(destino.getText());
+            r.setLacre(lacre.getText());
+            
+            /*
+            r.setCavalo(tblCRB.getValueAt(tblCRB.getSelectedRow(), 1).toString());
+            r.setCarreta(tblCRB.getValueAt(tblCRB.getSelectedRow(), 2).toString());
+            r.setNome(tblCRB.getValueAt(tblCRB.getSelectedRow(), 3).toString());
+            r.setData(tblCRB.getValueAt(tblCRB.getSelectedRow(), 4).toString());
+            r.setSaida(tblCRB.getValueAt(tblCRB.getSelectedRow(), 5).toString());
+            r.setComosaida(tblCRB.getValueAt(tblCRB.getSelectedRow(), 6).toString());
+            r.setEntrada(tblCRB.getValueAt(tblCRB.getSelectedRow(), 7).toString());
+            r.setComoentrada(tblCRB.getValueAt(tblCRB.getSelectedRow(), 8).toString());
+            r.setDestino(tblCRB.getValueAt(tblCRB.getSelectedRow(), 9).toString());
+            r.setLacre(tblCRB.getValueAt(tblCRB.getSelectedRow(), 10).toString());
+            */
+            
+            JOptionPane.showConfirmDialog(rootPane, "CONFIRMAÇÂO", "Deseja excluir este item", JOptionPane.INFORMATION_MESSAGE);
+            dao.delete(r);
+            read();
+            
+            
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void tblCRBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCRBMouseClicked
+       
+        if(tblCRB.getSelectedRow() != -1){
+            
+            id.setText(tblCRB.getValueAt(tblCRB.getSelectedRow(), 0).toString());
+            cavalo.setText(tblCRB.getValueAt(tblCRB.getSelectedRow(), 1).toString());
+            carreta.setText(tblCRB.getValueAt(tblCRB.getSelectedRow(), 2).toString());
+            nome.setText(tblCRB.getValueAt(tblCRB.getSelectedRow(), 3).toString());
+            //data.setText(tblCRB.getValueAt(tblCRB.getSelectedRow(), 4).toString());
+            hsaida.setText(tblCRB.getValueAt(tblCRB.getSelectedRow(), 5).toString());
+            combo1.setSelectedItem(tblCRB.getValueAt(tblCRB.getSelectedRow(), 6).toString());
+            hentrada.setText(tblCRB.getValueAt(tblCRB.getSelectedRow(), 7).toString());
+            combo2.setSelectedItem(tblCRB.getValueAt(tblCRB.getSelectedRow(), 8));
+            destino.setText(tblCRB.getValueAt(tblCRB.getSelectedRow(), 9).toString());
+            lacre.setText(tblCRB.getValueAt(tblCRB.getSelectedRow(), 10).toString());
+            
+            
+        }
+    }//GEN-LAST:event_tblCRBMouseClicked
 
    
     public static void main(String args[]) {
@@ -590,6 +666,7 @@ public class ViewMain extends javax.swing.JFrame {
     private javax.swing.JTextField destino;
     private javax.swing.JTextField hentrada;
     private javax.swing.JTextField hsaida;
+    private javax.swing.JLabel id;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;

@@ -6,7 +6,7 @@ package com.rb.domain;
  */
 public class CaminhaoRB {
     
-    private Integer id;
+    private int id;
     private String cavalo;
     private String carreta;
     private String nome;
@@ -21,14 +21,14 @@ public class CaminhaoRB {
     /**
      * @return the id
      */
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 

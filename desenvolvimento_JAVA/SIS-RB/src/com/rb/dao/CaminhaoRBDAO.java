@@ -47,7 +47,23 @@ public class CaminhaoRBDAO {
                
 
     }
+    
     public void delete(CaminhaoRB c){
+        
+        StringBuilder sql = new StringBuilder();
+        sql.append("DELETE FROM caminhaoRB WHERE id = ? ");
+        
+        try {
+            Connection conexao = ConexaoFactory.db();
+            PreparedStatement ps = conexao.prepareStatement(sql.toString());
+            ps.setInt(1, c.getId());
+            
+            ps.executeUpdate();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+            
         
     }
     public void update(CaminhaoRB c){
