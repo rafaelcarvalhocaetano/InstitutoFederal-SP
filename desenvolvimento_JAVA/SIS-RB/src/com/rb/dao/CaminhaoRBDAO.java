@@ -46,8 +46,7 @@ public class CaminhaoRBDAO {
         }
                
 
-    }
-    
+    }    
     public void delete(CaminhaoRB c){
         
         StringBuilder sql = new StringBuilder();
@@ -67,7 +66,22 @@ public class CaminhaoRBDAO {
         
     }
     public void update(CaminhaoRB c){
+        StringBuilder sql = new StringBuilder();
+        sql.append("UPDATE caminhaoRB SET ");
+        sql.append("cavalo=?, carreta=?, nome=?, data=?, saida=?, comosaida=?, entrada=?, comoentrada=?, destino=?, lacre=? ");
+        sql.append("WHERE id = ? ");
         
+        try {
+            
+            Connection conexao = ConexaoFactory.db();
+            PreparedStatement ps = conexao.prepareStatement(sql.toString());
+            ps.setInt(1, c.getId());            
+            
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro no SALVAR", "ERRO no BANCO DE DADOS", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
     }
     public List<CaminhaoRB> listar() throws SQLException{
         StringBuilder sql = new StringBuilder();

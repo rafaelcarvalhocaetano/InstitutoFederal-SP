@@ -262,6 +262,11 @@ public class ViewMain extends javax.swing.JFrame {
         btnUpdate.setForeground(new java.awt.Color(255, 255, 255));
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/imgWrite/icons8-Ball Point Pen Filled-10.png"))); // NOI18N
         btnUpdate.setText("ATUALIZAR");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
 
         hentrada.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         hentrada.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -642,6 +647,10 @@ public class ViewMain extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_tblCRBMouseClicked
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
    
     public static void main(String args[]) {
