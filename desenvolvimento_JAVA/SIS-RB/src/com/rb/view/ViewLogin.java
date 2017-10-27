@@ -235,12 +235,12 @@ public class ViewLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMiniMouseClicked
 
     private void btnAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcessarActionPerformed
-        
+    
         LoginDAO dao = new LoginDAO();
         boolean flag = false;
-        
+
         Login l1 = new Login();
-        
+
         l1.setUser(usuario.getText());
         l1.setPass(password.getText());
 
@@ -255,8 +255,6 @@ public class ViewLogin extends javax.swing.JFrame {
                 dispose();
                 flag = true;
                 ViewMain vm = new ViewMain();
-                JOptionPane.showMessageDialog(rootPane, "Acesso Liberado", "Controle de Acesso RB", JOptionPane.PLAIN_MESSAGE);
-
                 vm.setVisible(flag);
 
             }

@@ -279,6 +279,7 @@ public class ViewLeveRB extends javax.swing.JFrame {
         jLabel6.setText("DESTINO");
 
         kmsaida.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        kmsaida.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -289,6 +290,7 @@ public class ViewLeveRB extends javax.swing.JFrame {
         jLabel11.setText("KM ENTRADA");
 
         kmentrada.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        kmentrada.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel12.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

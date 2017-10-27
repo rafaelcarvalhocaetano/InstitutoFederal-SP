@@ -76,10 +76,10 @@ public class ViewMain extends javax.swing.JFrame {
         btnUpdate = new javax.swing.JButton();
         hentrada = new javax.swing.JTextField();
         btnVisitante = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        btnCaminhaoTerceiros = new javax.swing.JButton();
+        btnFiorino = new javax.swing.JButton();
+        btnFuncionarios = new javax.swing.JButton();
+        btnChaves = new javax.swing.JButton();
         btnRelatorios = new javax.swing.JButton();
         combo1 = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
@@ -278,35 +278,45 @@ public class ViewMain extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setBackground(new java.awt.Color(51, 51, 51));
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/imgWrite/icons8-Plus Math-10.png"))); // NOI18N
-        jButton5.setText("CAMINHÃO");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnCaminhaoTerceiros.setBackground(new java.awt.Color(51, 51, 51));
+        btnCaminhaoTerceiros.setForeground(new java.awt.Color(255, 255, 255));
+        btnCaminhaoTerceiros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/imgWrite/icons8-Plus Math-10.png"))); // NOI18N
+        btnCaminhaoTerceiros.setText("CAMINHÃO");
+        btnCaminhaoTerceiros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnCaminhaoTerceirosActionPerformed(evt);
             }
         });
 
-        jButton6.setBackground(new java.awt.Color(51, 51, 51));
-        jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/imgWrite/icons8-Car-10.png"))); // NOI18N
-        jButton6.setText("FIORINO");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        btnFiorino.setBackground(new java.awt.Color(51, 51, 51));
+        btnFiorino.setForeground(new java.awt.Color(255, 255, 255));
+        btnFiorino.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/imgWrite/icons8-Car-10.png"))); // NOI18N
+        btnFiorino.setText("FIORINO");
+        btnFiorino.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btnFiorinoActionPerformed(evt);
             }
         });
 
-        jButton7.setBackground(new java.awt.Color(51, 51, 51));
-        jButton7.setForeground(new java.awt.Color(255, 255, 255));
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/imgWrite/icons8-User Account Filled-10.png"))); // NOI18N
-        jButton7.setText("FUNCIONÁRIOS");
+        btnFuncionarios.setBackground(new java.awt.Color(51, 51, 51));
+        btnFuncionarios.setForeground(new java.awt.Color(255, 255, 255));
+        btnFuncionarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/imgWrite/icons8-User Account Filled-10.png"))); // NOI18N
+        btnFuncionarios.setText("FUNCIONÁRIOS");
+        btnFuncionarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFuncionariosActionPerformed(evt);
+            }
+        });
 
-        jButton8.setBackground(new java.awt.Color(51, 51, 51));
-        jButton8.setForeground(new java.awt.Color(255, 255, 255));
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/imgWrite/icons8-Key Filled-10.png"))); // NOI18N
-        jButton8.setText("CHAVES");
+        btnChaves.setBackground(new java.awt.Color(51, 51, 51));
+        btnChaves.setForeground(new java.awt.Color(255, 255, 255));
+        btnChaves.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/imgWrite/icons8-Key Filled-10.png"))); // NOI18N
+        btnChaves.setText("CHAVES");
+        btnChaves.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChavesActionPerformed(evt);
+            }
+        });
 
         btnRelatorios.setBackground(new java.awt.Color(51, 51, 51));
         btnRelatorios.setForeground(new java.awt.Color(255, 255, 255));
@@ -420,13 +430,13 @@ public class ViewMain extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnFechar))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnChaves, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton7)
+                        .addComponent(btnFuncionarios)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnFiorino, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCaminhaoTerceiros, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnVisitante, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
@@ -444,7 +454,7 @@ public class ViewMain extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(id)
                     .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
+                .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
@@ -480,7 +490,7 @@ public class ViewMain extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(26, 26, 26)))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -492,10 +502,10 @@ public class ViewMain extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnVisitante, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnCaminhaoTerceiros, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnFiorino, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnFuncionarios, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnChaves, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 5, Short.MAX_VALUE))
                     .addComponent(btnRelatorios, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
@@ -687,17 +697,29 @@ public class ViewMain extends javax.swing.JFrame {
        
     }//GEN-LAST:event_btnVisitanteActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btnCaminhaoTerceirosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaminhaoTerceirosActionPerformed
         dispose();
         ViewCaminhaoTerceiro vc = new ViewCaminhaoTerceiro();
         vc.setVisible(true);
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_btnCaminhaoTerceirosActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void btnFiorinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiorinoActionPerformed
         dispose();
         ViewLeveRB vl = new ViewLeveRB();
         vl.setVisible(true);
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_btnFiorinoActionPerformed
+
+    private void btnFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFuncionariosActionPerformed
+        ViewFuncionarios f = new ViewFuncionarios();
+        dispose();
+        f.setVisible(true);
+    }//GEN-LAST:event_btnFuncionariosActionPerformed
+
+    private void btnChavesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChavesActionPerformed
+        ViewCheves c = new ViewCheves();
+        dispose();
+        c.setVisible(true);
+    }//GEN-LAST:event_btnChavesActionPerformed
 
    
     public static void main(String args[]) {
@@ -710,8 +732,12 @@ public class ViewMain extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCaminhaoTerceiros;
+    private javax.swing.JButton btnChaves;
     private javax.swing.JButton btnDelete;
     private javax.swing.JLabel btnFechar;
+    private javax.swing.JButton btnFiorino;
+    private javax.swing.JButton btnFuncionarios;
     private javax.swing.JLabel btnMini;
     private javax.swing.JButton btnRelatorios;
     private javax.swing.JButton btnSalvar;
@@ -726,10 +752,6 @@ public class ViewMain extends javax.swing.JFrame {
     private javax.swing.JTextField hentrada;
     private javax.swing.JTextField hsaida;
     private javax.swing.JLabel id;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
