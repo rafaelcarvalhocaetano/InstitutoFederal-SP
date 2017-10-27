@@ -670,9 +670,6 @@ public class ViewMain extends javax.swing.JFrame {
             hentrada.setText("");
             destino.setText("");
             lacre.setText("");
-            
-            
-            
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 

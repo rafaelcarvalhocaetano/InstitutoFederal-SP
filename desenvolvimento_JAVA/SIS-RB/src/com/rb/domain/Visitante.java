@@ -15,6 +15,7 @@ public class Visitante {
     private String data;
     private String entrada;
     private String saida;
+    
 
     /**
      * @return the id
@@ -141,7 +142,7 @@ public class Visitante {
     public void setSaida(String saida) {
         this.saida = saida;
     }
-   
+
     
     
 }

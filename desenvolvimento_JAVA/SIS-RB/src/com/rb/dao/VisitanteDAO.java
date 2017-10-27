@@ -50,7 +50,7 @@ public class VisitanteDAO {
     public void delete(Visitante v){
         
         StringBuilder sql = new StringBuilder();
-        sql.append("DELETE FROM visitante WHERE id = ? ");
+        sql.append("DELETE FROM visitantes WHERE id = ? ");
         
         try {
             Connection conexao = ConexaoFactory.db();
@@ -67,8 +67,8 @@ public class VisitanteDAO {
     }
     public void update(Visitante v){
         StringBuilder sql = new StringBuilder();
-        sql.append("UPDATE caminhaoRB SET ");
-        sql.append("placa=?, modelo=?, nome=?, rg=?, empresa=?, data=?, entrada=?, saida=? ");
+        sql.append("UPDATE visitantes SET ");
+        sql.append("placa=?, modelo=?, nome=?, rg=?, empresa=?, entrada=?, saida=? ");
         sql.append("WHERE id = ? ");
         
         try {
@@ -76,7 +76,6 @@ public class VisitanteDAO {
             Connection conexao = ConexaoFactory.db();
             PreparedStatement ps = conexao.prepareStatement(sql.toString());
            
-            
             ps.setString(1, v.getPlaca());
             ps.setString(2, v.getModelo());
             ps.setString(3, v.getNome());
@@ -88,6 +87,7 @@ public class VisitanteDAO {
             
             ps.executeUpdate();
             System.out.println("UPDATE DAO OK");
+            
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro no SALVAR", "ERRO no BANCO DE DADOS", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
@@ -107,8 +107,8 @@ public class VisitanteDAO {
             Visitante v = new Visitante();
             
             v.setId(rs.getInt("id"));
-            v.setPlaca(rs.getString("cavalo"));
-            v.setModelo(rs.getString("carreta"));
+            v.setPlaca(rs.getString("placa"));
+            v.setModelo(rs.getString("modelo"));
             v.setNome(rs.getString("nome"));
             v.setRg(rs.getString("rg"));
             v.setEmpresa(rs.getString("empresa"));
