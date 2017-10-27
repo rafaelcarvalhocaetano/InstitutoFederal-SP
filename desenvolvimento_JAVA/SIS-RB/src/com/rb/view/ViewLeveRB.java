@@ -36,8 +36,9 @@ public class ViewLeveRB extends javax.swing.JFrame {
                     v.getKmsaida(),
                     v.getEntrada(),
                     v.getKmentrada(),
-                    v.getAut(),
-                    v.getObs()
+                    
+                    v.getObs(),
+                    v.getAut()
                 });
                 
             }
@@ -81,6 +82,7 @@ public class ViewLeveRB extends javax.swing.JFrame {
         kmentrada = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         obs = new javax.swing.JTextField();
+        id = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -166,6 +168,16 @@ public class ViewLeveRB extends javax.swing.JFrame {
         });
         tblLeve.setGridColor(new java.awt.Color(0, 0, 0));
         tblLeve.setSelectionBackground(new java.awt.Color(153, 153, 153));
+        tblLeve.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblLeveMouseClicked(evt);
+            }
+        });
+        tblLeve.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tblLeveKeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblLeve);
         if (tblLeve.getColumnModel().getColumnCount() > 0) {
             tblLeve.getColumnModel().getColumn(1).setResizable(false);
@@ -284,6 +296,9 @@ public class ViewLeveRB extends javax.swing.JFrame {
 
         obs.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
+        id.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        id.setText("ID");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -309,27 +324,21 @@ public class ViewLeveRB extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(nome)
-                                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(destino)
-                                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(saida, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(kmsaida)
-                                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE))))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(nome)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(destino)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(saida, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(kmsaida)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -345,7 +354,13 @@ public class ViewLeveRB extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(obs)
-                                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(id)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
@@ -356,11 +371,13 @@ public class ViewLeveRB extends javax.swing.JFrame {
                     .addComponent(btnMini))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(id)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -484,10 +501,10 @@ public class ViewLeveRB extends javax.swing.JFrame {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         
+        VeiculoLeveDAO dao = new VeiculoLeveDAO();
+        VeiculosLeveRB r = new VeiculosLeveRB();
+        
         if(tblLeve.getSelectedRow() != -1) {
-
-            VeiculoLeveDAO dao = new VeiculoLeveDAO();
-            VeiculosLeveRB r = new VeiculosLeveRB();
 
             r.setNome(nome.getText());
             r.setDestino(destino.getText());
@@ -547,6 +564,46 @@ public class ViewLeveRB extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
+    private void tblLeveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblLeveMouseClicked
+        
+        
+        if(tblLeve.getSelectedRow() != -1){
+            
+            id.setText(tblLeve.getValueAt(tblLeve.getSelectedRow(), 0).toString());
+            nome.setText(tblLeve.getValueAt(tblLeve.getSelectedRow(), 1).toString());
+            destino.setText(tblLeve.getValueAt(tblLeve.getSelectedRow(), 2).toString());
+           
+            saida.setText(tblLeve.getValueAt(tblLeve.getSelectedRow(), 4).toString());
+            kmsaida.setText(tblLeve.getValueAt(tblLeve.getSelectedRow(), 5).toString());
+            
+            entrada.setText(tblLeve.getValueAt(tblLeve.getSelectedRow(), 6).toString());
+            kmentrada.setText(tblLeve.getValueAt(tblLeve.getSelectedRow(), 7).toString());
+            
+            obs.setText(tblLeve.getValueAt(tblLeve.getSelectedRow(), 8).toString());
+            aut.setText(tblLeve.getValueAt(tblLeve.getSelectedRow(), 9).toString());
+            
+        }
+    }//GEN-LAST:event_tblLeveMouseClicked
+
+    private void tblLeveKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblLeveKeyReleased
+         if(tblLeve.getSelectedRow() != -1){
+            
+            id.setText(tblLeve.getValueAt(tblLeve.getSelectedRow(), 0).toString());
+            nome.setText(tblLeve.getValueAt(tblLeve.getSelectedRow(), 1).toString());
+            destino.setText(tblLeve.getValueAt(tblLeve.getSelectedRow(), 2).toString());
+           
+            saida.setText(tblLeve.getValueAt(tblLeve.getSelectedRow(), 4).toString());
+            kmsaida.setText(tblLeve.getValueAt(tblLeve.getSelectedRow(), 5).toString());
+            
+            entrada.setText(tblLeve.getValueAt(tblLeve.getSelectedRow(), 6).toString());
+            kmentrada.setText(tblLeve.getValueAt(tblLeve.getSelectedRow(), 7).toString());
+            
+            obs.setText(tblLeve.getValueAt(tblLeve.getSelectedRow(), 8).toString());
+            aut.setText(tblLeve.getValueAt(tblLeve.getSelectedRow(), 9).toString());
+            
+        }
+    }//GEN-LAST:event_tblLeveKeyReleased
+
    
     public static void main(String args[]) {
        
@@ -568,6 +625,7 @@ public class ViewLeveRB extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField data;
     private javax.swing.JTextField destino;
     private javax.swing.JTextField entrada;
+    private javax.swing.JLabel id;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
