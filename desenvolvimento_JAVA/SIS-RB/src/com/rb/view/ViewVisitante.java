@@ -35,8 +35,8 @@ public class ViewVisitante extends javax.swing.JFrame {
                     v.getRg(),
                     v.getEmpresa(),
                     v.getData(),
-                    v.getEntrada(),
-                    v.getSaida()
+                    v.getSaida(),
+                    v.getEntrada()
                 });
             }
         } catch (SQLException ex) {
@@ -172,7 +172,7 @@ public class ViewVisitante extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Placa", "Modelo", "Nome", "RG", "Empresa", "Data", "Horário Saída", "Horário Entrada"
+                "ID", "Placa", "Modelo", "Nome", "RG", "Empresa", "Data", "Horário Entrada", "Horário Saída"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -462,12 +462,11 @@ public class ViewVisitante extends javax.swing.JFrame {
             
             id.setText(tblVisitante.getValueAt(tblVisitante.getSelectedRow(), 0).toString());
             placa.setText(tblVisitante.getValueAt(tblVisitante.getSelectedRow(), 1).toString());
-            
             modelo.setText(tblVisitante.getValueAt(tblVisitante.getSelectedRow(), 2).toString());
             nome.setText(tblVisitante.getValueAt(tblVisitante.getSelectedRow(), 3).toString());
             rg.setText(tblVisitante.getValueAt(tblVisitante.getSelectedRow(), 4).toString());
             empresa.setText(tblVisitante.getValueAt(tblVisitante.getSelectedRow(), 5).toString());
-            //data.setText(t);
+            //data.setText(tblVisitante.getValueAt(tblVisitante.getSelectedRow(), 6).toString());
             entrada.setText(tblVisitante.getValueAt(tblVisitante.getSelectedRow(), 7).toString());
             saida.setText(tblVisitante.getValueAt(tblVisitante.getSelectedRow(), 8).toString());
             
@@ -486,9 +485,9 @@ public class ViewVisitante extends javax.swing.JFrame {
             nome.setText(tblVisitante.getValueAt(tblVisitante.getSelectedRow(), 3).toString());
             rg.setText(tblVisitante.getValueAt(tblVisitante.getSelectedRow(), 4).toString());
             empresa.setText(tblVisitante.getValueAt(tblVisitante.getSelectedRow(), 5).toString());
-            //data.setText(t);
-            entrada.setText(tblVisitante.getValueAt(tblVisitante.getSelectedRow(), 6).toString());
-            saida.setText(tblVisitante.getValueAt(tblVisitante.getSelectedRow(), 7).toString());
+            //data.setText(tblVisitante.getValueAt(tblVisitante.getSelectedRow(), 6).toString());
+            entrada.setText(tblVisitante.getValueAt(tblVisitante.getSelectedRow(), 7).toString());
+            saida.setText(tblVisitante.getValueAt(tblVisitante.getSelectedRow(), 8).toString());
 
         }
 
