@@ -65,7 +65,6 @@ public class CaminhaoRBDAO {
             
         
     }
-    
     public void update(CaminhaoRB c){
         StringBuilder sql = new StringBuilder();
         sql.append("UPDATE caminhaoRB SET ");

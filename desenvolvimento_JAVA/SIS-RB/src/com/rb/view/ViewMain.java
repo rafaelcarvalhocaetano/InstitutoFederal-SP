@@ -76,7 +76,7 @@ public class ViewMain extends javax.swing.JFrame {
         btnDelete = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         hentrada = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
+        btnVisitante = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
@@ -276,11 +276,16 @@ public class ViewMain extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(51, 51, 51));
-        jButton4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/imgWrite/icons8-Plus Math-10.png"))); // NOI18N
-        jButton4.setText("VISITANTE");
+        btnVisitante.setBackground(new java.awt.Color(51, 51, 51));
+        btnVisitante.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        btnVisitante.setForeground(new java.awt.Color(255, 255, 255));
+        btnVisitante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/imgWrite/icons8-Plus Math-10.png"))); // NOI18N
+        btnVisitante.setText("VISITANTE");
+        btnVisitante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVisitanteActionPerformed(evt);
+            }
+        });
 
         jButton5.setBackground(new java.awt.Color(51, 51, 51));
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
@@ -417,7 +422,7 @@ public class ViewMain extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnVisitante, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
@@ -480,7 +485,7 @@ public class ViewMain extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnVisitante, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -671,6 +676,14 @@ public class ViewMain extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
+    private void btnVisitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisitanteActionPerformed
+        
+        ViewVisitante vv = new ViewVisitante();
+        dispose();
+        vv.setVisible(true);
+       
+    }//GEN-LAST:event_btnVisitanteActionPerformed
+
    
     public static void main(String args[]) {
        
@@ -688,6 +701,7 @@ public class ViewMain extends javax.swing.JFrame {
     private javax.swing.JButton btnRelatorios;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JButton btnVisitante;
     private javax.swing.JFormattedTextField carreta;
     private javax.swing.JFormattedTextField cavalo;
     private javax.swing.JComboBox<String> combo1;
@@ -697,7 +711,6 @@ public class ViewMain extends javax.swing.JFrame {
     private javax.swing.JTextField hentrada;
     private javax.swing.JTextField hsaida;
     private javax.swing.JLabel id;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
