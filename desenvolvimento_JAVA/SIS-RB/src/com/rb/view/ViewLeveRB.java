@@ -444,6 +444,8 @@ public class ViewLeveRB extends javax.swing.JFrame {
 
     private void btnFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFecharMouseClicked
         dispose();
+        ViewMain v = new ViewMain();
+        v.setVisible(true);
     }//GEN-LAST:event_btnFecharMouseClicked
 
     private void btnMiniMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMiniMouseClicked
@@ -506,6 +508,7 @@ public class ViewLeveRB extends javax.swing.JFrame {
         
         if(tblLeve.getSelectedRow() != -1) {
 
+            r.setId((int) tblLeve.getValueAt(tblLeve.getSelectedRow(), 0));
             r.setNome(nome.getText());
             r.setDestino(destino.getText());
             r.setSaida(saida.getText());
@@ -534,9 +537,11 @@ public class ViewLeveRB extends javax.swing.JFrame {
         
         VeiculoLeveDAO dao = new VeiculoLeveDAO();
         VeiculosLeveRB r = new VeiculosLeveRB();
-        
+        int i;
         if (tblLeve.getSelectedRow() != -1) {
 
+            r.setId((int) tblLeve.getValueAt(tblLeve.getSelectedRow(), 0));
+            
             r.setNome(nome.getText());
             r.setDestino(destino.getText());
             r.setSaida(saida.getText());
@@ -546,21 +551,23 @@ public class ViewLeveRB extends javax.swing.JFrame {
             r.setAut(aut.getText());
             r.setObs(obs.getText());
 
-            dao.delete(r);
-            read();
-
-            nome.setText("");
-            destino.setText("");
-            saida.setText("");
-            kmsaida.setText("");
-            entrada.setText("");
-            kmentrada.setText("");
-            aut.setText("");
-            obs.setText("");
+            i = JOptionPane.showConfirmDialog(rootPane, "Deseja Excluir este item", "Excluir", JOptionPane.INFORMATION_MESSAGE);
             
-            JOptionPane.showConfirmDialog(rootPane, "CONFIRMAÇÂO", "Deseja excluir este item", JOptionPane.INFORMATION_MESSAGE);
-            dao.delete(r);
+            if (i == JOptionPane.YES_OPTION) {
+                dao.delete(r);
+                read();
 
+                nome.setText("");
+                destino.setText("");
+                saida.setText("");
+                kmsaida.setText("");
+                entrada.setText("");
+                kmentrada.setText("");
+                aut.setText("");
+                obs.setText("");
+            } else {
+                return;
+            }
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
