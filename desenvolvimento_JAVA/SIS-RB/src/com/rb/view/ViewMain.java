@@ -215,7 +215,7 @@ public class ViewMain extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "id", "CAVALO", "CARRETA", "NOME", "DATA", "HORA SAÍDA", "C / V", "HORA ENTRADA", "C / V", "DESTINO", "LACRE"
+                "ID", "CAVALO", "CARRETA", "NOME", "DATA", "HORA SAÍDA", "Carregado / Vazio", "HORA ENTRADA", "Carregado / Vazio", "DESTINO", "LACRE"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -331,7 +331,8 @@ public class ViewMain extends javax.swing.JFrame {
         );
 
         id.setBackground(new java.awt.Color(255, 255, 255));
-        id.setText("jLabel6");
+        id.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        id.setText("ID");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -547,7 +548,8 @@ public class ViewMain extends javax.swing.JFrame {
             r.setLacre(lacre.getText());
             
             dao.create(r);
-           
+            
+            id.setText("");
             cavalo.setText("");
             carreta.setText("");
             nome.setText("");

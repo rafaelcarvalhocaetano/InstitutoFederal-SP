@@ -461,15 +461,15 @@
                 </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="11" rowCount="10">
-                    <Column editable="false" title="id" type="java.lang.Object"/>
+                    <Column editable="false" title="ID" type="java.lang.Object"/>
                     <Column editable="false" title="CAVALO" type="java.lang.Object"/>
                     <Column editable="false" title="CARRETA" type="java.lang.Object"/>
                     <Column editable="false" title="NOME" type="java.lang.Object"/>
                     <Column editable="false" title="DATA" type="java.lang.Object"/>
                     <Column editable="false" title="HORA SA&#xcd;DA" type="java.lang.Object"/>
-                    <Column editable="false" title="C / V" type="java.lang.Object"/>
+                    <Column editable="false" title="Carregado / Vazio" type="java.lang.Object"/>
                     <Column editable="false" title="HORA ENTRADA" type="java.lang.Object"/>
-                    <Column editable="false" title="C / V" type="java.lang.Object"/>
+                    <Column editable="false" title="Carregado / Vazio" type="java.lang.Object"/>
                     <Column editable="false" title="DESTINO" type="java.lang.Object"/>
                     <Column editable="false" title="LACRE" type="java.lang.Object"/>
                   </Table>
@@ -758,7 +758,10 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="jLabel6"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Times New Roman" size="12" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="ID"/>
           </Properties>
         </Component>
       </SubComponents>

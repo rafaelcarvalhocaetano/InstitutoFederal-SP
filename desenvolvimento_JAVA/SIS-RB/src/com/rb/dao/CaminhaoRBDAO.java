@@ -82,6 +82,7 @@ public class CaminhaoRBDAO {
         while(rs.next()){
             CaminhaoRB r = new CaminhaoRB();
             
+            r.setId(rs.getInt("id"));
             r.setCavalo(rs.getString("cavalo"));
             r.setCarreta(rs.getString("carreta"));
             r.setNome(rs.getString("nome"));
