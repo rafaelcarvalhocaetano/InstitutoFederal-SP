@@ -65,19 +65,32 @@ public class CaminhaoRBDAO {
             
         
     }
+    
     public void update(CaminhaoRB c){
         StringBuilder sql = new StringBuilder();
         sql.append("UPDATE caminhaoRB SET ");
-        sql.append("cavalo=?, carreta=?, nome=?, data=?, saida=?, comosaida=?, entrada=?, comoentrada=?, destino=?, lacre=? ");
+        sql.append("cavalo=?, carreta=?, nome=?, saida=?, comosaida=?, entrada=?, comoentrada=?, destino=?, lacre=? ");
         sql.append("WHERE id = ? ");
         
         try {
             
             Connection conexao = ConexaoFactory.db();
             PreparedStatement ps = conexao.prepareStatement(sql.toString());
-            ps.setInt(1, c.getId());            
+           
+            
+            ps.setString(1, c.getCavalo());
+            ps.setString(2, c.getCarreta());
+            ps.setString(3, c.getNome());
+            ps.setString(4, c.getSaida());
+            ps.setString(5, c.getComosaida());
+            ps.setString(6, c.getEntrada());
+            ps.setString(7, c.getComoentrada());
+            ps.setString(8, c.getDestino());
+            ps.setString(9, c.getLacre());
+            ps.setInt(10, c.getId());   
             
             ps.executeUpdate();
+            System.out.println("UPDATE DAO OK");
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro no SALVAR", "ERRO no BANCO DE DADOS", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();

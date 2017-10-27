@@ -606,20 +606,7 @@ public class ViewMain extends javax.swing.JFrame {
             r.setComoentrada(combo2.getSelectedItem().toString());
             r.setDestino(destino.getText());
             r.setLacre(lacre.getText());
-            
-            /*
-            r.setCavalo(tblCRB.getValueAt(tblCRB.getSelectedRow(), 1).toString());
-            r.setCarreta(tblCRB.getValueAt(tblCRB.getSelectedRow(), 2).toString());
-            r.setNome(tblCRB.getValueAt(tblCRB.getSelectedRow(), 3).toString());
-            r.setData(tblCRB.getValueAt(tblCRB.getSelectedRow(), 4).toString());
-            r.setSaida(tblCRB.getValueAt(tblCRB.getSelectedRow(), 5).toString());
-            r.setComosaida(tblCRB.getValueAt(tblCRB.getSelectedRow(), 6).toString());
-            r.setEntrada(tblCRB.getValueAt(tblCRB.getSelectedRow(), 7).toString());
-            r.setComoentrada(tblCRB.getValueAt(tblCRB.getSelectedRow(), 8).toString());
-            r.setDestino(tblCRB.getValueAt(tblCRB.getSelectedRow(), 9).toString());
-            r.setLacre(tblCRB.getValueAt(tblCRB.getSelectedRow(), 10).toString());
-            */
-            
+           
             JOptionPane.showConfirmDialog(rootPane, "CONFIRMAÇÂO", "Deseja excluir este item", JOptionPane.INFORMATION_MESSAGE);
             dao.delete(r);
             read();
@@ -649,7 +636,39 @@ public class ViewMain extends javax.swing.JFrame {
     }//GEN-LAST:event_tblCRBMouseClicked
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        
+        if (tblCRB.getSelectedRow() != -1) {
+            
+            CaminhaoRB r = new CaminhaoRB();
+            CaminhaoRBDAO dao = new CaminhaoRBDAO();
+            
+            r.setId((int) tblCRB.getValueAt(tblCRB.getSelectedRow(), 0));
+            
+            r.setCavalo(cavalo.getText());
+            r.setCarreta(carreta.getText());
+            r.setNome(nome.getText());
+            r.setData(data.getText());
+            r.setSaida(hsaida.getText());
+            r.setComosaida(combo1.getSelectedItem().toString());
+            r.setEntrada(hentrada.getText());
+            r.setComoentrada(combo2.getSelectedItem().toString());
+            r.setDestino(destino.getText());
+            r.setLacre(lacre.getText());
+           
+            dao.update(r);
+            read();
+            
+            id.setText("");
+            cavalo.setText("");
+            carreta.setText("");
+            nome.setText("");
+            hsaida.setText("");
+            hentrada.setText("");
+            destino.setText("");
+            lacre.setText("");
+            
+            
+            
+        }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
    
