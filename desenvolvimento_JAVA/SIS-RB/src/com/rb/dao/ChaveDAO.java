@@ -112,5 +112,32 @@ public class ChaveDAO {
         return itens;
         
     }
+    public List<Chave> listarUS(Chave c) throws SQLException{
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT * FROM chave WHERE data = ? ");
+        
+        Connection con = ConexaoFactory.db();
+        PreparedStatement ps = con.prepareStatement(sql.toString());
+        ps.setString(1, c.getData());
+        
+        ArrayList<Chave> itens = new ArrayList<>();
+        ResultSet rs = ps.executeQuery();
+        
+        while(rs.next()){
+            
+            c.setId(rs.getInt("id"));
+            c.setNome(rs.getString("nome"));
+            c.setSetor(rs.getString("setor"));
+            c.setData(rs.getString("data"));
+            c.setSaida(rs.getString("saida"));
+            c.setEntrada(rs.getString("entrada"));
+            c.setDatadevolucao(rs.getString("datadevolucao"));            
+            c.setVigilante(rs.getString("vigilante"));
+            
+            itens.add(c);
+        }
+        return itens;
+        
+    }
     
 }
