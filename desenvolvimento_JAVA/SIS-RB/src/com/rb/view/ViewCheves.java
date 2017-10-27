@@ -1,21 +1,22 @@
 package com.rb.view;
 
+
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.rb.dao.ChaveDAO;
 import com.rb.domain.Chave;
 import java.awt.Desktop;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -91,7 +92,7 @@ public class ViewCheves extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         dataPDF = new javax.swing.JFormattedTextField();
         jPanel4 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        btnPDF = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -336,7 +337,12 @@ public class ViewCheves extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), "PDF Geral", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 12))); // NOI18N
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/img/4.png"))); // NOI18N
+        btnPDF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/img/4.png"))); // NOI18N
+        btnPDF.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnPDFMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -344,13 +350,13 @@ public class ViewCheves extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jLabel3)
+                .addComponent(btnPDF)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -660,6 +666,83 @@ public class ViewCheves extends javax.swing.JFrame {
         devolucao.setText(datahoje.format(hoje));
     }//GEN-LAST:event_devolucaoMouseClicked
 
+    private void btnPDFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPDFMouseClicked
+        
+        Document doc = new Document(PageSize.A4, 10, 10, 30,1);
+        ChaveDAO dao = new ChaveDAO();
+        String url = "rafael.pdf";
+        
+        try {
+            
+            PdfWriter.getInstance(doc, new FileOutputStream(url));
+            doc.open();
+            
+            Paragraph p = new Paragraph("RELATÓRIOS PDF");
+            p.setAlignment(1);
+            p.setExtraParagraphSpace(TOP_ALIGNMENT);
+            doc.add(p);
+            
+            p = new Paragraph("");
+            doc.add(p);
+            
+            PdfPTable tbl = new PdfPTable(7);
+            tbl.setHorizontalAlignment(Element.ALIGN_CENTER);
+            tbl.setWidthPercentage(100.0f);
+            
+            PdfPCell cel2 = new PdfPCell(new Paragraph("NOME"));
+            PdfPCell cel3 = new PdfPCell(new Paragraph("SETOR"));
+            PdfPCell cel4 = new PdfPCell(new Paragraph("DATA RETIRADA"));
+            PdfPCell cel5 = new PdfPCell(new Paragraph("HORÁRIO SAÍDA"));
+            PdfPCell cel6 = new PdfPCell(new Paragraph("HORÁRIO ENTRADA"));
+            PdfPCell cel7 = new PdfPCell(new Paragraph("DATA DEVOLUÇÃO"));
+            PdfPCell cel8 = new PdfPCell(new Paragraph("VIGILANETE"));
+            
+            
+            cel7.setColspan(1);
+            cel4.getHorizontalAlignment();
+            cel5.getHorizontalAlignment();
+            
+            
+            
+            tbl.addCell(cel2);
+            tbl.addCell(cel3);
+            tbl.addCell(cel4);
+            tbl.addCell(cel5);
+            tbl.addCell(cel6);
+            tbl.addCell(cel7);
+            tbl.addCell(cel8);
+            
+            for(Chave c : dao.listar()){
+                
+                cel2 = new PdfPCell(new Paragraph(c.getNome()));
+                cel3 = new PdfPCell(new Paragraph(c.getSetor()));
+                cel4 = new PdfPCell(new Paragraph(c.getData()));
+                cel5 = new PdfPCell(new Paragraph(c.getSaida()));
+                cel6 = new PdfPCell(new Paragraph(c.getEntrada()));
+                cel7 = new PdfPCell(new Paragraph(c.getDatadevolucao()));
+                cel8 = new PdfPCell(new Paragraph(c.getVigilante()));
+
+                
+                tbl.addCell(cel2);
+                tbl.addCell(cel3);
+                tbl.addCell(cel4);
+                tbl.addCell(cel5);
+                tbl.addCell(cel6);
+                tbl.addCell(cel7);
+                tbl.addCell(cel8);
+            }
+            doc.add(tbl);
+            doc.close();
+            
+            Desktop.getDesktop().open(new File(url));
+            
+        } catch (Exception e) {
+        }
+       
+        
+        
+    }//GEN-LAST:event_btnPDFMouseClicked
+
    
     public static void main(String args[]) {
        
@@ -676,6 +759,7 @@ public class ViewCheves extends javax.swing.JFrame {
     private javax.swing.JButton btnDelete;
     private javax.swing.JLabel btnFechar;
     private javax.swing.JLabel btnMini;
+    private javax.swing.JLabel btnPDF;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JFormattedTextField dataPDF;
@@ -686,7 +770,6 @@ public class ViewCheves extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
