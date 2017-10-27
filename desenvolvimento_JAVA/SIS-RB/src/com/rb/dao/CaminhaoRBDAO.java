@@ -4,7 +4,9 @@ import com.rb.conexao.ConexaoFactory;
 import com.rb.domain.CaminhaoRB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -51,9 +53,33 @@ public class CaminhaoRBDAO {
     public void update(CaminhaoRB c){
         
     }
-    public List<CaminhaoRB> listar(){
+    public List<CaminhaoRB> listar() throws SQLException{
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT * FROM caminhaoRB ");
+      
+        Connection conexao = ConexaoFactory.db();
+        PreparedStatement ps = conexao.prepareStatement(sql.toString());
+        ResultSet rs = ps.executeQuery();
         
-        return null;
+        ArrayList<CaminhaoRB> itens = new ArrayList<>();
+        
+        while(rs.next()){
+            CaminhaoRB r = new CaminhaoRB();
+            
+            r.setCavalo(rs.getString("cavalo"));
+            r.setCarreta(rs.getString("carreta"));
+            r.setNome(rs.getString("nome"));
+            r.setData(rs.getString("data"));
+            r.setSaida(rs.getString("saida"));
+            r.setComosaida(rs.getString("comosaida"));
+            r.setEntrada(rs.getString("entrada"));
+            r.setComoentrada(rs.getString("comoentrada"));
+            r.setDestino(rs.getString("destino"));
+            r.setLacre(rs.getString("lacre"));
+            
+            itens.add(r);
+        }
+        return itens;
     }
     
 }
