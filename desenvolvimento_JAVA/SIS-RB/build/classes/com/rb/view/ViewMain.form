@@ -120,17 +120,18 @@
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
               <Component id="jPanel2" alignment="1" max="32767" attributes="0"/>
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btnRelatorios" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           <Component id="btnMini" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="btnFechar" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
+                          <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="btnChaves" min="-2" pref="128" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="btnFuncionarios" min="-2" max="-2" attributes="0"/>
@@ -209,27 +210,24 @@
                           <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnSalvar" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                       <Component id="btnDelete" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                       <Component id="btnUpdate" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="188" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="187" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="btnVisitante" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                              <Component id="btnCaminhaoTerceiros" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                              <Component id="btnFiorino" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                              <Component id="btnFuncionarios" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                              <Component id="btnChaves" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="0" pref="16" max="32767" attributes="0"/>
+                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                          <Component id="btnVisitante" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                          <Component id="btnCaminhaoTerceiros" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                          <Component id="btnFiorino" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                          <Component id="btnFuncionarios" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                          <Component id="btnChaves" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="btnRelatorios" pref="0" max="32767" attributes="0"/>
+                      <Component id="jLabel12" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -684,20 +682,6 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnChavesActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnRelatorios">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="33" green="33" red="33" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/com/rb/imgWrite/icons8-Export Pdf-50.png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="RELAT&#xd3;RIOS"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JComboBox" name="combo1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -778,6 +762,14 @@
               <Font name="Times New Roman" size="14" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel12">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/com/rb/img/2.png"/>
+            </Property>
           </Properties>
         </Component>
       </SubComponents>
