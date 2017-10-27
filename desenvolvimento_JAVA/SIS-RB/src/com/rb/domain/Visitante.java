@@ -4,7 +4,7 @@ package com.rb.domain;
  *
  * @author Rafael Carvalho Caetano
  */
-public class VisitanteView {
+public class Visitante {
     
     private Integer id;
     private String placa;
