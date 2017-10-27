@@ -2,6 +2,8 @@ package com.rb.view;
 
 import com.rb.dao.CaminhaoRBDAO;
 import com.rb.domain.CaminhaoRB;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -158,6 +160,11 @@ public class ViewMain extends javax.swing.JFrame {
         hsaida.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         hsaida.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         hsaida.setSelectionColor(new java.awt.Color(0, 0, 0));
+        hsaida.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                hsaidaMouseClicked(evt);
+            }
+        });
 
         try {
             data.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -166,6 +173,11 @@ public class ViewMain extends javax.swing.JFrame {
         }
         data.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         data.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        data.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dataMouseClicked(evt);
+            }
+        });
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -218,6 +230,11 @@ public class ViewMain extends javax.swing.JFrame {
 
         hentrada.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         hentrada.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        hentrada.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                hentradaMouseClicked(evt);
+            }
+        });
 
         jButton4.setBackground(new java.awt.Color(51, 51, 51));
         jButton4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
@@ -400,7 +417,7 @@ public class ViewMain extends javax.swing.JFrame {
                     .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -408,7 +425,7 @@ public class ViewMain extends javax.swing.JFrame {
                     .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRelatorios, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -433,6 +450,25 @@ public class ViewMain extends javax.swing.JFrame {
     private void btnMiniMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMiniMouseClicked
         setExtendedState(ICONIFIED);
     }//GEN-LAST:event_btnMiniMouseClicked
+
+    private void dataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dataMouseClicked
+        Date dataa = new Date();
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        data.setText(formato.format(dataa));
+        
+    }//GEN-LAST:event_dataMouseClicked
+
+    private void hsaidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hsaidaMouseClicked
+        
+        String hora = new SimpleDateFormat("HH:mm").format(new Date(System.currentTimeMillis()));
+        hsaida.setText(hora);
+    }//GEN-LAST:event_hsaidaMouseClicked
+
+    private void hentradaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hentradaMouseClicked
+        
+        String hora = new SimpleDateFormat("HH:mm").format(new Date(System.currentTimeMillis()));
+        hentrada.setText(hora);
+    }//GEN-LAST:event_hentradaMouseClicked
 
    
     public static void main(String args[]) {
