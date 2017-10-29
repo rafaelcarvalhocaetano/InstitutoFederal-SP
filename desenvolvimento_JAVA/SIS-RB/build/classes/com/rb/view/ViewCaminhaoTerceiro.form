@@ -703,6 +703,9 @@
                   <Image iconType="3" name="/com/rb/img/4.png"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel11MouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JFormattedTextField" name="dataPDF">
               <Properties>

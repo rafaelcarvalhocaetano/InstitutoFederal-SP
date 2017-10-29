@@ -124,4 +124,35 @@ public class CaminhaoTerDAO {
         return itens;
     }
     
+     public List<CaminhaoT> listarUS(CaminhaoT r) throws SQLException{
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT * FROM caminhaoTerceiro WHERE data = ? ");
+        
+        Connection con = ConexaoFactory.db();
+        PreparedStatement ps = con.prepareStatement(sql.toString());
+        ps.setString(1, r.getData());
+        
+        ArrayList<CaminhaoT> itens = new ArrayList<>();
+        ResultSet rs = ps.executeQuery();
+        
+        while(rs.next()){
+            
+            r.setId(rs.getInt("id"));
+            r.setCavalo(rs.getString("cavalo"));
+            r.setCarreta(rs.getString("carreta"));
+            r.setNome(rs.getString("nome"));
+            r.setData(rs.getString("data"));
+            r.setEntrada(rs.getString("entrada"));
+            r.setComoentrada(rs.getString("comoentrou"));
+            r.setSaida(rs.getString("saida"));
+            r.setComosaida(rs.getString("comosaida"));            
+            r.setEmpresa(rs.getString("empresa"));
+            r.setRg(rs.getString("rg"));
+            
+            itens.add(r);
+        }
+        return itens;
+        
+    }
+    
 }

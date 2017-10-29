@@ -6,6 +6,7 @@
 package com.rb.pdf;
 
 import java.io.File;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,6 +16,10 @@ public class Teste {
     
     public static void main(String[] args) {
         new File("C:\\Controle de Acesso").mkdir();
+        
+       String nome = null;
+       nome = JOptionPane.showInputDialog(null, "Qual o seu Nome?", "Pergunta", JOptionPane.PLAIN_MESSAGE);
+        System.out.println(nome+".pdf");
     }
     
 }

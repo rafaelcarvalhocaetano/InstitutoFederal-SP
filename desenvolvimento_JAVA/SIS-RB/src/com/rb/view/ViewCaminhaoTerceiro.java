@@ -1,7 +1,17 @@
 package com.rb.view;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import com.rb.dao.CaminhaoTerDAO;
 import com.rb.domain.CaminhaoT;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -319,6 +329,11 @@ public class ViewCaminhaoTerceiro extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), "PDF por Data", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 12))); // NOI18N
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/img/4.png"))); // NOI18N
+        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel11MouseClicked(evt);
+            }
+        });
 
         try {
             dataPDF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##-##-####")));
@@ -689,6 +704,98 @@ public class ViewCaminhaoTerceiro extends javax.swing.JFrame {
             rg.setText("");
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+        
+        Document doc = new Document(PageSize.A4, 10, 10, 10, 10);
+        CaminhaoTerDAO dao = new CaminhaoTerDAO();
+        CaminhaoT cc = new CaminhaoT();
+        
+        cc.setData(dataPDF.getText());
+        
+        
+        String url = "rafael.pdf";
+        
+        try {
+            
+            PdfWriter.getInstance(doc, new FileOutputStream(url));
+            doc.open();
+            
+            Paragraph p = new Paragraph("RELATÓRIOS PDF");
+            p.setAlignment(1);
+            p.setExtraParagraphSpace(TOP_ALIGNMENT);
+            doc.add(p);
+            
+            p = new Paragraph("");
+            doc.add(p);
+            
+            PdfPTable tbl = new PdfPTable(7);
+            tbl.setHorizontalAlignment(Element.ALIGN_CENTER);
+            tbl.setWidthPercentage(100.0f);
+            
+            PdfPCell cel1 = new PdfPCell(new Paragraph("CAVALO"));
+            PdfPCell cel2 = new PdfPCell(new Paragraph("CARRETA"));
+            PdfPCell cel3 = new PdfPCell(new Paragraph("NOME"));
+            PdfPCell cel4 = new PdfPCell(new Paragraph("DATA"));
+            PdfPCell cel5 = new PdfPCell(new Paragraph("ENTRADA"));
+            PdfPCell cel6 = new PdfPCell(new Paragraph("C / V"));
+            PdfPCell cel7 = new PdfPCell(new Paragraph("SAÍDA"));
+            PdfPCell cel8 = new PdfPCell(new Paragraph("C / V"));
+            PdfPCell cel9 = new PdfPCell(new Paragraph("EMPRESA"));
+            PdfPCell cel10 = new PdfPCell(new Paragraph("RG"));
+            
+            
+            cel7.setColspan(1);
+            cel4.getHorizontalAlignment();
+            cel5.getHorizontalAlignment();
+            
+            
+            
+            tbl.addCell(cel1);
+            tbl.addCell(cel2);
+            tbl.addCell(cel3);
+            tbl.addCell(cel4);
+            tbl.addCell(cel5);
+            tbl.addCell(cel6);
+            tbl.addCell(cel7);
+            tbl.addCell(cel8);
+            tbl.addCell(cel9);
+            tbl.addCell(cel10);
+            
+            for(CaminhaoT c : dao.listarUS(cc)){
+                
+                cel1 = new PdfPCell(new Paragraph(c.getCavalo()));
+                cel2 = new PdfPCell(new Paragraph(c.getCarreta()));
+                cel3 = new PdfPCell(new Paragraph(c.getNome()));
+                cel4 = new PdfPCell(new Paragraph(c.getData()));
+                cel5 = new PdfPCell(new Paragraph(c.getEntrada()));
+                cel6 = new PdfPCell(new Paragraph(c.getComoentrada()));
+                cel7 = new PdfPCell(new Paragraph(c.getSaida()));
+                cel8 = new PdfPCell(new Paragraph(c.getComosaida()));
+                cel9 = new PdfPCell(new Paragraph(c.getEmpresa()));
+                cel10 = new PdfPCell(new Paragraph(c.getRg()));
+
+                
+                tbl.addCell(cel1);
+                tbl.addCell(cel2);
+                tbl.addCell(cel3);
+                tbl.addCell(cel4);
+                tbl.addCell(cel5);
+                tbl.addCell(cel6);
+                tbl.addCell(cel7);
+                tbl.addCell(cel8);
+                tbl.addCell(cel9);
+                tbl.addCell(cel10);
+                
+            }
+            doc.add(tbl);
+            doc.close();
+            
+            Desktop.getDesktop().open(new File(url));
+            
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jLabel11MouseClicked
 
    
     public static void main(String args[]) {
