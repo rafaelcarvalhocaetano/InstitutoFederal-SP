@@ -677,7 +677,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="dataPDF" pref="101" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="PDFdata" min="-2" pref="41" max="-2" attributes="0"/>
+                      <Component id="ListaDataPDF" min="-2" pref="41" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -685,7 +685,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="PDFdata" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="ListaDataPDF" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="dataPDF" min="-2" max="-2" attributes="0"/>
@@ -697,20 +697,20 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="PDFdata">
+            <Component class="javax.swing.JLabel" name="ListaDataPDF">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/com/rb/img/4.png"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="PDFdataMouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ListaDataPDFMouseClicked"/>
               </Events>
             </Component>
             <Component class="javax.swing.JFormattedTextField" name="dataPDF">
               <Properties>
                 <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-                  <Format format="##-##-####" subtype="-1" type="5"/>
+                  <Format format="##/##/####" subtype="-1" type="5"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>

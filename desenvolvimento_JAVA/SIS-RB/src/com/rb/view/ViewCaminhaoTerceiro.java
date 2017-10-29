@@ -93,7 +93,7 @@ public class ViewCaminhaoTerceiro extends javax.swing.JFrame {
         carreta = new javax.swing.JTextField();
         id = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        PDFdata = new javax.swing.JLabel();
+        ListaDataPDF = new javax.swing.JLabel();
         dataPDF = new javax.swing.JFormattedTextField();
         jPanel4 = new javax.swing.JPanel();
         geralPDF = new javax.swing.JLabel();
@@ -328,15 +328,15 @@ public class ViewCaminhaoTerceiro extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), "PDF por Data", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 12))); // NOI18N
 
-        PDFdata.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/img/4.png"))); // NOI18N
-        PDFdata.addMouseListener(new java.awt.event.MouseAdapter() {
+        ListaDataPDF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/img/4.png"))); // NOI18N
+        ListaDataPDF.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                PDFdataMouseClicked(evt);
+                ListaDataPDFMouseClicked(evt);
             }
         });
 
         try {
-            dataPDF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##-##-####")));
+            dataPDF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -352,13 +352,13 @@ public class ViewCaminhaoTerceiro extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(dataPDF, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(PDFdata, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(ListaDataPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(PDFdata)
+                    .addComponent(ListaDataPDF)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(dataPDF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -710,14 +710,15 @@ public class ViewCaminhaoTerceiro extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
-    private void PDFdataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PDFdataMouseClicked
+    private void ListaDataPDFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListaDataPDFMouseClicked
         
        String nome = null;
         nome = JOptionPane.showInputDialog(null, "Nome do Arquivo", "Pergunta", JOptionPane.PLAIN_MESSAGE);
         new File("C:\\Controle de Acesso").mkdir();
         
-        Document doc = new Document(PageSize.A4, 10, 10, 30,1);
+        Document doc = new Document(PageSize.A4, 10, 10, 10,10);
         CaminhaoT cc = new CaminhaoT();
+        cc.setData(dataPDF.getText());
         CaminhaoTerDAO dao = new CaminhaoTerDAO();
      
         String url = "C:\\Controle de Acesso\\"+nome+".pdf";
@@ -778,7 +779,6 @@ public class ViewCaminhaoTerceiro extends javax.swing.JFrame {
                 cel8 = new PdfPCell(new Paragraph(c.getComosaida()));
                 cel9 = new PdfPCell(new Paragraph(c.getEmpresa()));
                 cel10 = new PdfPCell(new Paragraph(c.getRg()));
-
                 
                 tbl.addCell(cel1);
                 tbl.addCell(cel2);
@@ -799,11 +799,11 @@ public class ViewCaminhaoTerceiro extends javax.swing.JFrame {
             
         } catch (Exception e) {
         }
-    }//GEN-LAST:event_PDFdataMouseClicked
+    }//GEN-LAST:event_ListaDataPDFMouseClicked
 
     private void geralPDFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_geralPDFMouseClicked
         
-         String nome = null;
+        String nome = null;
         nome = JOptionPane.showInputDialog(null, "Nome do Arquivo", "Pergunta", JOptionPane.PLAIN_MESSAGE);
         new File("C:\\Controle de Acesso").mkdir();
         
@@ -903,7 +903,7 @@ public class ViewCaminhaoTerceiro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel PDFdata;
+    private javax.swing.JLabel ListaDataPDF;
     private javax.swing.JButton btnDelete;
     private javax.swing.JLabel btnFechar;
     private javax.swing.JLabel btnMini;
