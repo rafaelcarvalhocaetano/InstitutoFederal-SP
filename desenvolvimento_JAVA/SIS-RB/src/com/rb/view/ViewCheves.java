@@ -679,11 +679,12 @@ public class ViewCheves extends javax.swing.JFrame {
         
         String nome = null;
         nome = JOptionPane.showInputDialog(null, "Nome do Arquivo", "Pergunta", JOptionPane.PLAIN_MESSAGE);
+        new File("C:\\Controle de Acesso").mkdir();
         
         Document doc = new Document(PageSize.A4, 10, 10, 30,1);
         ChaveDAO dao = new ChaveDAO();
      
-        String url = nome+".pdf";
+        String url = "C:\\Controle de Acesso\\"+nome+".pdf";
         
         try {
             
@@ -755,14 +756,15 @@ public class ViewCheves extends javax.swing.JFrame {
         
         String nome = null;
         nome = JOptionPane.showInputDialog(null, "Nome do Arquivo", "Pergunta", JOptionPane.PLAIN_MESSAGE);
-        
+        new File("C:\\Controle de Acesso").mkdir();
+
         Document doc = new Document(PageSize.A4, 10, 10, 30,1);
         
         ChaveDAO dao = new ChaveDAO();
         Chave cc = new Chave();
         cc.setData(dataPDF.getText());
         
-        String url = nome+"pdf";
+        String url = "C:\\Controle de Acesso"+nome+"pdf";
         
         try {
             
