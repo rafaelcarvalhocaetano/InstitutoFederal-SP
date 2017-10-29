@@ -1,10 +1,24 @@
 package com.rb.view;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.rb.conexao.ConexaoFactory;
 import com.rb.dao.VisitanteDAO;
 import com.rb.domain.Visitante;
+import static java.awt.Component.TOP_ALIGNMENT;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -76,10 +90,10 @@ public class ViewVisitante extends javax.swing.JFrame {
         id = new javax.swing.JLabel();
         modelo = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
+        pdfData = new javax.swing.JLabel();
         dataPDF = new javax.swing.JFormattedTextField();
         jPanel4 = new javax.swing.JPanel();
-        jLabel14 = new javax.swing.JLabel();
+        pdfGeral = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -306,10 +320,15 @@ public class ViewVisitante extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), "PDF por Data", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 12))); // NOI18N
 
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/img/4.png"))); // NOI18N
+        pdfData.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/img/4.png"))); // NOI18N
+        pdfData.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pdfDataMouseClicked(evt);
+            }
+        });
 
         try {
-            dataPDF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##-##-####")));
+            dataPDF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -325,13 +344,13 @@ public class ViewVisitante extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(dataPDF, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(pdfData, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel13)
+                    .addComponent(pdfData)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(dataPDF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -341,7 +360,12 @@ public class ViewVisitante extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), "PDF Geral", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 12))); // NOI18N
 
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/img/4.png"))); // NOI18N
+        pdfGeral.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/img/4.png"))); // NOI18N
+        pdfGeral.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pdfGeralMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -349,13 +373,13 @@ public class ViewVisitante extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pdfGeral, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jLabel14)
+                .addComponent(pdfGeral)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -476,8 +500,7 @@ public class ViewVisitante extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(empresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(empresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(9, 9, 9)
@@ -559,6 +582,10 @@ public class ViewVisitante extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         
+        if(data.getText().equals("  /  /    ")){
+            JOptionPane.showMessageDialog(rootPane, "Data Obrigatório", "DATA", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
         VisitanteDAO dao = new VisitanteDAO();
         Visitante v = new Visitante();
         
@@ -656,6 +683,176 @@ public class ViewVisitante extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnUpdateActionPerformed
 
+    private void pdfGeralMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pdfGeralMouseClicked
+        String nome = null;
+        nome = JOptionPane.showInputDialog(null, "Nome do Arquivo", "Pergunta", JOptionPane.PLAIN_MESSAGE);
+        
+        while(nome.isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Campo Obrigatórios", "OBRIGATÓRIO", JOptionPane.INFORMATION_MESSAGE);
+            nome = JOptionPane.showInputDialog(null, "Nome do Arquivo", "Pergunta", JOptionPane.PLAIN_MESSAGE);
+            return;           
+        }
+        
+        new File("C:\\Controle de Acesso").mkdir();
+        String url = "C:\\Controle de Acesso\\"+nome+".pdf";
+        
+        VisitanteDAO dao = new VisitanteDAO();
+       
+        Document doc = new Document(PageSize.A4, 10, 10, 10,10);
+        
+        try {
+            
+            PdfWriter.getInstance(doc, new FileOutputStream(url));
+            doc.open();
+            
+            Paragraph p = new Paragraph("RELATÓRIOS PDF");
+            p.setExtraParagraphSpace(TOP_ALIGNMENT);
+            doc.add(p);
+            
+            p = new Paragraph("");
+            doc.add(p);
+            
+            PdfPTable tbl = new PdfPTable(8);
+            tbl.setHorizontalAlignment(Element.ALIGN_CENTER);
+            tbl.setWidthPercentage(100.0f);
+            
+            PdfPCell cel1 = new PdfPCell(new Paragraph("Placa"));
+            PdfPCell cel2 = new PdfPCell(new Paragraph("Modelo"));
+            PdfPCell cel3 = new PdfPCell(new Paragraph("Nome"));
+            PdfPCell cel4 = new PdfPCell(new Paragraph("Rg"));
+            PdfPCell cel5 = new PdfPCell(new Paragraph("Empresa"));
+            PdfPCell cel6 = new PdfPCell(new Paragraph("Data"));
+            PdfPCell cel7 = new PdfPCell(new Paragraph("Entrada"));
+            PdfPCell cel8 = new PdfPCell(new Paragraph("Saída"));
+                        
+            tbl.addCell(cel2);
+            tbl.addCell(cel3);
+            tbl.addCell(cel4);
+            tbl.addCell(cel5);
+            tbl.addCell(cel6);
+            tbl.addCell(cel7);
+            tbl.addCell(cel8);
+            
+            for(Visitante c : dao.listar()){
+                
+                cel1 = new PdfPCell(new Paragraph(c.getPlaca()));
+                cel2 = new PdfPCell(new Paragraph(c.getModelo()));
+                cel3 = new PdfPCell(new Paragraph(c.getNome()));
+                cel4 = new PdfPCell(new Paragraph(c.getRg()));
+                cel5 = new PdfPCell(new Paragraph(c.getEmpresa()));
+                cel6 = new PdfPCell(new Paragraph(c.getData()));
+                cel7 = new PdfPCell(new Paragraph(c.getEntrada()));
+                cel8 = new PdfPCell(new Paragraph(c.getSaida()));
+                
+                tbl.addCell(cel1);
+                tbl.addCell(cel2);
+                tbl.addCell(cel3);
+                tbl.addCell(cel4);
+                tbl.addCell(cel5);
+                tbl.addCell(cel6);
+                tbl.addCell(cel7);
+                tbl.addCell(cel8);
+                
+            }
+            doc.add(tbl);
+            
+            Desktop.getDesktop().open(new File(url));
+            
+            Connection c = ConexaoFactory.db();
+            c.close();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            doc.close();
+            
+        }
+    }//GEN-LAST:event_pdfGeralMouseClicked
+
+    private void pdfDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pdfDataMouseClicked
+        String nome = null;
+        nome = JOptionPane.showInputDialog(null, "Nome do Arquivo", "Pergunta", JOptionPane.PLAIN_MESSAGE);
+        
+        while(nome.isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Campo Obrigatórios", "OBRIGATÓRIO", JOptionPane.INFORMATION_MESSAGE);
+            nome = JOptionPane.showInputDialog(null, "Nome do Arquivo", "Pergunta", JOptionPane.PLAIN_MESSAGE);
+            return;           
+        }
+        
+        new File("C:\\Controle de Acesso").mkdir();
+        String url = "C:\\Controle de Acesso\\"+nome+".pdf";
+        
+        VisitanteDAO dao = new VisitanteDAO();
+        Visitante v = new Visitante();
+        v.setData(dataPDF.getText());
+       
+        Document doc = new Document(PageSize.A4, 10, 10, 10,10);
+        
+        try {
+            
+            PdfWriter.getInstance(doc, new FileOutputStream(url));
+            doc.open();
+            
+            Paragraph p = new Paragraph("RELATÓRIOS PDF");
+            p.setExtraParagraphSpace(TOP_ALIGNMENT);
+            doc.add(p);
+            
+            p = new Paragraph("");
+            doc.add(p);
+            
+            PdfPTable tbl = new PdfPTable(8);
+            tbl.setHorizontalAlignment(Element.ALIGN_CENTER);
+            tbl.setWidthPercentage(100.0f);
+            
+            PdfPCell cel1 = new PdfPCell(new Paragraph("Placa"));
+            PdfPCell cel2 = new PdfPCell(new Paragraph("Modelo"));
+            PdfPCell cel3 = new PdfPCell(new Paragraph("Nome"));
+            PdfPCell cel4 = new PdfPCell(new Paragraph("Rg"));
+            PdfPCell cel5 = new PdfPCell(new Paragraph("Empresa"));
+            PdfPCell cel6 = new PdfPCell(new Paragraph("Data"));
+            PdfPCell cel7 = new PdfPCell(new Paragraph("Entrada"));
+            PdfPCell cel8 = new PdfPCell(new Paragraph("Saída"));
+                        
+            tbl.addCell(cel2);
+            tbl.addCell(cel3);
+            tbl.addCell(cel4);
+            tbl.addCell(cel5);
+            tbl.addCell(cel6);
+            tbl.addCell(cel7);
+            tbl.addCell(cel8);
+            
+            for(Visitante c : dao.listarData(v)){
+                
+                cel1 = new PdfPCell(new Paragraph(c.getPlaca()));
+                cel2 = new PdfPCell(new Paragraph(c.getModelo()));
+                cel3 = new PdfPCell(new Paragraph(c.getNome()));
+                cel4 = new PdfPCell(new Paragraph(c.getRg()));
+                cel5 = new PdfPCell(new Paragraph(c.getEmpresa()));
+                cel6 = new PdfPCell(new Paragraph(c.getData()));
+                cel7 = new PdfPCell(new Paragraph(c.getEntrada()));
+                cel8 = new PdfPCell(new Paragraph(c.getSaida()));
+                
+                tbl.addCell(cel1);
+                tbl.addCell(cel2);
+                tbl.addCell(cel3);
+                tbl.addCell(cel4);
+                tbl.addCell(cel5);
+                tbl.addCell(cel6);
+                tbl.addCell(cel7);
+                tbl.addCell(cel8);
+                
+            }
+            doc.add(tbl);
+            
+            Desktop.getDesktop().open(new File(url));
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            doc.close();
+        }
+    }//GEN-LAST:event_pdfDataMouseClicked
+
    
     public static void main(String args[]) {
        
@@ -679,8 +876,6 @@ public class ViewVisitante extends javax.swing.JFrame {
     private javax.swing.JLabel id;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -695,6 +890,8 @@ public class ViewVisitante extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField modelo;
     private javax.swing.JTextField nome;
+    private javax.swing.JLabel pdfData;
+    private javax.swing.JLabel pdfGeral;
     private javax.swing.JFormattedTextField placa;
     private javax.swing.JTextField rg;
     private javax.swing.JTextField saida;

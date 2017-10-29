@@ -557,7 +557,10 @@ public class ViewLeveRB extends javax.swing.JFrame {
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         VeiculoLeveDAO dao = new VeiculoLeveDAO();
         VeiculosLeveRB r = new VeiculosLeveRB();
-        
+        if(data.getText().equals("  /  /    ")){
+            JOptionPane.showMessageDialog(rootPane, "Data Obrigatório", "DATA", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
         if(data.getText().isEmpty() || nome.getText().isEmpty() || destino.getText().isEmpty()){
             JOptionPane.showMessageDialog(rootPane, "Campos Obrigatórios", "ERRO", JOptionPane.ERROR_MESSAGE);
             return;

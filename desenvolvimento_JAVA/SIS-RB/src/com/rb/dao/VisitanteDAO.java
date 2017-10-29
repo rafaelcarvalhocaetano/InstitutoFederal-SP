@@ -120,6 +120,33 @@ public class VisitanteDAO {
         }
         return itens;
     }
+    public List<Visitante> listarData(Visitante v) throws SQLException{
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT * FROM visitantes  WHERE data = ? ");
+      
+        Connection conexao = ConexaoFactory.db();
+        PreparedStatement ps = conexao.prepareStatement(sql.toString());
+        ps.setString(1, v.getData());
+        ResultSet rs = ps.executeQuery();
+        
+        ArrayList<Visitante> itens = new ArrayList<>();
+        
+        while(rs.next()){
+           
+            v.setId(rs.getInt("id"));
+            v.setPlaca(rs.getString("placa"));
+            v.setModelo(rs.getString("modelo"));
+            v.setNome(rs.getString("nome"));
+            v.setRg(rs.getString("rg"));
+            v.setEmpresa(rs.getString("empresa"));
+            v.setData(rs.getString("data"));
+            v.setEntrada(rs.getString("entrada"));
+            v.setSaida(rs.getString("saida"));
+            
+            itens.add(v);
+        }
+        return itens;
+    }
     
     
 }
