@@ -1,7 +1,17 @@
 package com.rb.view;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import com.rb.dao.CaminhaoRBDAO;
 import com.rb.domain.CaminhaoRB;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -86,10 +96,10 @@ public class ViewMain extends javax.swing.JFrame {
         id = new javax.swing.JLabel();
         carreta = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
+        btnPDF = new javax.swing.JLabel();
         dataPDF = new javax.swing.JFormattedTextField();
         jPanel4 = new javax.swing.JPanel();
-        jLabel14 = new javax.swing.JLabel();
+        btnPDFGeral = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -360,10 +370,10 @@ public class ViewMain extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), "PDF por Data", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 12))); // NOI18N
 
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/img/4.png"))); // NOI18N
+        btnPDF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/img/4.png"))); // NOI18N
 
         try {
-            dataPDF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##-##-####")));
+            dataPDF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -379,13 +389,13 @@ public class ViewMain extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(dataPDF, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel13)
+                    .addComponent(btnPDF)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(dataPDF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -395,7 +405,12 @@ public class ViewMain extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), "PDF Geral", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 12))); // NOI18N
 
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/img/4.png"))); // NOI18N
+        btnPDFGeral.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/img/4.png"))); // NOI18N
+        btnPDFGeral.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnPDFGeralMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -403,13 +418,13 @@ public class ViewMain extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnPDFGeral, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jLabel14)
+                .addComponent(btnPDFGeral)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -782,6 +797,93 @@ public class ViewMain extends javax.swing.JFrame {
         c.setVisible(true);
     }//GEN-LAST:event_btnChavesActionPerformed
 
+    private void btnPDFGeralMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPDFGeralMouseClicked
+        
+        String nome = null;
+        nome = JOptionPane.showInputDialog(null, "Nome do Arquivo", "Pergunta", JOptionPane.PLAIN_MESSAGE);
+        
+        new File("C:\\Controle de Acesso").mkdir();
+        String url = "C:\\Controle de Acesso\\"+nome+".pdf";
+        
+        CaminhaoRBDAO dao = new CaminhaoRBDAO();
+        CaminhaoRB r = new CaminhaoRB();
+        
+        Document doc = new Document(PageSize.A4, 10, 10, 10,10);
+        
+        try {
+            
+            PdfWriter.getInstance(doc, new FileOutputStream(url));
+            doc.open();
+            
+            Paragraph p = new Paragraph("RELATÓRIOS PDF");
+            p.setExtraParagraphSpace(TOP_ALIGNMENT);
+            doc.add(p);
+            
+            p = new Paragraph("");
+            doc.add(p);
+            
+            PdfPTable tbl = new PdfPTable(10);
+            tbl.setHorizontalAlignment(Element.ALIGN_CENTER);
+            tbl.setWidthPercentage(100.0f);
+            
+            PdfPCell cel1 = new PdfPCell(new Paragraph("Cavalo"));
+            PdfPCell cel2 = new PdfPCell(new Paragraph("Carreta"));
+            PdfPCell cel3 = new PdfPCell(new Paragraph("Nome"));
+            PdfPCell cel4 = new PdfPCell(new Paragraph("Data"));
+            PdfPCell cel5 = new PdfPCell(new Paragraph("Saída"));
+            PdfPCell cel6 = new PdfPCell(new Paragraph("C / V"));
+            PdfPCell cel7 = new PdfPCell(new Paragraph("Entrada"));
+            PdfPCell cel8 = new PdfPCell(new Paragraph("C / V"));
+            PdfPCell cel9 = new PdfPCell(new Paragraph("Destino"));
+            PdfPCell cel10 = new PdfPCell(new Paragraph("Lacre"));
+                        
+            tbl.addCell(cel2);
+            tbl.addCell(cel3);
+            tbl.addCell(cel4);
+            tbl.addCell(cel5);
+            tbl.addCell(cel6);
+            tbl.addCell(cel7);
+            tbl.addCell(cel8);
+            tbl.addCell(cel9);
+            tbl.addCell(cel10);
+           
+            
+            for(CaminhaoRB c : dao.listar()){
+                
+                cel1 = new PdfPCell(new Paragraph(c.getCavalo()));
+                cel2 = new PdfPCell(new Paragraph(c.getCarreta()));
+                cel3 = new PdfPCell(new Paragraph(c.getNome()));
+                cel4 = new PdfPCell(new Paragraph(c.getData()));
+                cel5 = new PdfPCell(new Paragraph(c.getSaida()));
+                cel6 = new PdfPCell(new Paragraph(c.getComosaida()));
+                cel7 = new PdfPCell(new Paragraph(c.getEntrada()));
+                cel8 = new PdfPCell(new Paragraph(c.getComoentrada()));
+                cel9 = new PdfPCell(new Paragraph(c.getDestino()));
+                cel10 = new PdfPCell(new Paragraph(c.getLacre()));
+
+                tbl.addCell(cel1);
+                tbl.addCell(cel2);
+                tbl.addCell(cel3);
+                tbl.addCell(cel4);
+                tbl.addCell(cel5);
+                tbl.addCell(cel6);
+                tbl.addCell(cel7);
+                tbl.addCell(cel8);
+                tbl.addCell(cel9);
+                tbl.addCell(cel10);
+
+                
+            }
+            doc.add(tbl);
+            doc.close();
+            
+            Desktop.getDesktop().open(new File(url));
+            
+        } catch (Exception e) {
+            
+        }
+    }//GEN-LAST:event_btnPDFGeralMouseClicked
+
    
     public static void main(String args[]) {
        
@@ -800,6 +902,8 @@ public class ViewMain extends javax.swing.JFrame {
     private javax.swing.JButton btnFiorino;
     private javax.swing.JButton btnFuncionarios;
     private javax.swing.JLabel btnMini;
+    private javax.swing.JLabel btnPDF;
+    private javax.swing.JLabel btnPDFGeral;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnVisitante;
@@ -816,8 +920,6 @@ public class ViewMain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
