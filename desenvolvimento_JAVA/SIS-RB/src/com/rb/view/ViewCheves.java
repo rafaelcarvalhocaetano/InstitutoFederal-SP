@@ -748,7 +748,7 @@ public class ViewCheves extends javax.swing.JFrame {
             Desktop.getDesktop().open(new File(url));
             
         } catch (Exception e) {
-            
+            JOptionPane.showMessageDialog(rootPane, "Verificar Preenchimento", "ERROS", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnPDFMouseClicked
 
@@ -830,7 +830,7 @@ public class ViewCheves extends javax.swing.JFrame {
             try {
                 Desktop.getDesktop().open(new File(url));
             } catch (IOException ex) {
-
+                JOptionPane.showMessageDialog(rootPane, "Verificar Preenchimento", "ERROS", JOptionPane.ERROR_MESSAGE);
             }
         }
         

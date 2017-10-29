@@ -762,7 +762,7 @@ public class ViewVisitante extends javax.swing.JFrame {
             c.close();
             
         } catch (Exception e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(rootPane, "Verificar Preenchimento", "ERROS", JOptionPane.ERROR_MESSAGE);
         }finally{
             doc.close();
             
@@ -847,7 +847,7 @@ public class ViewVisitante extends javax.swing.JFrame {
             Desktop.getDesktop().open(new File(url));
             
         } catch (Exception e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(rootPane, "Verificar Preenchimento", "ERROS", JOptionPane.ERROR_MESSAGE);
         }finally{
             doc.close();
         }

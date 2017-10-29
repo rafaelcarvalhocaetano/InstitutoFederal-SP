@@ -7,9 +7,7 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.rb.dao.FuncionarioDAO;
 import com.rb.dao.VeiculoLeveDAO;
-import com.rb.domain.FuncionariosRB;
 import com.rb.domain.VeiculosLeveRB;
 import static java.awt.Component.TOP_ALIGNMENT;
 import java.awt.Desktop;
@@ -786,7 +784,7 @@ public class ViewLeveRB extends javax.swing.JFrame {
             Desktop.getDesktop().open(new File(url));
             
         } catch (Exception e) {
-            
+            JOptionPane.showMessageDialog(rootPane, "Verificar Preenchimento", "ERROS", JOptionPane.ERROR_MESSAGE);
         }
         
         
@@ -879,7 +877,7 @@ public class ViewLeveRB extends javax.swing.JFrame {
             Desktop.getDesktop().open(new File(url));
             
         } catch (Exception e) {
-            
+            JOptionPane.showMessageDialog(rootPane, "Verificar Preenchimento", "ERROS", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_listaPDFMouseClicked
 

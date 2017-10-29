@@ -608,6 +608,10 @@ public class ViewCaminhaoTerceiro extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
        
+        if(data.getText().equals("  /  /    ")){
+            JOptionPane.showMessageDialog(rootPane, "Data Obrigatório", "DATA", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
         if(data.getText().isEmpty() || nome.getText().isEmpty() || empresa.getText().isEmpty()){
             JOptionPane.showMessageDialog(rootPane, "Campos Obrigatórios", "ERRO", JOptionPane.ERROR_MESSAGE);
             return;
@@ -798,6 +802,7 @@ public class ViewCaminhaoTerceiro extends javax.swing.JFrame {
             Desktop.getDesktop().open(new File(url));
             
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Verificar Preenchimento", "ERROS", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_ListaDataPDFMouseClicked
 
@@ -888,8 +893,8 @@ public class ViewCaminhaoTerceiro extends javax.swing.JFrame {
             Desktop.getDesktop().open(new File(url));
             
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Verificar Preenchimento", "ERROS", JOptionPane.ERROR_MESSAGE);
         }
-        
     }//GEN-LAST:event_geralPDFMouseClicked
 
    

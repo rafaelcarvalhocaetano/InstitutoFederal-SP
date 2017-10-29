@@ -7,9 +7,7 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.rb.dao.ChaveDAO;
 import com.rb.dao.FuncionarioDAO;
-import com.rb.domain.Chave;
 import com.rb.domain.FuncionariosRB;
 import static java.awt.Component.TOP_ALIGNMENT;
 import java.awt.Desktop;
@@ -483,6 +481,10 @@ public class ViewFuncionarios extends javax.swing.JFrame {
         FuncionarioDAO dao = new FuncionarioDAO();
         FuncionariosRB f = new FuncionariosRB();
         
+        if(data.getText().equals("  /  /    ")){
+            JOptionPane.showMessageDialog(rootPane, "Data Obrigatório", "DATA", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
         if(data.getText().isEmpty() || nome.getText().isEmpty()){
             JOptionPane.showMessageDialog(rootPane, "Campos Obrigatórios", "ERRO", JOptionPane.ERROR_MESSAGE);
             return;
@@ -665,7 +667,7 @@ public class ViewFuncionarios extends javax.swing.JFrame {
             Desktop.getDesktop().open(new File(url));
             
         } catch (Exception e) {
-            
+            JOptionPane.showMessageDialog(rootPane, "Verificar Preenchimento", "ERROS", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_geralPDFMouseClicked
 
@@ -745,7 +747,7 @@ public class ViewFuncionarios extends javax.swing.JFrame {
             Desktop.getDesktop().open(new File(url));
             
         } catch (Exception e) {
-            
+            JOptionPane.showMessageDialog(rootPane, "Verificar Preenchimento", "ERROS", JOptionPane.ERROR_MESSAGE);
         }
         
     }//GEN-LAST:event_listaPDFDATAMouseClicked

@@ -639,6 +639,10 @@ public class ViewMain extends javax.swing.JFrame {
         CaminhaoRBDAO dao = new CaminhaoRBDAO();
         CaminhaoRB r = new CaminhaoRB();
         
+        if(data.getText().equals("  /  /    ")){
+            JOptionPane.showMessageDialog(rootPane, "Data Obrigatório", "DATA", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
         if(data.getText().isEmpty() || nome.getText().isEmpty()){
             JOptionPane.showMessageDialog(rootPane, "Campos Obrigatórios", "ERRO", JOptionPane.ERROR_MESSAGE);
             return;
@@ -890,7 +894,7 @@ public class ViewMain extends javax.swing.JFrame {
             Desktop.getDesktop().open(new File(url));
             
         } catch (Exception e) {
-            
+            JOptionPane.showMessageDialog(rootPane, "Verificar Preenchimento", "ERROS", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnPDFGeralMouseClicked
 
@@ -982,7 +986,7 @@ public class ViewMain extends javax.swing.JFrame {
             Desktop.getDesktop().open(new File(url));
             
         } catch (Exception e) {
-            
+            JOptionPane.showMessageDialog(rootPane, "Verificar Preenchimento", "ERROS", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnPDFMouseClicked
 
