@@ -93,7 +93,7 @@ public class ViewCheves extends javax.swing.JFrame {
         devolucao = new javax.swing.JTextField();
         id = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        PDFData = new javax.swing.JLabel();
+        listaPDFdata = new javax.swing.JLabel();
         dataPDF = new javax.swing.JFormattedTextField();
         jPanel4 = new javax.swing.JPanel();
         btnPDF = new javax.swing.JLabel();
@@ -306,10 +306,10 @@ public class ViewCheves extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), "PDF por Data", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 12))); // NOI18N
 
-        PDFData.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/img/4.png"))); // NOI18N
-        PDFData.addMouseListener(new java.awt.event.MouseAdapter() {
+        listaPDFdata.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/img/4.png"))); // NOI18N
+        listaPDFdata.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                PDFDataMouseClicked(evt);
+                listaPDFdataMouseClicked(evt);
             }
         });
 
@@ -330,13 +330,13 @@ public class ViewCheves extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(dataPDF, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(PDFData, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(listaPDFdata, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(PDFData)
+                    .addComponent(listaPDFdata)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(dataPDF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -752,7 +752,7 @@ public class ViewCheves extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnPDFMouseClicked
 
-    private void PDFDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PDFDataMouseClicked
+    private void listaPDFdataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaPDFdataMouseClicked
         
         String nome = null;
         nome = JOptionPane.showInputDialog(null, "Nome do Arquivo", "Pergunta", JOptionPane.PLAIN_MESSAGE);
@@ -835,7 +835,7 @@ public class ViewCheves extends javax.swing.JFrame {
         }
         
         
-    }//GEN-LAST:event_PDFDataMouseClicked
+    }//GEN-LAST:event_listaPDFdataMouseClicked
 
    
     public static void main(String args[]) {
@@ -848,7 +848,6 @@ public class ViewCheves extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel PDFData;
     private javax.swing.JLabel Retirada;
     private javax.swing.JLabel SETOR;
     private javax.swing.JButton btnDelete;
@@ -873,6 +872,7 @@ public class ViewCheves extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel listaPDFdata;
     private javax.swing.JTextField nome;
     private javax.swing.JTextField saida;
     private javax.swing.JTextField setor;

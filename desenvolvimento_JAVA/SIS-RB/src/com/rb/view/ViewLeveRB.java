@@ -1,7 +1,20 @@
 package com.rb.view;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.rb.dao.FuncionarioDAO;
 import com.rb.dao.VeiculoLeveDAO;
+import com.rb.domain.FuncionariosRB;
 import com.rb.domain.VeiculosLeveRB;
+import static java.awt.Component.TOP_ALIGNMENT;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -83,10 +96,10 @@ public class ViewLeveRB extends javax.swing.JFrame {
         obs = new javax.swing.JTextField();
         id = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
+        listaPDF = new javax.swing.JLabel();
         dataPDF = new javax.swing.JFormattedTextField();
         jPanel4 = new javax.swing.JPanel();
-        jLabel14 = new javax.swing.JLabel();
+        pdfGeral = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -303,10 +316,15 @@ public class ViewLeveRB extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), "PDF por Data", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 12))); // NOI18N
 
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/img/4.png"))); // NOI18N
+        listaPDF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/img/4.png"))); // NOI18N
+        listaPDF.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listaPDFMouseClicked(evt);
+            }
+        });
 
         try {
-            dataPDF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##-##-####")));
+            dataPDF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -322,13 +340,13 @@ public class ViewLeveRB extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(dataPDF, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(listaPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel13)
+                    .addComponent(listaPDF)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(dataPDF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -338,7 +356,12 @@ public class ViewLeveRB extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), "PDF Geral", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 12))); // NOI18N
 
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/img/4.png"))); // NOI18N
+        pdfGeral.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/img/4.png"))); // NOI18N
+        pdfGeral.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pdfGeralMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -346,13 +369,13 @@ public class ViewLeveRB extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pdfGeral, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jLabel14)
+                .addComponent(pdfGeral)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -386,11 +409,11 @@ public class ViewLeveRB extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(nome)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(destino)
                                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(2, 2, 2)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(saida, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -447,38 +470,35 @@ public class ViewLeveRB extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel8)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(kmsaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(entrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel11)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(kmentrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(saida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel9)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(aut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel12)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(obs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel6)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(destino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(19, 19, 19))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel8)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(kmsaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel7)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(entrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel11)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(kmentrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel5)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(saida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel9)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(aut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel12)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(obs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)))
+                                        .addComponent(destino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(46, 46, 46))
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -677,6 +697,189 @@ public class ViewLeveRB extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tblLeveKeyReleased
 
+    private void pdfGeralMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pdfGeralMouseClicked
+        String nome = null;
+        nome = JOptionPane.showInputDialog(null, "Nome do Arquivo", "Pergunta", JOptionPane.PLAIN_MESSAGE);
+        
+        new File("C:\\Controle de Acesso").mkdir();
+        String url = "C:\\Controle de Acesso\\"+nome+".pdf";
+        
+        VeiculoLeveDAO dao = new VeiculoLeveDAO();
+        VeiculosLeveRB r = new VeiculosLeveRB();
+        
+        Document doc = new Document(PageSize.A4, 10, 10, 30,1);
+        
+        try {
+            
+            PdfWriter.getInstance(doc, new FileOutputStream(url));
+            doc.open();
+            
+            Paragraph p = new Paragraph("RELATÓRIOS PDF");
+            p.setAlignment(1);
+            p.setExtraParagraphSpace(TOP_ALIGNMENT);
+            doc.add(p);
+            
+            p = new Paragraph("");
+            doc.add(p);
+            
+            PdfPTable tbl = new PdfPTable(9);
+            tbl.setHorizontalAlignment(Element.ALIGN_CENTER);
+            tbl.setWidthPercentage(100.0f);
+            
+            PdfPCell cel2 = new PdfPCell(new Paragraph("NOME"));
+            PdfPCell cel3 = new PdfPCell(new Paragraph("Destino"));
+            PdfPCell cel4 = new PdfPCell(new Paragraph("Data"));
+            PdfPCell cel5 = new PdfPCell(new Paragraph("Saída"));
+            PdfPCell cel6 = new PdfPCell(new Paragraph("KM Saída"));
+            PdfPCell cel7 = new PdfPCell(new Paragraph("Entrada"));
+            PdfPCell cel8 = new PdfPCell(new Paragraph("KM Entrada"));
+            PdfPCell cel9 = new PdfPCell(new Paragraph("Aut"));
+            PdfPCell cel10 = new PdfPCell(new Paragraph("OBS"));
+            
+            
+            
+            cel7.setColspan(1);
+            cel4.getHorizontalAlignment();
+            cel5.getHorizontalAlignment();
+            
+            tbl.addCell(cel2);
+            tbl.addCell(cel3);
+            tbl.addCell(cel4);
+            tbl.addCell(cel5);
+            tbl.addCell(cel6);
+            tbl.addCell(cel7);
+            tbl.addCell(cel8);
+            tbl.addCell(cel9);
+            tbl.addCell(cel10);
+           
+            
+            for(VeiculosLeveRB c : dao.listar()){
+                
+                cel2 = new PdfPCell(new Paragraph(c.getNome()));
+                cel3 = new PdfPCell(new Paragraph(c.getDestino()));
+                cel4 = new PdfPCell(new Paragraph(c.getData()));
+                cel5 = new PdfPCell(new Paragraph(c.getSaida()));
+                cel6 = new PdfPCell(new Paragraph(c.getKmsaida()));
+                cel7 = new PdfPCell(new Paragraph(c.getEntrada()));
+                cel8 = new PdfPCell(new Paragraph(c.getKmentrada()));
+                cel9 = new PdfPCell(new Paragraph(c.getAut()));
+                cel10 = new PdfPCell(new Paragraph(c.getObs()));
+
+                tbl.addCell(cel2);
+                tbl.addCell(cel3);
+                tbl.addCell(cel4);
+                tbl.addCell(cel5);
+                tbl.addCell(cel6);
+                tbl.addCell(cel7);
+                tbl.addCell(cel8);
+                tbl.addCell(cel9);
+                tbl.addCell(cel10);
+
+                
+            }
+            doc.add(tbl);
+            doc.close();
+            
+            Desktop.getDesktop().open(new File(url));
+            
+        } catch (Exception e) {
+            
+        }
+        
+        
+    }//GEN-LAST:event_pdfGeralMouseClicked
+
+    private void listaPDFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaPDFMouseClicked
+        String nome = null;
+        nome = JOptionPane.showInputDialog(null, "Nome do Arquivo", "Pergunta", JOptionPane.PLAIN_MESSAGE);
+        
+        new File("C:\\Controle de Acesso").mkdir();
+        String url = "C:\\Controle de Acesso\\"+nome+".pdf";
+        
+        VeiculoLeveDAO dao = new VeiculoLeveDAO();
+        VeiculosLeveRB r = new VeiculosLeveRB();
+        r.setData(dataPDF.getText());
+        
+        Document doc = new Document(PageSize.A4, 10, 10, 30,1);
+        
+        try {
+            
+            PdfWriter.getInstance(doc, new FileOutputStream(url));
+            doc.open();
+            
+            Paragraph p = new Paragraph("RELATÓRIOS PDF");
+            p.setAlignment(1);
+            p.setExtraParagraphSpace(TOP_ALIGNMENT);
+            doc.add(p);
+            
+            p = new Paragraph("");
+            doc.add(p);
+            
+            PdfPTable tbl = new PdfPTable(9);
+            tbl.setHorizontalAlignment(Element.ALIGN_CENTER);
+            tbl.setWidthPercentage(100.0f);
+            
+            PdfPCell cel2 = new PdfPCell(new Paragraph("NOME"));
+            PdfPCell cel3 = new PdfPCell(new Paragraph("Destino"));
+            PdfPCell cel4 = new PdfPCell(new Paragraph("Data"));
+            PdfPCell cel5 = new PdfPCell(new Paragraph("Saída"));
+            PdfPCell cel6 = new PdfPCell(new Paragraph("KM Saída"));
+            PdfPCell cel7 = new PdfPCell(new Paragraph("Entrada"));
+            PdfPCell cel8 = new PdfPCell(new Paragraph("KM Entrada"));
+            PdfPCell cel9 = new PdfPCell(new Paragraph("Aut"));
+            PdfPCell cel10 = new PdfPCell(new Paragraph("OBS"));
+            
+            
+            
+            cel7.setColspan(1);
+            cel4.getHorizontalAlignment();
+            cel5.getHorizontalAlignment();
+            
+            tbl.addCell(cel2);
+            tbl.addCell(cel3);
+            tbl.addCell(cel4);
+            tbl.addCell(cel5);
+            tbl.addCell(cel6);
+            tbl.addCell(cel7);
+            tbl.addCell(cel8);
+            tbl.addCell(cel9);
+            tbl.addCell(cel10);
+           
+            
+            for(VeiculosLeveRB c : dao.listarData(r)){
+                
+                cel2 = new PdfPCell(new Paragraph(c.getNome()));
+                cel3 = new PdfPCell(new Paragraph(c.getDestino()));
+                cel4 = new PdfPCell(new Paragraph(c.getData()));
+                cel5 = new PdfPCell(new Paragraph(c.getSaida()));
+                cel6 = new PdfPCell(new Paragraph(c.getKmsaida()));
+                cel7 = new PdfPCell(new Paragraph(c.getEntrada()));
+                cel8 = new PdfPCell(new Paragraph(c.getKmentrada()));
+                cel9 = new PdfPCell(new Paragraph(c.getAut()));
+                cel10 = new PdfPCell(new Paragraph(c.getObs()));
+
+                tbl.addCell(cel2);
+                tbl.addCell(cel3);
+                tbl.addCell(cel4);
+                tbl.addCell(cel5);
+                tbl.addCell(cel6);
+                tbl.addCell(cel7);
+                tbl.addCell(cel8);
+                tbl.addCell(cel9);
+                tbl.addCell(cel10);
+
+                
+            }
+            doc.add(tbl);
+            doc.close();
+            
+            Desktop.getDesktop().open(new File(url));
+            
+        } catch (Exception e) {
+            
+        }
+    }//GEN-LAST:event_listaPDFMouseClicked
+
    
     public static void main(String args[]) {
        
@@ -702,8 +905,6 @@ public class ViewLeveRB extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -718,8 +919,10 @@ public class ViewLeveRB extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField kmentrada;
     private javax.swing.JTextField kmsaida;
+    private javax.swing.JLabel listaPDF;
     private javax.swing.JTextField nome;
     private javax.swing.JTextField obs;
+    private javax.swing.JLabel pdfGeral;
     private javax.swing.JTextField saida;
     private javax.swing.JTable tblLeve;
     // End of variables declaration//GEN-END:variables

@@ -112,5 +112,30 @@ public class FuncionarioDAO {
         }
         return itens;
     }
+    public List<FuncionariosRB> listarUD(FuncionariosRB r) throws SQLException{
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT * FROM funcionarios WHERE data = ?");
+      
+        Connection conexao = ConexaoFactory.db();
+        PreparedStatement ps = conexao.prepareStatement(sql.toString());
+        ps.setString(1, r.getData());
+        ResultSet rs = ps.executeQuery();
+        
+        ArrayList<FuncionariosRB> itens = new ArrayList<>();
+        
+        while(rs.next()){
+            
+            r.setId(rs.getInt("id"));
+            r.setNome(rs.getString("nome"));
+            r.setModelo(rs.getString("modelo"));
+            r.setData(rs.getString("data"));
+            r.setEntrada(rs.getString("entrada"));
+            r.setSaida(rs.getString("saida"));
+            r.setObs(rs.getString("obs"));
+            
+            itens.add(r);
+        }
+        return itens;
+    }
     
 }

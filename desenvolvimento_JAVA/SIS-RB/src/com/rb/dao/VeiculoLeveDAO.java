@@ -120,5 +120,33 @@ public class VeiculoLeveDAO {
         }
         return itens;
     }
+    public List<VeiculosLeveRB> listarData(VeiculosLeveRB r) throws SQLException{
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT * FROM veiculoLeve WHERE data = ? ");
+      
+        Connection conexao = ConexaoFactory.db();
+        PreparedStatement ps = conexao.prepareStatement(sql.toString());
+        ps.setString(1, r.getData());
+        ResultSet rs = ps.executeQuery();
+        
+        ArrayList<VeiculosLeveRB> itens = new ArrayList<>();
+        
+        while(rs.next()){
+            
+            r.setId(rs.getInt("id"));
+            r.setNome(rs.getString("nome"));
+            r.setDestino(rs.getString("destino"));
+            r.setData(rs.getString("data"));
+            r.setSaida(rs.getString("saida"));
+            r.setKmsaida(rs.getString("kmsaida"));
+            r.setEntrada(rs.getString("entrada"));
+            r.setKmentrada(rs.getString("kmentrada"));
+            r.setAut(rs.getString("aut"));
+            r.setObs(rs.getString("obs"));
+            
+            itens.add(r);
+        }
+        return itens;
+    }
     
 }
