@@ -371,6 +371,11 @@ public class ViewMain extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), "PDF por Data", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 12))); // NOI18N
 
         btnPDF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/img/4.png"))); // NOI18N
+        btnPDF.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnPDFMouseClicked(evt);
+            }
+        });
 
         try {
             dataPDF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -801,7 +806,12 @@ public class ViewMain extends javax.swing.JFrame {
         
         String nome = null;
         nome = JOptionPane.showInputDialog(null, "Nome do Arquivo", "Pergunta", JOptionPane.PLAIN_MESSAGE);
-        
+        if(nome.isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Campo Obrigatórios", "OBRIGATÓRIO", JOptionPane.INFORMATION_MESSAGE);
+            nome = JOptionPane.showInputDialog(null, "Nome do Arquivo", "Pergunta", JOptionPane.PLAIN_MESSAGE);
+            return;
+           
+        }
         new File("C:\\Controle de Acesso").mkdir();
         String url = "C:\\Controle de Acesso\\"+nome+".pdf";
         
@@ -883,6 +893,98 @@ public class ViewMain extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_btnPDFGeralMouseClicked
+
+    private void btnPDFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPDFMouseClicked
+        String nome = null;
+        nome = JOptionPane.showInputDialog(null, "Nome do Arquivo", "Pergunta", JOptionPane.PLAIN_MESSAGE);
+        if(nome.isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Campo Obrigatórios", "OBRIGATÓRIO", JOptionPane.INFORMATION_MESSAGE);
+            nome = JOptionPane.showInputDialog(null, "Nome do Arquivo", "Pergunta", JOptionPane.PLAIN_MESSAGE);
+            return;
+           
+        }
+        new File("C:\\Controle de Acesso").mkdir();
+        String url = "C:\\Controle de Acesso\\"+nome+".pdf";
+        
+        CaminhaoRBDAO dao = new CaminhaoRBDAO();
+        CaminhaoRB r = new CaminhaoRB();
+        r.setData(dataPDF.getText());
+        
+        Document doc = new Document(PageSize.A4, 10, 10, 10,10);
+        
+        try {
+            
+            PdfWriter.getInstance(doc, new FileOutputStream(url));
+            doc.open();
+            
+            Paragraph p = new Paragraph("RELATÓRIOS PDF");
+            p.setExtraParagraphSpace(TOP_ALIGNMENT);
+            doc.add(p);
+            
+            p = new Paragraph("");
+            doc.add(p);
+            
+            PdfPTable tbl = new PdfPTable(10);
+            tbl.setHorizontalAlignment(Element.ALIGN_CENTER);
+            tbl.setWidthPercentage(100.0f);
+            
+            PdfPCell cel1 = new PdfPCell(new Paragraph("Cavalo"));
+            PdfPCell cel2 = new PdfPCell(new Paragraph("Carreta"));
+            PdfPCell cel3 = new PdfPCell(new Paragraph("Nome"));
+            PdfPCell cel4 = new PdfPCell(new Paragraph("Data"));
+            PdfPCell cel5 = new PdfPCell(new Paragraph("Saída"));
+            PdfPCell cel6 = new PdfPCell(new Paragraph("C / V"));
+            PdfPCell cel7 = new PdfPCell(new Paragraph("Entrada"));
+            PdfPCell cel8 = new PdfPCell(new Paragraph("C / V"));
+            PdfPCell cel9 = new PdfPCell(new Paragraph("Destino"));
+            PdfPCell cel10 = new PdfPCell(new Paragraph("Lacre"));
+                        
+            tbl.addCell(cel2);
+            tbl.addCell(cel3);
+            tbl.addCell(cel4);
+            tbl.addCell(cel5);
+            tbl.addCell(cel6);
+            tbl.addCell(cel7);
+            tbl.addCell(cel8);
+            tbl.addCell(cel9);
+            tbl.addCell(cel10);
+           
+            
+            for(CaminhaoRB c : dao.listarData(r)){
+                
+                cel1 = new PdfPCell(new Paragraph(c.getCavalo()));
+                cel2 = new PdfPCell(new Paragraph(c.getCarreta()));
+                cel3 = new PdfPCell(new Paragraph(c.getNome()));
+                cel4 = new PdfPCell(new Paragraph(c.getData()));
+                cel5 = new PdfPCell(new Paragraph(c.getSaida()));
+                cel6 = new PdfPCell(new Paragraph(c.getComosaida()));
+                cel7 = new PdfPCell(new Paragraph(c.getEntrada()));
+                cel8 = new PdfPCell(new Paragraph(c.getComoentrada()));
+                cel9 = new PdfPCell(new Paragraph(c.getDestino()));
+                cel10 = new PdfPCell(new Paragraph(c.getLacre()));
+
+                tbl.addCell(cel1);
+                tbl.addCell(cel2);
+                tbl.addCell(cel3);
+                tbl.addCell(cel4);
+                tbl.addCell(cel5);
+                tbl.addCell(cel6);
+                tbl.addCell(cel7);
+                tbl.addCell(cel8);
+                tbl.addCell(cel9);
+                tbl.addCell(cel10);
+
+                
+            }
+            doc.add(tbl);
+            doc.close();
+            
+            Desktop.getDesktop().open(new File(url));
+            
+        } catch (Exception e) {
+            
+        }
+    }//GEN-LAST:event_btnPDFMouseClicked
 
    
     public static void main(String args[]) {
