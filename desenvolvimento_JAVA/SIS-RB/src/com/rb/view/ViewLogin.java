@@ -128,7 +128,7 @@ public class ViewLogin extends javax.swing.JFrame {
         btnAcessar.setBackground(new java.awt.Color(51, 51, 51));
         btnAcessar.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         btnAcessar.setForeground(new java.awt.Color(255, 255, 255));
-        btnAcessar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/img/login.png"))); // NOI18N
+        btnAcessar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/imgWrite/icons8-Key Filled-10.png"))); // NOI18N
         btnAcessar.setText("Acessar");
         btnAcessar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnAcessar.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
