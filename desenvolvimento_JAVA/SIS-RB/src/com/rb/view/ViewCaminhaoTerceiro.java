@@ -1,14 +1,21 @@
 package com.rb.view;
 
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.rb.dao.CaminhaoTerDAO;
 import com.rb.domain.CaminhaoT;
+import com.sun.org.apache.xml.internal.serializer.ElemDesc;
+import java.awt.Color;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -716,14 +723,15 @@ public class ViewCaminhaoTerceiro extends javax.swing.JFrame {
 
     private void ListaDataPDFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListaDataPDFMouseClicked
         
-       String nome = null;
+       
+        String nome = null;
         nome = JOptionPane.showInputDialog(null, "Nome do Arquivo", "Pergunta", JOptionPane.PLAIN_MESSAGE);
         new File("C:\\Controle de Acesso").mkdir();
         
         Document doc = new Document(PageSize.A4, 10, 10, 10,10);
-        CaminhaoT cc = new CaminhaoT();
-        cc.setData(dataPDF.getText());
         CaminhaoTerDAO dao = new CaminhaoTerDAO();
+        CaminhaoT t = new CaminhaoT();
+        t.setData(dataPDF.getText());
      
         String url = "C:\\Controle de Acesso\\"+nome+".pdf";
        
@@ -732,34 +740,37 @@ public class ViewCaminhaoTerceiro extends javax.swing.JFrame {
             PdfWriter.getInstance(doc, new FileOutputStream(url));
             doc.open();
             
-            Paragraph p = new Paragraph("RELATÓRIOS PDF");
-            p.setAlignment(1);
-            p.setExtraParagraphSpace(TOP_ALIGNMENT);
-            doc.add(p);
-            
-            p = new Paragraph("");
-            doc.add(p);
-            
             PdfPTable tbl = new PdfPTable(10);
             tbl.setHorizontalAlignment(Element.ALIGN_CENTER);
             tbl.setWidthPercentage(100.0f);
             
-            PdfPCell cel1 = new PdfPCell(new Paragraph("CAVALO"));
-            PdfPCell cel2 = new PdfPCell(new Paragraph("CARRETA"));
-            PdfPCell cel3 = new PdfPCell(new Paragraph("NOME"));
-            PdfPCell cel4 = new PdfPCell(new Paragraph("DATA"));
-            PdfPCell cel5 = new PdfPCell(new Paragraph("ENTRADA"));
-            PdfPCell cel6 = new PdfPCell(new Paragraph("C / V"));
-            PdfPCell cel7 = new PdfPCell(new Paragraph("SAÍDA"));
-            PdfPCell cel8 = new PdfPCell(new Paragraph("C / V"));
-            PdfPCell cel9 = new PdfPCell(new Paragraph("EMPRESA"));
-            PdfPCell cel10 = new PdfPCell(new Paragraph("RG"));
+            Font fc = FontFactory.getFont(FontFactory.TIMES_ROMAN, 7);
+            Font fc1 = FontFactory.getFont(FontFactory.TIMES_ROMAN, 9, Element.ALIGN_CENTER);
             
+            PdfPCell cel = new PdfPCell(new Paragraph("CAMINHÃO DE TERCEIROS",fc1));
+            
+            cel.setBackgroundColor(new BaseColor(100, 100, 100));
+            cel.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel.setColspan(10);
+            
+          
+            PdfPCell cel1 = new PdfPCell(new Paragraph("CAVALO", fc1));
+            PdfPCell cel2 = new PdfPCell(new Paragraph("CARRETA", fc1));
+            PdfPCell cel3 = new PdfPCell(new Paragraph("NOME", fc1));
+            PdfPCell cel4 = new PdfPCell(new Paragraph("DATA", fc1));
+            PdfPCell cel5 = new PdfPCell(new Paragraph("ENTRADA", fc1));
+            PdfPCell cel6 = new PdfPCell(new Paragraph("C / V", fc1));
+            PdfPCell cel7 = new PdfPCell(new Paragraph("SAÍDA", fc1));
+            PdfPCell cel8 = new PdfPCell(new Paragraph("C / V", fc1));
+            PdfPCell cel9 = new PdfPCell(new Paragraph("EMPRESA", fc1));
+            PdfPCell cel10 = new PdfPCell(new Paragraph("RG", fc1));
             
             cel7.setColspan(1);
             cel4.getHorizontalAlignment();
             cel5.getHorizontalAlignment();
             
+            
+            tbl.addCell(cel);
             tbl.addCell(cel1);
             tbl.addCell(cel2);
             tbl.addCell(cel3);
@@ -771,19 +782,19 @@ public class ViewCaminhaoTerceiro extends javax.swing.JFrame {
             tbl.addCell(cel9);
             tbl.addCell(cel10);
             
-            for(CaminhaoT c : dao.listarUS(cc)){
+            for(CaminhaoT c : dao.listarUS(t)){
                 
-                cel1 = new PdfPCell(new Paragraph(c.getCavalo()));
-                cel2 = new PdfPCell(new Paragraph(c.getCarreta()));
-                cel3 = new PdfPCell(new Paragraph(c.getNome()));
-                cel4 = new PdfPCell(new Paragraph(c.getData()));
-                cel5 = new PdfPCell(new Paragraph(c.getEntrada()));
-                cel6 = new PdfPCell(new Paragraph(c.getComoentrada()));
-                cel7 = new PdfPCell(new Paragraph(c.getSaida()));
-                cel8 = new PdfPCell(new Paragraph(c.getComosaida()));
-                cel9 = new PdfPCell(new Paragraph(c.getEmpresa()));
-                cel10 = new PdfPCell(new Paragraph(c.getRg()));
-                
+                cel1 = new PdfPCell(new Paragraph(c.getCavalo(), fc));
+                cel2 = new PdfPCell(new Paragraph(c.getCarreta(), fc));
+                cel3 = new PdfPCell(new Paragraph(c.getNome(), fc));
+                cel4 = new PdfPCell(new Paragraph(c.getData(), fc));
+                cel5 = new PdfPCell(new Paragraph(c.getEntrada(), fc));
+                cel6 = new PdfPCell(new Paragraph(c.getComoentrada(), fc));
+                cel7 = new PdfPCell(new Paragraph(c.getSaida(), fc));
+                cel8 = new PdfPCell(new Paragraph(c.getComosaida(), fc));
+                cel9 = new PdfPCell(new Paragraph(c.getEmpresa(), fc));
+                cel10 = new PdfPCell(new Paragraph(c.getRg(), fc));
+
                 tbl.addCell(cel1);
                 tbl.addCell(cel2);
                 tbl.addCell(cel3);
@@ -812,8 +823,7 @@ public class ViewCaminhaoTerceiro extends javax.swing.JFrame {
         nome = JOptionPane.showInputDialog(null, "Nome do Arquivo", "Pergunta", JOptionPane.PLAIN_MESSAGE);
         new File("C:\\Controle de Acesso").mkdir();
         
-        Document doc = new Document(PageSize.A4, 10, 10, 30,1);
-        CaminhaoT cc = new CaminhaoT();
+        Document doc = new Document(PageSize.A4, 10, 10, 10,10);
         CaminhaoTerDAO dao = new CaminhaoTerDAO();
      
         String url = "C:\\Controle de Acesso\\"+nome+".pdf";
@@ -823,33 +833,37 @@ public class ViewCaminhaoTerceiro extends javax.swing.JFrame {
             PdfWriter.getInstance(doc, new FileOutputStream(url));
             doc.open();
             
-            Paragraph p = new Paragraph("RELATÓRIOS PDF");
-            p.setAlignment(1);
-            p.setExtraParagraphSpace(TOP_ALIGNMENT);
-            doc.add(p);
-            
-            p = new Paragraph("");
-            doc.add(p);
-            
             PdfPTable tbl = new PdfPTable(10);
             tbl.setHorizontalAlignment(Element.ALIGN_CENTER);
             tbl.setWidthPercentage(100.0f);
             
-            PdfPCell cel1 = new PdfPCell(new Paragraph("CAVALO"));
-            PdfPCell cel2 = new PdfPCell(new Paragraph("CARRETA"));
-            PdfPCell cel3 = new PdfPCell(new Paragraph("NOME"));
-            PdfPCell cel4 = new PdfPCell(new Paragraph("DATA"));
-            PdfPCell cel5 = new PdfPCell(new Paragraph("ENTRADA"));
-            PdfPCell cel6 = new PdfPCell(new Paragraph("C / V"));
-            PdfPCell cel7 = new PdfPCell(new Paragraph("SAÍDA"));
-            PdfPCell cel8 = new PdfPCell(new Paragraph("C / V"));
-            PdfPCell cel9 = new PdfPCell(new Paragraph("EMPRESA"));
-            PdfPCell cel10 = new PdfPCell(new Paragraph("RG"));
+            Font fc = FontFactory.getFont(FontFactory.TIMES_ROMAN, 7);
+            Font fc1 = FontFactory.getFont(FontFactory.TIMES_ROMAN, 9, Element.ALIGN_CENTER);
+            
+            PdfPCell cel = new PdfPCell(new Paragraph("CAMINHÃO DE TERCEIROS",fc1));
+            
+            cel.setBackgroundColor(new BaseColor(100, 100, 100));
+            cel.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel.setColspan(10);
+            
+          
+            PdfPCell cel1 = new PdfPCell(new Paragraph("CAVALO", fc1));
+            PdfPCell cel2 = new PdfPCell(new Paragraph("CARRETA", fc1));
+            PdfPCell cel3 = new PdfPCell(new Paragraph("NOME", fc1));
+            PdfPCell cel4 = new PdfPCell(new Paragraph("DATA", fc1));
+            PdfPCell cel5 = new PdfPCell(new Paragraph("ENTRADA", fc1));
+            PdfPCell cel6 = new PdfPCell(new Paragraph("C / V", fc1));
+            PdfPCell cel7 = new PdfPCell(new Paragraph("SAÍDA", fc1));
+            PdfPCell cel8 = new PdfPCell(new Paragraph("C / V", fc1));
+            PdfPCell cel9 = new PdfPCell(new Paragraph("EMPRESA", fc1));
+            PdfPCell cel10 = new PdfPCell(new Paragraph("RG", fc1));
             
             cel7.setColspan(1);
             cel4.getHorizontalAlignment();
             cel5.getHorizontalAlignment();
             
+            
+            tbl.addCell(cel);
             tbl.addCell(cel1);
             tbl.addCell(cel2);
             tbl.addCell(cel3);
@@ -863,18 +877,17 @@ public class ViewCaminhaoTerceiro extends javax.swing.JFrame {
             
             for(CaminhaoT c : dao.listar()){
                 
-                cel1 = new PdfPCell(new Paragraph(c.getCavalo()));
-                cel2 = new PdfPCell(new Paragraph(c.getCarreta()));
-                cel3 = new PdfPCell(new Paragraph(c.getNome()));
-                cel4 = new PdfPCell(new Paragraph(c.getData()));
-                cel5 = new PdfPCell(new Paragraph(c.getEntrada()));
-                cel6 = new PdfPCell(new Paragraph(c.getComoentrada()));
-                cel7 = new PdfPCell(new Paragraph(c.getSaida()));
-                cel8 = new PdfPCell(new Paragraph(c.getComosaida()));
-                cel9 = new PdfPCell(new Paragraph(c.getEmpresa()));
-                cel10 = new PdfPCell(new Paragraph(c.getRg()));
+                cel1 = new PdfPCell(new Paragraph(c.getCavalo(), fc));
+                cel2 = new PdfPCell(new Paragraph(c.getCarreta(), fc));
+                cel3 = new PdfPCell(new Paragraph(c.getNome(), fc));
+                cel4 = new PdfPCell(new Paragraph(c.getData(), fc));
+                cel5 = new PdfPCell(new Paragraph(c.getEntrada(), fc));
+                cel6 = new PdfPCell(new Paragraph(c.getComoentrada(), fc));
+                cel7 = new PdfPCell(new Paragraph(c.getSaida(), fc));
+                cel8 = new PdfPCell(new Paragraph(c.getComosaida(), fc));
+                cel9 = new PdfPCell(new Paragraph(c.getEmpresa(), fc));
+                cel10 = new PdfPCell(new Paragraph(c.getRg(), fc));
 
-                
                 tbl.addCell(cel1);
                 tbl.addCell(cel2);
                 tbl.addCell(cel3);

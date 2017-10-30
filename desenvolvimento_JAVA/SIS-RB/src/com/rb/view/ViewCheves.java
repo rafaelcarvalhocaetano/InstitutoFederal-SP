@@ -5,6 +5,8 @@ import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -681,7 +683,7 @@ public class ViewCheves extends javax.swing.JFrame {
         nome = JOptionPane.showInputDialog(null, "Nome do Arquivo", "Pergunta", JOptionPane.PLAIN_MESSAGE);
         new File("C:\\Controle de Acesso").mkdir();
         
-        Document doc = new Document(PageSize.A4, 10, 10, 30,1);
+        Document doc = new Document(PageSize.A4, 10, 10, 10,10);
         ChaveDAO dao = new ChaveDAO();
      
         String url = "C:\\Controle de Acesso\\"+nome+".pdf";
@@ -758,7 +760,7 @@ public class ViewCheves extends javax.swing.JFrame {
         nome = JOptionPane.showInputDialog(null, "Nome do Arquivo", "Pergunta", JOptionPane.PLAIN_MESSAGE);
         new File("C:\\Controle de Acesso").mkdir();
 
-        Document doc = new Document(PageSize.A4, 10, 10, 30,1);
+        Document doc = new Document(PageSize.A4, 10, 10, 10,10);
         
         ChaveDAO dao = new ChaveDAO();
         Chave cc = new Chave();
@@ -771,17 +773,18 @@ public class ViewCheves extends javax.swing.JFrame {
             PdfWriter.getInstance(doc, new FileOutputStream(url));
             doc.open();
             
-            Paragraph p = new Paragraph("RELATÓRIOS PDF");
-            p.setAlignment(1);
-            p.setExtraParagraphSpace(TOP_ALIGNMENT);
-            doc.add(p);
-            
-            p = new Paragraph("");
-            doc.add(p);
-            
-            PdfPTable tbl = new PdfPTable(7);
+            PdfPTable tbl = new PdfPTable(10);
             tbl.setHorizontalAlignment(Element.ALIGN_CENTER);
             tbl.setWidthPercentage(100.0f);
+            
+            Font fc = FontFactory.getFont(FontFactory.TIMES_ROMAN, 7);
+            Font fc1 = FontFactory.getFont(FontFactory.TIMES_ROMAN, 9, Element.ALIGN_CENTER);
+            
+            PdfPCell cel = new PdfPCell(new Paragraph("CAMINHÃO DE TERCEIROS",fc1));
+            
+            cel.setBackgroundColor(new BaseColor(100, 100, 100));
+            cel.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel.setColspan(10);
             
             PdfPCell cel2 = new PdfPCell(new Paragraph("NOME"));
             PdfPCell cel3 = new PdfPCell(new Paragraph("SETOR"));
@@ -812,7 +815,8 @@ public class ViewCheves extends javax.swing.JFrame {
                 cel6 = new PdfPCell(new Paragraph(c.getEntrada()));
                 cel7 = new PdfPCell(new Paragraph(c.getDatadevolucao()));
                 cel8 = new PdfPCell(new Paragraph(c.getVigilante()));
-
+                
+                tbl.addCell(cel);
                 tbl.addCell(cel2);
                 tbl.addCell(cel3);
                 tbl.addCell(cel4);
@@ -822,19 +826,16 @@ public class ViewCheves extends javax.swing.JFrame {
                 tbl.addCell(cel8);
             }
             doc.add(tbl);
+            doc.close();
+            
+            Desktop.getDesktop().open(new File(url));
             
         } catch (Exception e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(rootPane, "Verificar Preenchimento", "ERROS", JOptionPane.ERROR_MESSAGE);
         }finally {
             doc.close();
-            try {
-                Desktop.getDesktop().open(new File(url));
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(rootPane, "Verificar Preenchimento", "ERROS", JOptionPane.ERROR_MESSAGE);
-            }
         }
-        
-        
     }//GEN-LAST:event_listaPDFdataMouseClicked
 
    
