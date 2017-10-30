@@ -1,7 +1,10 @@
 package com.rb.view;
 
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -252,17 +255,17 @@ public class ViewLeveRB extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(359, 359, 359)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(452, 452, 452))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(21, 21, 21)
                 .addComponent(jLabel2)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -715,34 +718,30 @@ public class ViewLeveRB extends javax.swing.JFrame {
             PdfWriter.getInstance(doc, new FileOutputStream(url));
             doc.open();
             
-            Paragraph p = new Paragraph("RELATÓRIOS PDF");
-            p.setAlignment(1);
-            p.setExtraParagraphSpace(TOP_ALIGNMENT);
-            doc.add(p);
-            
-            p = new Paragraph("");
-            doc.add(p);
-            
             PdfPTable tbl = new PdfPTable(9);
             tbl.setHorizontalAlignment(Element.ALIGN_CENTER);
             tbl.setWidthPercentage(100.0f);
             
-            PdfPCell cel2 = new PdfPCell(new Paragraph("NOME"));
-            PdfPCell cel3 = new PdfPCell(new Paragraph("Destino"));
-            PdfPCell cel4 = new PdfPCell(new Paragraph("Data"));
-            PdfPCell cel5 = new PdfPCell(new Paragraph("Saída"));
-            PdfPCell cel6 = new PdfPCell(new Paragraph("KM Saída"));
-            PdfPCell cel7 = new PdfPCell(new Paragraph("Entrada"));
-            PdfPCell cel8 = new PdfPCell(new Paragraph("KM Entrada"));
-            PdfPCell cel9 = new PdfPCell(new Paragraph("Aut"));
-            PdfPCell cel10 = new PdfPCell(new Paragraph("OBS"));
+            Font fc = FontFactory.getFont(FontFactory.TIMES_ROMAN, 7);
+            Font fc1 = FontFactory.getFont(FontFactory.TIMES_ROMAN, 9, Element.ALIGN_CENTER);
             
+            PdfPCell cel = new PdfPCell(new Paragraph("Controle de Acesso Fiorino",fc1));
             
+            cel.setBackgroundColor(new BaseColor(100, 100, 100));
+            cel.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel.setColspan(9);
             
-            cel7.setColspan(1);
-            cel4.getHorizontalAlignment();
-            cel5.getHorizontalAlignment();
+            PdfPCell cel2 = new PdfPCell(new Paragraph("Nome", fc1));
+            PdfPCell cel3 = new PdfPCell(new Paragraph("Destino", fc1));
+            PdfPCell cel4 = new PdfPCell(new Paragraph("Data", fc1));
+            PdfPCell cel5 = new PdfPCell(new Paragraph("Saída", fc1));
+            PdfPCell cel6 = new PdfPCell(new Paragraph("KM Saída", fc1));
+            PdfPCell cel7 = new PdfPCell(new Paragraph("Entrada", fc1));
+            PdfPCell cel8 = new PdfPCell(new Paragraph("KM Entrada", fc1));
+            PdfPCell cel9 = new PdfPCell(new Paragraph("Aut", fc1));
+            PdfPCell cel10 = new PdfPCell(new Paragraph("Obs", fc1));
             
+            tbl.addCell(cel);
             tbl.addCell(cel2);
             tbl.addCell(cel3);
             tbl.addCell(cel4);
@@ -756,15 +755,15 @@ public class ViewLeveRB extends javax.swing.JFrame {
             
             for(VeiculosLeveRB c : dao.listar()){
                 
-                cel2 = new PdfPCell(new Paragraph(c.getNome()));
-                cel3 = new PdfPCell(new Paragraph(c.getDestino()));
-                cel4 = new PdfPCell(new Paragraph(c.getData()));
-                cel5 = new PdfPCell(new Paragraph(c.getSaida()));
-                cel6 = new PdfPCell(new Paragraph(c.getKmsaida()));
-                cel7 = new PdfPCell(new Paragraph(c.getEntrada()));
-                cel8 = new PdfPCell(new Paragraph(c.getKmentrada()));
-                cel9 = new PdfPCell(new Paragraph(c.getAut()));
-                cel10 = new PdfPCell(new Paragraph(c.getObs()));
+               cel2 = new PdfPCell(new Paragraph(c.getNome(), fc));
+                cel3 = new PdfPCell(new Paragraph(c.getDestino(), fc));
+                cel4 = new PdfPCell(new Paragraph(c.getData(), fc));
+                cel5 = new PdfPCell(new Paragraph(c.getSaida(), fc));
+                cel6 = new PdfPCell(new Paragraph(c.getKmsaida(), fc));
+                cel7 = new PdfPCell(new Paragraph(c.getEntrada(), fc));
+                cel8 = new PdfPCell(new Paragraph(c.getKmentrada(), fc));
+                cel9 = new PdfPCell(new Paragraph(c.getAut(), fc));
+                cel10 = new PdfPCell(new Paragraph(c.getObs(), fc));
 
                 tbl.addCell(cel2);
                 tbl.addCell(cel3);
@@ -808,34 +807,30 @@ public class ViewLeveRB extends javax.swing.JFrame {
             PdfWriter.getInstance(doc, new FileOutputStream(url));
             doc.open();
             
-            Paragraph p = new Paragraph("RELATÓRIOS PDF");
-            p.setAlignment(1);
-            p.setExtraParagraphSpace(TOP_ALIGNMENT);
-            doc.add(p);
-            
-            p = new Paragraph("");
-            doc.add(p);
-            
             PdfPTable tbl = new PdfPTable(9);
             tbl.setHorizontalAlignment(Element.ALIGN_CENTER);
             tbl.setWidthPercentage(100.0f);
             
-            PdfPCell cel2 = new PdfPCell(new Paragraph("NOME"));
-            PdfPCell cel3 = new PdfPCell(new Paragraph("Destino"));
-            PdfPCell cel4 = new PdfPCell(new Paragraph("Data"));
-            PdfPCell cel5 = new PdfPCell(new Paragraph("Saída"));
-            PdfPCell cel6 = new PdfPCell(new Paragraph("KM Saída"));
-            PdfPCell cel7 = new PdfPCell(new Paragraph("Entrada"));
-            PdfPCell cel8 = new PdfPCell(new Paragraph("KM Entrada"));
-            PdfPCell cel9 = new PdfPCell(new Paragraph("Aut"));
-            PdfPCell cel10 = new PdfPCell(new Paragraph("OBS"));
+            Font fc = FontFactory.getFont(FontFactory.TIMES_ROMAN, 7);
+            Font fc1 = FontFactory.getFont(FontFactory.TIMES_ROMAN, 9, Element.ALIGN_CENTER);
             
+            PdfPCell cel = new PdfPCell(new Paragraph("Controle de Acesso Fiorino",fc1));
             
+            cel.setBackgroundColor(new BaseColor(100, 100, 100));
+            cel.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel.setColspan(9);
             
-            cel7.setColspan(1);
-            cel4.getHorizontalAlignment();
-            cel5.getHorizontalAlignment();
+            PdfPCell cel2 = new PdfPCell(new Paragraph("Nome", fc1));
+            PdfPCell cel3 = new PdfPCell(new Paragraph("Destino", fc1));
+            PdfPCell cel4 = new PdfPCell(new Paragraph("Data", fc1));
+            PdfPCell cel5 = new PdfPCell(new Paragraph("Saída", fc1));
+            PdfPCell cel6 = new PdfPCell(new Paragraph("KM Saída", fc1));
+            PdfPCell cel7 = new PdfPCell(new Paragraph("Entrada", fc1));
+            PdfPCell cel8 = new PdfPCell(new Paragraph("KM Entrada", fc1));
+            PdfPCell cel9 = new PdfPCell(new Paragraph("Aut", fc1));
+            PdfPCell cel10 = new PdfPCell(new Paragraph("Obs", fc1));
             
+            tbl.addCell(cel);
             tbl.addCell(cel2);
             tbl.addCell(cel3);
             tbl.addCell(cel4);
@@ -849,15 +844,15 @@ public class ViewLeveRB extends javax.swing.JFrame {
             
             for(VeiculosLeveRB c : dao.listarData(r)){
                 
-                cel2 = new PdfPCell(new Paragraph(c.getNome()));
-                cel3 = new PdfPCell(new Paragraph(c.getDestino()));
-                cel4 = new PdfPCell(new Paragraph(c.getData()));
-                cel5 = new PdfPCell(new Paragraph(c.getSaida()));
-                cel6 = new PdfPCell(new Paragraph(c.getKmsaida()));
-                cel7 = new PdfPCell(new Paragraph(c.getEntrada()));
-                cel8 = new PdfPCell(new Paragraph(c.getKmentrada()));
-                cel9 = new PdfPCell(new Paragraph(c.getAut()));
-                cel10 = new PdfPCell(new Paragraph(c.getObs()));
+                cel2 = new PdfPCell(new Paragraph(c.getNome(), fc));
+                cel3 = new PdfPCell(new Paragraph(c.getDestino(), fc));
+                cel4 = new PdfPCell(new Paragraph(c.getData(), fc));
+                cel5 = new PdfPCell(new Paragraph(c.getSaida(), fc));
+                cel6 = new PdfPCell(new Paragraph(c.getKmsaida(), fc));
+                cel7 = new PdfPCell(new Paragraph(c.getEntrada(), fc));
+                cel8 = new PdfPCell(new Paragraph(c.getKmentrada(), fc));
+                cel9 = new PdfPCell(new Paragraph(c.getAut(), fc));
+                cel10 = new PdfPCell(new Paragraph(c.getObs(), fc));
 
                 tbl.addCell(cel2);
                 tbl.addCell(cel3);

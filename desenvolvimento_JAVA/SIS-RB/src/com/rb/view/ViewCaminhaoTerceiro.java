@@ -765,11 +765,6 @@ public class ViewCaminhaoTerceiro extends javax.swing.JFrame {
             PdfPCell cel9 = new PdfPCell(new Paragraph("EMPRESA", fc1));
             PdfPCell cel10 = new PdfPCell(new Paragraph("RG", fc1));
             
-            cel7.setColspan(1);
-            cel4.getHorizontalAlignment();
-            cel5.getHorizontalAlignment();
-            
-            
             tbl.addCell(cel);
             tbl.addCell(cel1);
             tbl.addCell(cel2);

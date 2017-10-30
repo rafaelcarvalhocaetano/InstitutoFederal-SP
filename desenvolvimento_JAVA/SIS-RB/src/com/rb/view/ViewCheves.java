@@ -682,10 +682,10 @@ public class ViewCheves extends javax.swing.JFrame {
         String nome = null;
         nome = JOptionPane.showInputDialog(null, "Nome do Arquivo", "Pergunta", JOptionPane.PLAIN_MESSAGE);
         new File("C:\\Controle de Acesso").mkdir();
-        
+
         Document doc = new Document(PageSize.A4, 10, 10, 10,10);
         ChaveDAO dao = new ChaveDAO();
-     
+        
         String url = "C:\\Controle de Acesso\\"+nome+".pdf";
         
         try {
@@ -693,31 +693,37 @@ public class ViewCheves extends javax.swing.JFrame {
             PdfWriter.getInstance(doc, new FileOutputStream(url));
             doc.open();
             
-            Paragraph p = new Paragraph("RELATÓRIOS PDF");
-            p.setAlignment(1);
-            p.setExtraParagraphSpace(TOP_ALIGNMENT);
-            doc.add(p);
-            
-            p = new Paragraph("");
-            doc.add(p);
-            
             PdfPTable tbl = new PdfPTable(7);
             tbl.setHorizontalAlignment(Element.ALIGN_CENTER);
             tbl.setWidthPercentage(100.0f);
             
-            PdfPCell cel2 = new PdfPCell(new Paragraph("NOME"));
-            PdfPCell cel3 = new PdfPCell(new Paragraph("SETOR"));
-            PdfPCell cel4 = new PdfPCell(new Paragraph("DATA RETIRADA"));
-            PdfPCell cel5 = new PdfPCell(new Paragraph("HORÁRIO SAÍDA"));
-            PdfPCell cel6 = new PdfPCell(new Paragraph("HORÁRIO ENTRADA"));
-            PdfPCell cel7 = new PdfPCell(new Paragraph("DATA DEVOLUÇÃO"));
-            PdfPCell cel8 = new PdfPCell(new Paragraph("VIGILANETE"));
+            Font fc = FontFactory.getFont(FontFactory.TIMES_ROMAN, 7);
+            Font fc1 = FontFactory.getFont(FontFactory.TIMES_ROMAN, 9, Element.ALIGN_CENTER);
             
+            PdfPCell cel = new PdfPCell(new Paragraph("Controle de Chaves",fc1));
             
+            cel.setBackgroundColor(new BaseColor(100, 100, 100));
+            cel.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel.setColspan(10);
+            
+            PdfPCell cel2 = new PdfPCell(new Paragraph("NOME", fc1));
+            PdfPCell cel3 = new PdfPCell(new Paragraph("SETOR", fc1));
+            PdfPCell cel4 = new PdfPCell(new Paragraph("DATA RETIRADA", fc1));
+            PdfPCell cel5 = new PdfPCell(new Paragraph("HORÁRIO SAÍDA", fc1));
+            PdfPCell cel6 = new PdfPCell(new Paragraph("HORÁRIO ENTRADA", fc1));
+            PdfPCell cel7 = new PdfPCell(new Paragraph("DATA DEVOLUÇÃO", fc1));
+            PdfPCell cel8 = new PdfPCell(new Paragraph("VIGILANETE", fc1));
+            
+            cel2.setColspan(1);
+            cel3.setColspan(1);
+            cel4.setColspan(1);
+            cel5.setColspan(1);
+            cel6.setColspan(1);
             cel7.setColspan(1);
-            cel4.getHorizontalAlignment();
-            cel5.getHorizontalAlignment();
+            cel8.setColspan(1);
             
+            
+            tbl.addCell(cel);
             tbl.addCell(cel2);
             tbl.addCell(cel3);
             tbl.addCell(cel4);
@@ -728,13 +734,13 @@ public class ViewCheves extends javax.swing.JFrame {
             
             for(Chave c : dao.listar()){
                 
-                cel2 = new PdfPCell(new Paragraph(c.getNome()));
-                cel3 = new PdfPCell(new Paragraph(c.getSetor()));
-                cel4 = new PdfPCell(new Paragraph(c.getData()));
-                cel5 = new PdfPCell(new Paragraph(c.getSaida()));
-                cel6 = new PdfPCell(new Paragraph(c.getEntrada()));
-                cel7 = new PdfPCell(new Paragraph(c.getDatadevolucao()));
-                cel8 = new PdfPCell(new Paragraph(c.getVigilante()));
+                cel2 = new PdfPCell(new Paragraph(c.getNome(), fc));
+                cel3 = new PdfPCell(new Paragraph(c.getSetor(), fc));
+                cel4 = new PdfPCell(new Paragraph(c.getData(), fc));
+                cel5 = new PdfPCell(new Paragraph(c.getSaida(), fc));
+                cel6 = new PdfPCell(new Paragraph(c.getEntrada(), fc));
+                cel7 = new PdfPCell(new Paragraph(c.getDatadevolucao(), fc));
+                cel8 = new PdfPCell(new Paragraph(c.getVigilante(), fc));
                 
                 tbl.addCell(cel2);
                 tbl.addCell(cel3);
@@ -750,7 +756,10 @@ public class ViewCheves extends javax.swing.JFrame {
             Desktop.getDesktop().open(new File(url));
             
         } catch (Exception e) {
+            e.printStackTrace();
             JOptionPane.showMessageDialog(rootPane, "Verificar Preenchimento", "ERROS", JOptionPane.ERROR_MESSAGE);
+        }finally {
+            doc.close();
         }
     }//GEN-LAST:event_btnPDFMouseClicked
 
@@ -766,7 +775,7 @@ public class ViewCheves extends javax.swing.JFrame {
         Chave cc = new Chave();
         cc.setData(dataPDF.getText());
         
-        String url = "C:\\Controle de Acesso"+nome+"pdf";
+        String url = "C:\\Controle de Acesso\\"+nome+".pdf";
         
         try {
             
@@ -780,24 +789,30 @@ public class ViewCheves extends javax.swing.JFrame {
             Font fc = FontFactory.getFont(FontFactory.TIMES_ROMAN, 7);
             Font fc1 = FontFactory.getFont(FontFactory.TIMES_ROMAN, 9, Element.ALIGN_CENTER);
             
-            PdfPCell cel = new PdfPCell(new Paragraph("CAMINHÃO DE TERCEIROS",fc1));
+            PdfPCell cel = new PdfPCell(new Paragraph("Controle de Chaves",fc1));
             
             cel.setBackgroundColor(new BaseColor(100, 100, 100));
             cel.setHorizontalAlignment(Element.ALIGN_CENTER);
             cel.setColspan(10);
             
-            PdfPCell cel2 = new PdfPCell(new Paragraph("NOME"));
-            PdfPCell cel3 = new PdfPCell(new Paragraph("SETOR"));
-            PdfPCell cel4 = new PdfPCell(new Paragraph("DATA RETIRADA"));
-            PdfPCell cel5 = new PdfPCell(new Paragraph("HORÁRIO SAÍDA"));
-            PdfPCell cel6 = new PdfPCell(new Paragraph("HORÁRIO ENTRADA"));
-            PdfPCell cel7 = new PdfPCell(new Paragraph("DATA DEVOLUÇÃO"));
-            PdfPCell cel8 = new PdfPCell(new Paragraph("VIGILANETE"));
+            PdfPCell cel2 = new PdfPCell(new Paragraph("NOME", fc1));
+            PdfPCell cel3 = new PdfPCell(new Paragraph("SETOR", fc1));
+            PdfPCell cel4 = new PdfPCell(new Paragraph("DATA RETIRADA", fc1));
+            PdfPCell cel5 = new PdfPCell(new Paragraph("HORÁRIO SAÍDA", fc1));
+            PdfPCell cel6 = new PdfPCell(new Paragraph("HORÁRIO ENTRADA", fc1));
+            PdfPCell cel7 = new PdfPCell(new Paragraph("DATA DEVOLUÇÃO", fc1));
+            PdfPCell cel8 = new PdfPCell(new Paragraph("VIGILANETE", fc1));
             
+            cel2.setColspan(1);
+            cel3.setColspan(1);
+            cel4.setColspan(1);
+            cel5.setColspan(1);
+            cel6.setColspan(1);
             cel7.setColspan(1);
-            cel4.getHorizontalAlignment();
-            cel5.getHorizontalAlignment();
+            cel8.setColspan(1);
             
+            
+            tbl.addCell(cel);
             tbl.addCell(cel2);
             tbl.addCell(cel3);
             tbl.addCell(cel4);
@@ -808,15 +823,14 @@ public class ViewCheves extends javax.swing.JFrame {
             
             for(Chave c : dao.listarUS(cc)){
                 
-                cel2 = new PdfPCell(new Paragraph(c.getNome()));
-                cel3 = new PdfPCell(new Paragraph(c.getSetor()));
-                cel4 = new PdfPCell(new Paragraph(c.getData()));
-                cel5 = new PdfPCell(new Paragraph(c.getSaida()));
-                cel6 = new PdfPCell(new Paragraph(c.getEntrada()));
-                cel7 = new PdfPCell(new Paragraph(c.getDatadevolucao()));
-                cel8 = new PdfPCell(new Paragraph(c.getVigilante()));
+                cel2 = new PdfPCell(new Paragraph(c.getNome(), fc));
+                cel3 = new PdfPCell(new Paragraph(c.getSetor(), fc));
+                cel4 = new PdfPCell(new Paragraph(c.getData(), fc));
+                cel5 = new PdfPCell(new Paragraph(c.getSaida(), fc));
+                cel6 = new PdfPCell(new Paragraph(c.getEntrada(), fc));
+                cel7 = new PdfPCell(new Paragraph(c.getDatadevolucao(), fc));
+                cel8 = new PdfPCell(new Paragraph(c.getVigilante(), fc));
                 
-                tbl.addCell(cel);
                 tbl.addCell(cel2);
                 tbl.addCell(cel3);
                 tbl.addCell(cel4);

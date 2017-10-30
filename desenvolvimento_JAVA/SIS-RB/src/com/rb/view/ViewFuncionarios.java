@@ -1,7 +1,10 @@
 package com.rb.view;
 
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -600,7 +603,7 @@ public class ViewFuncionarios extends javax.swing.JFrame {
         nome = JOptionPane.showInputDialog(null, "Nome do Arquivo", "Pergunta", JOptionPane.PLAIN_MESSAGE);
         new File("C:\\Controle de Acesso").mkdir();
         
-        Document doc = new Document(PageSize.A4, 10, 10, 30,1);
+        Document doc = new Document(PageSize.A4, 10, 10, 10,10);
         FuncionarioDAO dao = new FuncionarioDAO();
      
         String url = "C:\\Controle de Acesso\\"+nome+".pdf";
@@ -610,31 +613,31 @@ public class ViewFuncionarios extends javax.swing.JFrame {
             PdfWriter.getInstance(doc, new FileOutputStream(url));
             doc.open();
             
-            Paragraph p = new Paragraph("RELATÓRIOS PDF");
-            p.setAlignment(1);
-            p.setExtraParagraphSpace(TOP_ALIGNMENT);
-            doc.add(p);
-            
-            p = new Paragraph("");
-            doc.add(p);
-            
             PdfPTable tbl = new PdfPTable(6);
             tbl.setHorizontalAlignment(Element.ALIGN_CENTER);
             tbl.setWidthPercentage(100.0f);
             
-            PdfPCell cel2 = new PdfPCell(new Paragraph("NOME"));
-            PdfPCell cel3 = new PdfPCell(new Paragraph("MODELO"));
-            PdfPCell cel4 = new PdfPCell(new Paragraph("DATA"));
-            PdfPCell cel5 = new PdfPCell(new Paragraph("HORÁRIO ENTRADA"));
-            PdfPCell cel6 = new PdfPCell(new Paragraph("HORÁRIO SAÍDA"));
-            PdfPCell cel7 = new PdfPCell(new Paragraph("OBS"));
+            Font fc = FontFactory.getFont(FontFactory.TIMES_ROMAN, 7);
+            Font fc1 = FontFactory.getFont(FontFactory.TIMES_ROMAN, 9, Element.ALIGN_CENTER);
             
+            PdfPCell cel = new PdfPCell(new Paragraph("Controle de Acesso de Funcionários",fc1));
             
+            cel.setBackgroundColor(new BaseColor(100, 100, 100));
+            cel.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel.setColspan(6);
+            
+            PdfPCell cel2 = new PdfPCell(new Paragraph("Nome", fc1));
+            PdfPCell cel3 = new PdfPCell(new Paragraph("Modelo", fc1));
+            PdfPCell cel4 = new PdfPCell(new Paragraph("Data", fc1));
+            PdfPCell cel5 = new PdfPCell(new Paragraph("Horário Entrada", fc1));
+            PdfPCell cel6 = new PdfPCell(new Paragraph("Horário Saída", fc1));
+            PdfPCell cel7 = new PdfPCell(new Paragraph("Obs"));
             
             cel7.setColspan(1);
             cel4.getHorizontalAlignment();
             cel5.getHorizontalAlignment();
             
+            tbl.addCell(cel);
             tbl.addCell(cel2);
             tbl.addCell(cel3);
             tbl.addCell(cel4);
@@ -683,38 +686,34 @@ public class ViewFuncionarios extends javax.swing.JFrame {
         FuncionariosRB r = new FuncionariosRB();
         r.setData(pdfdata.getText());
         
-        Document doc = new Document(PageSize.A4, 10, 10, 30,1);
+        Document doc = new Document(PageSize.A4, 10, 10, 10,10);
         
         try {
             
             PdfWriter.getInstance(doc, new FileOutputStream(url));
             doc.open();
             
-            Paragraph p = new Paragraph("RELATÓRIOS PDF");
-            p.setAlignment(1);
-            p.setExtraParagraphSpace(TOP_ALIGNMENT);
-            doc.add(p);
-            
-            p = new Paragraph("");
-            doc.add(p);
-            
             PdfPTable tbl = new PdfPTable(6);
             tbl.setHorizontalAlignment(Element.ALIGN_CENTER);
             tbl.setWidthPercentage(100.0f);
             
-            PdfPCell cel2 = new PdfPCell(new Paragraph("NOME"));
-            PdfPCell cel3 = new PdfPCell(new Paragraph("MODELO"));
-            PdfPCell cel4 = new PdfPCell(new Paragraph("DATA"));
-            PdfPCell cel5 = new PdfPCell(new Paragraph("HORÁRIO ENTRADA"));
-            PdfPCell cel6 = new PdfPCell(new Paragraph("HORÁRIO SAÍDA"));
-            PdfPCell cel7 = new PdfPCell(new Paragraph("OBS"));
+            Font fc = FontFactory.getFont(FontFactory.TIMES_ROMAN, 7);
+            Font fc1 = FontFactory.getFont(FontFactory.TIMES_ROMAN, 9, Element.ALIGN_CENTER);
             
+            PdfPCell cel = new PdfPCell(new Paragraph("Controle de Acesso de Funcionários",fc1));
             
+            cel.setBackgroundColor(new BaseColor(100, 100, 100));
+            cel.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel.setColspan(6);
             
-            cel7.setColspan(1);
-            cel4.getHorizontalAlignment();
-            cel5.getHorizontalAlignment();
+            PdfPCell cel2 = new PdfPCell(new Paragraph("Nome", fc1));
+            PdfPCell cel3 = new PdfPCell(new Paragraph("Modelo", fc1));
+            PdfPCell cel4 = new PdfPCell(new Paragraph("Data", fc1));
+            PdfPCell cel5 = new PdfPCell(new Paragraph("Horário Entrada", fc1));
+            PdfPCell cel6 = new PdfPCell(new Paragraph("Horário Saída", fc1));
+            PdfPCell cel7 = new PdfPCell(new Paragraph("Obs"));
             
+            tbl.addCell(cel);
             tbl.addCell(cel2);
             tbl.addCell(cel3);
             tbl.addCell(cel4);
