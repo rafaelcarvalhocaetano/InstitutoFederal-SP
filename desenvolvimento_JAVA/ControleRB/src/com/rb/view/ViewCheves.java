@@ -769,15 +769,14 @@ public class ViewCheves extends javax.swing.JFrame {
                 tbl.addCell(cel6);
                 tbl.addCell(cel7);
             }
-            Image imagem = Image.getInstance(String.format("C:\\ControleRB\\src\\com\\rb\\img\\Rodoborges.png"));
+            Image imagem = Image.getInstance(String.format("C:\\ControleRB\\img\\rb.png"));
             imagem.scalePercent(20, 20);
             imagem.setAlignment(Image.ALIGN_LEFT);
             
-            Image imagem1 = Image.getInstance(String.format("C:\\ControleRB\\src\\com\\rb\\img\\3.png"));
-            imagem1.scalePercent(20, 20);
-            imagem1.setAlignment(Image.ALIGN_RIGHT);
-            
-            imagem1.setAbsolutePosition(550f, 800f);
+            Image imagem1 = Image.getInstance(String.format("C:\\ControleRB\\img\\logoFLC.png"));
+            imagem1.scalePercent(5, 5);
+            imagem1.setAlignment(Image.ALIGN_RIGHT);            
+            imagem1.setAbsolutePosition(550f, 806f);
             
             doc.add(imagem);
             doc.add(imagem1);
@@ -886,15 +885,14 @@ public class ViewCheves extends javax.swing.JFrame {
                 tbl.addCell(cel6);
                 tbl.addCell(cel7);
             }
-            Image imagem = Image.getInstance(String.format("C:\\ControleRB\\src\\com\\rb\\img\\Rodoborges.png"));
+            Image imagem = Image.getInstance(String.format("C:\\ControleRB\\img\\rb.png"));
             imagem.scalePercent(20, 20);
             imagem.setAlignment(Image.ALIGN_LEFT);
             
-            Image imagem1 = Image.getInstance(String.format("C:\\ControleRB\\src\\com\\rb\\img\\3.png"));
-            imagem1.scalePercent(20, 20);
+            Image imagem1 = Image.getInstance(String.format("C:\\ControleRB\\img\\logoFLC.png"));
+            imagem1.scalePercent(5, 5);
             imagem1.setAlignment(Image.ALIGN_RIGHT);
-            
-            imagem1.setAbsolutePosition(550f, 800f);
+            imagem1.setAbsolutePosition(550f, 806f);
             
             doc.add(imagem);
             doc.add(imagem1);
