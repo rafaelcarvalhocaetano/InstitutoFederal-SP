@@ -2,6 +2,7 @@ package com.rb.view;
 
 import com.rb.dao.LoginDAO;
 import com.rb.domain.Login;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -12,8 +13,13 @@ public class ViewLogin extends javax.swing.JFrame {
    
     public ViewLogin() {
         initComponents();
+        img();
     }
 
+    public void img(){
+        ImageIcon imagemTituloJanela = new ImageIcon("C:\\ControleRB\\img\\logoRB.png");
+        setIconImage(imagemTituloJanela.getImage());
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

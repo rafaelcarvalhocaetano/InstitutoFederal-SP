@@ -19,6 +19,7 @@ import java.io.FileOutputStream;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -31,6 +32,11 @@ public class ViewMain extends javax.swing.JFrame {
     public ViewMain() {
         initComponents();
         read();
+        img();
+    }
+    public void img(){
+        ImageIcon imagemTituloJanela = new ImageIcon("C:\\ControleRB\\img\\logoRB.png");
+        setIconImage(imagemTituloJanela.getImage());
     }
     private void read(){
         DefaultTableModel tbl = (DefaultTableModel) tblCRB.getModel();

@@ -13,13 +13,13 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.rb.dao.FuncionarioDAO;
 import com.rb.domain.FuncionariosRB;
-import static java.awt.Component.TOP_ALIGNMENT;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -32,6 +32,11 @@ public class ViewFuncionarios extends javax.swing.JFrame {
     public ViewFuncionarios() {
         initComponents();
         read();
+        img();
+    }
+    public void img(){
+        ImageIcon imagemTituloJanela = new ImageIcon("C:\\ControleRB\\img\\logoRB.png");
+        setIconImage(imagemTituloJanela.getImage());
     }
     private void read(){
         DefaultTableModel tbl = (DefaultTableModel) tblFuncionarios.getModel();

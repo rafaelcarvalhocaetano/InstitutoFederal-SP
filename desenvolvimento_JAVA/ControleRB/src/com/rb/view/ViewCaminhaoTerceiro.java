@@ -21,6 +21,7 @@ import java.io.FileOutputStream;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -33,6 +34,11 @@ public class ViewCaminhaoTerceiro extends javax.swing.JFrame {
     public ViewCaminhaoTerceiro() {
         initComponents();
         read();
+        img();
+    }
+    public void img(){
+        ImageIcon imagemTituloJanela = new ImageIcon("C:\\ControleRB\\img\\logoRB.png");
+        setIconImage(imagemTituloJanela.getImage());
     }
     
      private void read(){

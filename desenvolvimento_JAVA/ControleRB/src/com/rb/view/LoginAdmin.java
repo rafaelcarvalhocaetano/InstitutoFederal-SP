@@ -7,6 +7,7 @@ package com.rb.view;
 
 import com.rb.dao.LoginDAO;
 import com.rb.domain.Login;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,6 +19,11 @@ public class LoginAdmin extends javax.swing.JFrame {
    
     public LoginAdmin() {
         initComponents();
+        img();
+    }
+    public void img(){
+        ImageIcon imagemTituloJanela = new ImageIcon("C:\\ControleRB\\img\\logoRB.png");
+        setIconImage(imagemTituloJanela.getImage());
     }
 
     @SuppressWarnings("unchecked")

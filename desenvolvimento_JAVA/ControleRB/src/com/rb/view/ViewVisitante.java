@@ -14,7 +14,6 @@ import com.itextpdf.text.pdf.PdfWriter;
 import com.rb.conexao.ConexaoFactory;
 import com.rb.dao.VisitanteDAO;
 import com.rb.domain.Visitante;
-import static java.awt.Component.TOP_ALIGNMENT;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -22,8 +21,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -36,6 +34,11 @@ public class ViewVisitante extends javax.swing.JFrame {
     public ViewVisitante() {
         initComponents();
         read();
+        img();
+    }
+    public void img(){
+        ImageIcon imagemTituloJanela = new ImageIcon("C:\\ControleRB\\img\\logoRB.png");
+        setIconImage(imagemTituloJanela.getImage());
     }
     
     private void read(){

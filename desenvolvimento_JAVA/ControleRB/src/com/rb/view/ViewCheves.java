@@ -3,7 +3,6 @@ package com.rb.view;
 
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
@@ -18,12 +17,10 @@ import com.rb.domain.Chave;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -37,7 +34,16 @@ public class ViewCheves extends javax.swing.JFrame {
         initComponents();
         
         read();
+        img();
+       
+       
     }
+    public void img(){
+        ImageIcon imagemTituloJanela = new ImageIcon("C:\\ControleRB\\img\\logoRB.png");
+        setIconImage(imagemTituloJanela.getImage());
+    }
+    
+   
     
     private void read(){
         DefaultTableModel tbl = (DefaultTableModel) tblChaves.getModel();

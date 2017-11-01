@@ -8,6 +8,7 @@ package com.rb.view;
 import com.rb.dao.AdminDAO;
 import com.rb.domain.Admin;
 import java.sql.SQLException;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -21,6 +22,11 @@ public class ViewAdmin extends javax.swing.JFrame {
     public ViewAdmin() {
         initComponents();
         read();
+        img();
+    }
+    public void img(){
+        ImageIcon imagemTituloJanela = new ImageIcon("C:\\ControleRB\\img\\logoRB.png");
+        setIconImage(imagemTituloJanela.getImage());
     }
     
     private void read(){

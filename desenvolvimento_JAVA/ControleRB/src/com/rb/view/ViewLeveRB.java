@@ -13,13 +13,13 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.rb.dao.VeiculoLeveDAO;
 import com.rb.domain.VeiculosLeveRB;
-import static java.awt.Component.TOP_ALIGNMENT;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -31,8 +31,12 @@ public class ViewLeveRB extends javax.swing.JFrame {
 
     public ViewLeveRB() {
         initComponents();
-        
+        img();        
         read();
+    }
+    public void img(){
+        ImageIcon imagemTituloJanela = new ImageIcon("C:\\ControleRB\\img\\logoRB.png");
+        setIconImage(imagemTituloJanela.getImage());
     }
     
     private void read(){
