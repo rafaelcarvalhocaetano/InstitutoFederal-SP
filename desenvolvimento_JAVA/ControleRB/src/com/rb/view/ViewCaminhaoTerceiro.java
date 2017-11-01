@@ -14,7 +14,6 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.rb.dao.CaminhaoTerDAO;
 import com.rb.domain.CaminhaoT;
-import com.sun.org.apache.xml.internal.serializer.ElemDesc;
 import java.awt.Color;
 import java.awt.Desktop;
 import java.io.File;
@@ -297,16 +296,16 @@ public class ViewCaminhaoTerceiro extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(368, 368, 368)
+                .addGap(330, 330, 330)
                 .addComponent(jLabel2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(24, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
                 .addComponent(jLabel2)
-                .addGap(22, 22, 22))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -423,7 +422,7 @@ public class ViewCaminhaoTerceiro extends javax.swing.JFrame {
                                     .addComponent(carreta)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(2, 2, 2)
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)))
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(nome)
@@ -479,7 +478,7 @@ public class ViewCaminhaoTerceiro extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(id))
-                .addGap(41, 41, 41)
+                .addGap(53, 53, 53)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel9)
@@ -735,128 +734,48 @@ public class ViewCaminhaoTerceiro extends javax.swing.JFrame {
      
         String url = "C:\\Controle de Acesso\\"+nome+".pdf";
        
-        try {
+         try {
             
             PdfWriter.getInstance(doc, new FileOutputStream(url));
             doc.open();
             
             PdfPTable tbl = new PdfPTable(10);
+            float[] tams = {0.08f,0.09f,0.3f,0.09f,0.09f,0.10f,0.08f,0.10f,0.3f,0.15f};
+            tbl.setWidths(tams);
             tbl.setHorizontalAlignment(Element.ALIGN_CENTER);
             tbl.setWidthPercentage(100.0f);
             
             Font fc = FontFactory.getFont(FontFactory.TIMES_ROMAN, 7);
             Font fc1 = FontFactory.getFont(FontFactory.TIMES_ROMAN, 9, Element.ALIGN_CENTER);
             
-            PdfPCell cel = new PdfPCell(new Paragraph("CAMINHÃO DE TERCEIROS",fc1));
+            PdfPCell cel = new PdfPCell(new Paragraph("CONTROLE DE ACESSO DE VEÍCULOS DE TERCEIRO",fc1));
             
             cel.setBackgroundColor(new BaseColor(100, 100, 100));
             cel.setHorizontalAlignment(Element.ALIGN_CENTER);
             cel.setColspan(10);
             
-          
-            PdfPCell cel1 = new PdfPCell(new Paragraph("CAVALO", fc1));
-            PdfPCell cel2 = new PdfPCell(new Paragraph("CARRETA", fc1));
-            PdfPCell cel3 = new PdfPCell(new Paragraph("NOME", fc1));
-            PdfPCell cel4 = new PdfPCell(new Paragraph("DATA", fc1));
-            PdfPCell cel5 = new PdfPCell(new Paragraph("ENTRADA", fc1));
+            PdfPCell cel1 = new PdfPCell(new Paragraph("Cavalo", fc1));
+            PdfPCell cel2 = new PdfPCell(new Paragraph("Carreta", fc1));
+            PdfPCell cel3 = new PdfPCell(new Paragraph("Nome", fc1));
+            PdfPCell cel4 = new PdfPCell(new Paragraph("Data", fc1));
+            PdfPCell cel5 = new PdfPCell(new Paragraph("Entrada", fc1));
             PdfPCell cel6 = new PdfPCell(new Paragraph("C / V", fc1));
-            PdfPCell cel7 = new PdfPCell(new Paragraph("SAÍDA", fc1));
+            PdfPCell cel7 = new PdfPCell(new Paragraph("Saída", fc1));
             PdfPCell cel8 = new PdfPCell(new Paragraph("C / V", fc1));
-            PdfPCell cel9 = new PdfPCell(new Paragraph("EMPRESA", fc1));
+            PdfPCell cel9 = new PdfPCell(new Paragraph("Empresa", fc1));
             PdfPCell cel10 = new PdfPCell(new Paragraph("RG", fc1));
             
-            tbl.addCell(cel);
-            tbl.addCell(cel1);
-            tbl.addCell(cel2);
-            tbl.addCell(cel3);
-            tbl.addCell(cel4);
-            tbl.addCell(cel5);
-            tbl.addCell(cel6);
-            tbl.addCell(cel7);
-            tbl.addCell(cel8);
-            tbl.addCell(cel9);
-            tbl.addCell(cel10);
-            
-            for(CaminhaoT c : dao.listarUS(t)){
-                
-                cel1 = new PdfPCell(new Paragraph(c.getCavalo(), fc));
-                cel2 = new PdfPCell(new Paragraph(c.getCarreta(), fc));
-                cel3 = new PdfPCell(new Paragraph(c.getNome(), fc));
-                cel4 = new PdfPCell(new Paragraph(c.getData(), fc));
-                cel5 = new PdfPCell(new Paragraph(c.getEntrada(), fc));
-                cel6 = new PdfPCell(new Paragraph(c.getComoentrada(), fc));
-                cel7 = new PdfPCell(new Paragraph(c.getSaida(), fc));
-                cel8 = new PdfPCell(new Paragraph(c.getComosaida(), fc));
-                cel9 = new PdfPCell(new Paragraph(c.getEmpresa(), fc));
-                cel10 = new PdfPCell(new Paragraph(c.getRg(), fc));
-
-                tbl.addCell(cel1);
-                tbl.addCell(cel2);
-                tbl.addCell(cel3);
-                tbl.addCell(cel4);
-                tbl.addCell(cel5);
-                tbl.addCell(cel6);
-                tbl.addCell(cel7);
-                tbl.addCell(cel8);
-                tbl.addCell(cel9);
-                tbl.addCell(cel10);
-                
-            }
-            doc.add(tbl);
-            doc.close();
-            
-            Desktop.getDesktop().open(new File(url));
-            
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, "Verificar Preenchimento", "ERROS", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_ListaDataPDFMouseClicked
-
-    private void geralPDFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_geralPDFMouseClicked
-        
-        String nome = null;
-        nome = JOptionPane.showInputDialog(null, "Nome do Arquivo", "Pergunta", JOptionPane.PLAIN_MESSAGE);
-        new File("C:\\Controle de Acesso").mkdir();
-        
-        Document doc = new Document(PageSize.A4, 10, 10, 10,10);
-        CaminhaoTerDAO dao = new CaminhaoTerDAO();
-     
-        String url = "C:\\Controle de Acesso\\"+nome+".pdf";
-       
-        try {
-            
-            PdfWriter.getInstance(doc, new FileOutputStream(url));
-            doc.open();
-            
-            PdfPTable tbl = new PdfPTable(10);
-            tbl.setHorizontalAlignment(Element.ALIGN_CENTER);
-            tbl.setWidthPercentage(100.0f);
-            
-            Font fc = FontFactory.getFont(FontFactory.TIMES_ROMAN, 7);
-            Font fc1 = FontFactory.getFont(FontFactory.TIMES_ROMAN, 9, Element.ALIGN_CENTER);
-            
-            PdfPCell cel = new PdfPCell(new Paragraph("CAMINHÃO DE TERCEIROS",fc1));
-            
-            cel.setBackgroundColor(new BaseColor(100, 100, 100));
-            cel.setHorizontalAlignment(Element.ALIGN_CENTER);
-            cel.setColspan(10);
-            
-          
-            PdfPCell cel1 = new PdfPCell(new Paragraph("CAVALO", fc1));
-            PdfPCell cel2 = new PdfPCell(new Paragraph("CARRETA", fc1));
-            PdfPCell cel3 = new PdfPCell(new Paragraph("NOME", fc1));
-            PdfPCell cel4 = new PdfPCell(new Paragraph("DATA", fc1));
-            PdfPCell cel5 = new PdfPCell(new Paragraph("ENTRADA", fc1));
-            PdfPCell cel6 = new PdfPCell(new Paragraph("C / V", fc1));
-            PdfPCell cel7 = new PdfPCell(new Paragraph("SAÍDA", fc1));
-            PdfPCell cel8 = new PdfPCell(new Paragraph("C / V", fc1));
-            PdfPCell cel9 = new PdfPCell(new Paragraph("EMPRESA", fc1));
-            PdfPCell cel10 = new PdfPCell(new Paragraph("RG", fc1));
-            
-            cel7.setColspan(1);
-            cel4.getHorizontalAlignment();
-            cel5.getHorizontalAlignment();
-            
+             //Alinhamento do texto da table no centro de cada coluna            
+            cel1.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel2.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel3.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel4.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel5.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel6.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel7.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel8.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel9.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel10.setHorizontalAlignment(Element.ALIGN_CENTER);
             
             tbl.addCell(cel);
             tbl.addCell(cel1);
@@ -882,6 +801,18 @@ public class ViewCaminhaoTerceiro extends javax.swing.JFrame {
                 cel8 = new PdfPCell(new Paragraph(c.getComosaida(), fc));
                 cel9 = new PdfPCell(new Paragraph(c.getEmpresa(), fc));
                 cel10 = new PdfPCell(new Paragraph(c.getRg(), fc));
+                
+                //Alinhamento do texto da table no centro de cada coluna            
+                cel1.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel2.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel3.setHorizontalAlignment(Element.ALIGN_JUSTIFIED);
+                cel4.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel5.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel6.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel7.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel8.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel9.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel10.setHorizontalAlignment(Element.ALIGN_CENTER);
 
                 tbl.addCell(cel1);
                 tbl.addCell(cel2);
@@ -895,6 +826,151 @@ public class ViewCaminhaoTerceiro extends javax.swing.JFrame {
                 tbl.addCell(cel10);
                 
             }
+             Image imagem = Image.getInstance(String.format("C:\\ControleRB\\src\\com\\rb\\img\\Rodoborges.png"));
+            imagem.scalePercent(20, 20);
+            imagem.setAlignment(Image.ALIGN_LEFT);
+            
+            Image imagem1 = Image.getInstance(String.format("C:\\ControleRB\\src\\com\\rb\\img\\3.png"));
+            imagem1.scalePercent(20, 20);
+            imagem1.setAlignment(Image.ALIGN_RIGHT);
+            
+            imagem1.setAbsolutePosition(550f, 800f);
+            
+            doc.add(imagem);
+            doc.add(imagem1);
+            doc.add(new Paragraph(""));
+            doc.add(tbl);
+            doc.close();
+            
+            Desktop.getDesktop().open(new File(url));
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Verificar Preenchimento", "ERROS", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_ListaDataPDFMouseClicked
+
+    private void geralPDFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_geralPDFMouseClicked
+        
+        String nome = null;
+        nome = JOptionPane.showInputDialog(null, "Nome do Arquivo", "Pergunta", JOptionPane.PLAIN_MESSAGE);
+        
+        if(nome.isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Campo Obrigatórios", "OBRIGATÓRIO", JOptionPane.INFORMATION_MESSAGE);
+            nome = JOptionPane.showInputDialog(null, "Nome do Arquivo", "Pergunta", JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
+        new File("C:\\Controle de Acesso").mkdir();
+        String url = "C:\\Controle de Acesso\\"+nome+".pdf";
+        
+        Document doc = new Document(PageSize.A4, 10, 10, 10,10);
+        
+        CaminhaoTerDAO dao = new CaminhaoTerDAO();
+     
+        try {
+            
+            PdfWriter.getInstance(doc, new FileOutputStream(url));
+            doc.open();
+            
+            PdfPTable tbl = new PdfPTable(10);
+            float[] tams = {0.08f,0.09f,0.3f,0.09f,0.09f,0.10f,0.08f,0.10f,0.3f,0.15f};
+            tbl.setWidths(tams);
+            tbl.setHorizontalAlignment(Element.ALIGN_CENTER);
+            tbl.setWidthPercentage(100.0f);
+            
+            Font fc = FontFactory.getFont(FontFactory.TIMES_ROMAN, 7);
+            Font fc1 = FontFactory.getFont(FontFactory.TIMES_ROMAN, 9, Element.ALIGN_CENTER);
+            
+            PdfPCell cel = new PdfPCell(new Paragraph("CONTROLE DE ACESSO DE VEÍCULOS DE TERCEIRO",fc1));
+            
+            cel.setBackgroundColor(new BaseColor(100, 100, 100));
+            cel.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel.setColspan(10);
+            
+            PdfPCell cel1 = new PdfPCell(new Paragraph("Cavalo", fc1));
+            PdfPCell cel2 = new PdfPCell(new Paragraph("Carreta", fc1));
+            PdfPCell cel3 = new PdfPCell(new Paragraph("Nome", fc1));
+            PdfPCell cel4 = new PdfPCell(new Paragraph("Data", fc1));
+            PdfPCell cel5 = new PdfPCell(new Paragraph("Entrada", fc1));
+            PdfPCell cel6 = new PdfPCell(new Paragraph("C / V", fc1));
+            PdfPCell cel7 = new PdfPCell(new Paragraph("Saída", fc1));
+            PdfPCell cel8 = new PdfPCell(new Paragraph("C / V", fc1));
+            PdfPCell cel9 = new PdfPCell(new Paragraph("Empresa", fc1));
+            PdfPCell cel10 = new PdfPCell(new Paragraph("RG", fc1));
+            
+             //Alinhamento do texto da table no centro de cada coluna            
+            cel1.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel2.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel3.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel4.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel5.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel6.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel7.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel8.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel9.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel10.setHorizontalAlignment(Element.ALIGN_CENTER);
+            
+            tbl.addCell(cel);
+            tbl.addCell(cel1);
+            tbl.addCell(cel2);
+            tbl.addCell(cel3);
+            tbl.addCell(cel4);
+            tbl.addCell(cel5);
+            tbl.addCell(cel6);
+            tbl.addCell(cel7);
+            tbl.addCell(cel8);
+            tbl.addCell(cel9);
+            tbl.addCell(cel10);
+            
+            for(CaminhaoT c : dao.listar()){
+                
+                cel1 = new PdfPCell(new Paragraph(c.getCavalo(), fc));
+                cel2 = new PdfPCell(new Paragraph(c.getCarreta(), fc));
+                cel3 = new PdfPCell(new Paragraph(c.getNome(), fc));
+                cel4 = new PdfPCell(new Paragraph(c.getData(), fc));
+                cel5 = new PdfPCell(new Paragraph(c.getEntrada(), fc));
+                cel6 = new PdfPCell(new Paragraph(c.getComoentrada(), fc));
+                cel7 = new PdfPCell(new Paragraph(c.getSaida(), fc));
+                cel8 = new PdfPCell(new Paragraph(c.getComosaida(), fc));
+                cel9 = new PdfPCell(new Paragraph(c.getEmpresa(), fc));
+                cel10 = new PdfPCell(new Paragraph(c.getRg(), fc));
+                
+                //Alinhamento do texto da table no centro de cada coluna            
+                cel1.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel2.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel3.setHorizontalAlignment(Element.ALIGN_JUSTIFIED);
+                cel4.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel5.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel6.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel7.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel8.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel9.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel10.setHorizontalAlignment(Element.ALIGN_CENTER);
+
+                tbl.addCell(cel1);
+                tbl.addCell(cel2);
+                tbl.addCell(cel3);
+                tbl.addCell(cel4);
+                tbl.addCell(cel5);
+                tbl.addCell(cel6);
+                tbl.addCell(cel7);
+                tbl.addCell(cel8);
+                tbl.addCell(cel9);
+                tbl.addCell(cel10);
+                
+            }
+             Image imagem = Image.getInstance(String.format("C:\\ControleRB\\src\\com\\rb\\img\\Rodoborges.png"));
+            imagem.scalePercent(20, 20);
+            imagem.setAlignment(Image.ALIGN_LEFT);
+            
+            Image imagem1 = Image.getInstance(String.format("C:\\ControleRB\\src\\com\\rb\\img\\3.png"));
+            imagem1.scalePercent(20, 20);
+            imagem1.setAlignment(Image.ALIGN_RIGHT);
+            
+            imagem1.setAbsolutePosition(550f, 800f);
+            
+            doc.add(imagem);
+            doc.add(imagem1);
+            doc.add(new Paragraph(""));
             doc.add(tbl);
             doc.close();
             

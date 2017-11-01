@@ -44,8 +44,6 @@ public class CaminhaoTerDAO {
             JOptionPane.showMessageDialog(null, "Erro no SALVAR", "ERRO no BANCO DE DADOS", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
-               
-
     }    
     public void delete(CaminhaoT c){
         
@@ -62,8 +60,6 @@ public class CaminhaoTerDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-            
-        
     }
     public void update(CaminhaoT c){
         StringBuilder sql = new StringBuilder();
@@ -152,7 +148,5 @@ public class CaminhaoTerDAO {
             itens.add(r);
         }
         return itens;
-        
     }
-    
 }

@@ -1,7 +1,11 @@
 package com.rb.view;
 
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -100,6 +104,8 @@ public class ViewMain extends javax.swing.JFrame {
         dataPDF = new javax.swing.JFormattedTextField();
         jPanel4 = new javax.swing.JPanel();
         btnPDFGeral = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        btnAdmin = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -168,7 +174,7 @@ public class ViewMain extends javax.swing.JFrame {
         nome.setSelectionColor(new java.awt.Color(0, 0, 0));
 
         combo2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        combo2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CARREGADO", "VAZIO" }));
+        combo2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Carregado", "Vazio" }));
 
         destino.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         destino.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -333,7 +339,7 @@ public class ViewMain extends javax.swing.JFrame {
         });
 
         combo1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        combo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CARREGADO", "VAZIO" }));
+        combo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Carregado", "Vazio" }));
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -433,24 +439,30 @@ public class ViewMain extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        btnAdmin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/rb/img/eng.png"))); // NOI18N
+        btnAdmin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAdminMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(btnAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnMini)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnFechar))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cavalo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -465,26 +477,27 @@ public class ViewMain extends javax.swing.JFrame {
                             .addComponent(carreta))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(hsaida, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(combo1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(hentrada, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(combo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(hsaida, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(combo1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(hentrada, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(combo2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(destino)
@@ -492,39 +505,49 @@ public class ViewMain extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(lacre)
-                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnChaves, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnFuncionarios)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnFiorino, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnCaminhaoTerceiros, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnVisitante, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnMini)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnFechar))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnChaves, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnFuncionarios)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnFiorino, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCaminhaoTerceiros, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnVisitante, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnFechar)
-                    .addComponent(btnMini))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnFechar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnMini, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel6))
+                    .addComponent(btnAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -532,7 +555,7 @@ public class ViewMain extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(id)
                     .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
+                .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
@@ -551,20 +574,16 @@ public class ViewMain extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(destino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(combo2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel5)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(hsaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(combo1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel7)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(hentrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel5)
+                        .addComponent(jLabel7)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel4)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(hsaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(combo1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(hentrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(26, 26, 26)))
@@ -810,47 +829,63 @@ public class ViewMain extends javax.swing.JFrame {
         
         String nome = null;
         nome = JOptionPane.showInputDialog(null, "Nome do Arquivo", "Pergunta", JOptionPane.PLAIN_MESSAGE);
+        
         if(nome.isEmpty()){
             JOptionPane.showMessageDialog(rootPane, "Campo Obrigatórios", "OBRIGATÓRIO", JOptionPane.INFORMATION_MESSAGE);
             nome = JOptionPane.showInputDialog(null, "Nome do Arquivo", "Pergunta", JOptionPane.PLAIN_MESSAGE);
             return;
-           
         }
         new File("C:\\Controle de Acesso").mkdir();
         String url = "C:\\Controle de Acesso\\"+nome+".pdf";
         
-        CaminhaoRBDAO dao = new CaminhaoRBDAO();
-        CaminhaoRB r = new CaminhaoRB();
-        
         Document doc = new Document(PageSize.A4, 10, 10, 10,10);
+        CaminhaoRBDAO dao = new CaminhaoRBDAO();
         
         try {
             
             PdfWriter.getInstance(doc, new FileOutputStream(url));
             doc.open();
             
-            Paragraph p = new Paragraph("RELATÓRIOS PDF");
-            p.setExtraParagraphSpace(TOP_ALIGNMENT);
-            doc.add(p);
-            
-            p = new Paragraph("");
-            doc.add(p);
-            
             PdfPTable tbl = new PdfPTable(10);
+            float[] tams = {0.08f,0.09f,0.3f,0.09f,0.07f,0.12f,0.09f,0.12f,0.3f,0.15f};
+            tbl.setWidths(tams);
             tbl.setHorizontalAlignment(Element.ALIGN_CENTER);
             tbl.setWidthPercentage(100.0f);
             
-            PdfPCell cel1 = new PdfPCell(new Paragraph("Cavalo"));
-            PdfPCell cel2 = new PdfPCell(new Paragraph("Carreta"));
-            PdfPCell cel3 = new PdfPCell(new Paragraph("Nome"));
-            PdfPCell cel4 = new PdfPCell(new Paragraph("Data"));
-            PdfPCell cel5 = new PdfPCell(new Paragraph("Saída"));
-            PdfPCell cel6 = new PdfPCell(new Paragraph("C / V"));
-            PdfPCell cel7 = new PdfPCell(new Paragraph("Entrada"));
-            PdfPCell cel8 = new PdfPCell(new Paragraph("C / V"));
-            PdfPCell cel9 = new PdfPCell(new Paragraph("Destino"));
-            PdfPCell cel10 = new PdfPCell(new Paragraph("Lacre"));
-                        
+            Font fc = FontFactory.getFont(FontFactory.TIMES_ROMAN, 7);
+            Font fc1 = FontFactory.getFont(FontFactory.TIMES_ROMAN, 9, Element.ALIGN_CENTER);
+            
+            PdfPCell cel = new PdfPCell(new Paragraph("CONTROLE DE ACESSO DE VEÍCULOS DA RB", fc1));
+            
+            cel.setBackgroundColor(new BaseColor(100, 100, 100));
+            cel.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel.setColspan(10);
+            
+            PdfPCell cel1 = new PdfPCell(new Paragraph("Cavalo", fc1));
+            PdfPCell cel2 = new PdfPCell(new Paragraph("Carreta", fc1));
+            PdfPCell cel3 = new PdfPCell(new Paragraph("Nome", fc1));
+            PdfPCell cel4 = new PdfPCell(new Paragraph("Data", fc1));
+            PdfPCell cel5 = new PdfPCell(new Paragraph("Saída", fc1));
+            PdfPCell cel6 = new PdfPCell(new Paragraph("C / V", fc1));
+            PdfPCell cel7 = new PdfPCell(new Paragraph("Entrada", fc1));
+            PdfPCell cel8 = new PdfPCell(new Paragraph("C / V", fc1));
+            PdfPCell cel9 = new PdfPCell(new Paragraph("Destino", fc1));
+            PdfPCell cel10 = new PdfPCell(new Paragraph("Lacre", fc1));
+            
+            //Alinhamento do texto da table no centro de cada coluna            
+            cel1.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel2.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel3.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel4.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel5.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel6.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel7.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel8.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel9.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel10.setHorizontalAlignment(Element.ALIGN_CENTER);
+               
+            tbl.addCell(cel);
+            tbl.addCell(cel1);
             tbl.addCell(cel2);
             tbl.addCell(cel3);
             tbl.addCell(cel4);
@@ -864,16 +899,28 @@ public class ViewMain extends javax.swing.JFrame {
             
             for(CaminhaoRB c : dao.listar()){
                 
-                cel1 = new PdfPCell(new Paragraph(c.getCavalo()));
-                cel2 = new PdfPCell(new Paragraph(c.getCarreta()));
-                cel3 = new PdfPCell(new Paragraph(c.getNome()));
-                cel4 = new PdfPCell(new Paragraph(c.getData()));
-                cel5 = new PdfPCell(new Paragraph(c.getSaida()));
-                cel6 = new PdfPCell(new Paragraph(c.getComosaida()));
-                cel7 = new PdfPCell(new Paragraph(c.getEntrada()));
-                cel8 = new PdfPCell(new Paragraph(c.getComoentrada()));
-                cel9 = new PdfPCell(new Paragraph(c.getDestino()));
-                cel10 = new PdfPCell(new Paragraph(c.getLacre()));
+                cel1 = new PdfPCell(new Paragraph(c.getCavalo(), fc ));
+                cel2 = new PdfPCell(new Paragraph(c.getCarreta(), fc ));
+                cel3 = new PdfPCell(new Paragraph(c.getNome(), fc ));
+                cel4 = new PdfPCell(new Paragraph(c.getData(), fc ));
+                cel5 = new PdfPCell(new Paragraph(c.getSaida(), fc ));
+                cel6 = new PdfPCell(new Paragraph(c.getComosaida(), fc ));
+                cel7 = new PdfPCell(new Paragraph(c.getEntrada(), fc ));
+                cel8 = new PdfPCell(new Paragraph(c.getComoentrada(), fc ));
+                cel9 = new PdfPCell(new Paragraph(c.getDestino(), fc ));
+                cel10 = new PdfPCell(new Paragraph(c.getLacre(), fc ));
+                
+                //Alinhamento do texto da table no centro de cada coluna            
+                cel1.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel2.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel3.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel4.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel5.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel6.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel7.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel8.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel9.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel10.setHorizontalAlignment(Element.ALIGN_CENTER);
 
                 tbl.addCell(cel1);
                 tbl.addCell(cel2);
@@ -885,9 +932,20 @@ public class ViewMain extends javax.swing.JFrame {
                 tbl.addCell(cel8);
                 tbl.addCell(cel9);
                 tbl.addCell(cel10);
-
-                
             }
+             Image imagem = Image.getInstance(String.format("C:\\ControleRB\\src\\com\\rb\\img\\Rodoborges.png"));
+            imagem.scalePercent(20, 20);
+            imagem.setAlignment(Image.ALIGN_LEFT);
+            
+            Image imagem1 = Image.getInstance(String.format("C:\\ControleRB\\src\\com\\rb\\img\\3.png"));
+            imagem1.scalePercent(20, 20);
+            imagem1.setAlignment(Image.ALIGN_RIGHT);
+            
+            imagem1.setAbsolutePosition(550f, 800f);
+            
+            doc.add(imagem);
+            doc.add(imagem1);
+            doc.add(new Paragraph(""));
             doc.add(tbl);
             doc.close();
             
@@ -895,54 +953,73 @@ public class ViewMain extends javax.swing.JFrame {
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, "Verificar Preenchimento", "ERROS", JOptionPane.ERROR_MESSAGE);
+            return;
         }
     }//GEN-LAST:event_btnPDFGeralMouseClicked
 
     private void btnPDFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPDFMouseClicked
-        String nome = null;
+        
+       String nome = null;
         nome = JOptionPane.showInputDialog(null, "Nome do Arquivo", "Pergunta", JOptionPane.PLAIN_MESSAGE);
+        
         if(nome.isEmpty()){
             JOptionPane.showMessageDialog(rootPane, "Campo Obrigatórios", "OBRIGATÓRIO", JOptionPane.INFORMATION_MESSAGE);
             nome = JOptionPane.showInputDialog(null, "Nome do Arquivo", "Pergunta", JOptionPane.PLAIN_MESSAGE);
             return;
-           
         }
         new File("C:\\Controle de Acesso").mkdir();
         String url = "C:\\Controle de Acesso\\"+nome+".pdf";
         
+        Document doc = new Document(PageSize.A4, 10, 10, 10,10);
         CaminhaoRBDAO dao = new CaminhaoRBDAO();
         CaminhaoRB r = new CaminhaoRB();
         r.setData(dataPDF.getText());
-        
-        Document doc = new Document(PageSize.A4, 10, 10, 10,10);
-        
+     
         try {
             
             PdfWriter.getInstance(doc, new FileOutputStream(url));
             doc.open();
             
-            Paragraph p = new Paragraph("RELATÓRIOS PDF");
-            p.setExtraParagraphSpace(TOP_ALIGNMENT);
-            doc.add(p);
-            
-            p = new Paragraph("");
-            doc.add(p);
-            
             PdfPTable tbl = new PdfPTable(10);
+            float[] tams = {0.08f,0.09f,0.3f,0.09f,0.07f,0.12f,0.09f,0.12f,0.3f,0.15f};
+            tbl.setWidths(tams);
             tbl.setHorizontalAlignment(Element.ALIGN_CENTER);
             tbl.setWidthPercentage(100.0f);
             
-            PdfPCell cel1 = new PdfPCell(new Paragraph("Cavalo"));
-            PdfPCell cel2 = new PdfPCell(new Paragraph("Carreta"));
-            PdfPCell cel3 = new PdfPCell(new Paragraph("Nome"));
-            PdfPCell cel4 = new PdfPCell(new Paragraph("Data"));
-            PdfPCell cel5 = new PdfPCell(new Paragraph("Saída"));
-            PdfPCell cel6 = new PdfPCell(new Paragraph("C / V"));
-            PdfPCell cel7 = new PdfPCell(new Paragraph("Entrada"));
-            PdfPCell cel8 = new PdfPCell(new Paragraph("C / V"));
-            PdfPCell cel9 = new PdfPCell(new Paragraph("Destino"));
-            PdfPCell cel10 = new PdfPCell(new Paragraph("Lacre"));
-                        
+            Font fc = FontFactory.getFont(FontFactory.TIMES_ROMAN, 7);
+            Font fc1 = FontFactory.getFont(FontFactory.TIMES_ROMAN, 9, Element.ALIGN_CENTER);
+            
+            PdfPCell cel = new PdfPCell(new Paragraph("CONTROLE DE ACESSO DE VEÍCULOS DA RB",fc1));
+            
+            cel.setBackgroundColor(new BaseColor(100, 100, 100));
+            cel.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel.setColspan(10);
+            
+            PdfPCell cel1 = new PdfPCell(new Paragraph("Cavalo", fc1));
+            PdfPCell cel2 = new PdfPCell(new Paragraph("Carreta", fc1));
+            PdfPCell cel3 = new PdfPCell(new Paragraph("Nome", fc1));
+            PdfPCell cel4 = new PdfPCell(new Paragraph("Data", fc1));
+            PdfPCell cel5 = new PdfPCell(new Paragraph("Saída", fc1));
+            PdfPCell cel6 = new PdfPCell(new Paragraph("C / V", fc1));
+            PdfPCell cel7 = new PdfPCell(new Paragraph("Entrada", fc1));
+            PdfPCell cel8 = new PdfPCell(new Paragraph("C / V", fc1));
+            PdfPCell cel9 = new PdfPCell(new Paragraph("Destino", fc1));
+            PdfPCell cel10 = new PdfPCell(new Paragraph("Lacre", fc1));
+            
+            //Alinhamento do texto da table no centro de cada coluna            
+            cel1.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel2.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel3.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel4.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel5.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel6.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel7.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel8.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel9.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel10.setHorizontalAlignment(Element.ALIGN_CENTER);
+               
+            tbl.addCell(cel);
+            tbl.addCell(cel1);
             tbl.addCell(cel2);
             tbl.addCell(cel3);
             tbl.addCell(cel4);
@@ -956,16 +1033,28 @@ public class ViewMain extends javax.swing.JFrame {
             
             for(CaminhaoRB c : dao.listarData(r)){
                 
-                cel1 = new PdfPCell(new Paragraph(c.getCavalo()));
-                cel2 = new PdfPCell(new Paragraph(c.getCarreta()));
-                cel3 = new PdfPCell(new Paragraph(c.getNome()));
-                cel4 = new PdfPCell(new Paragraph(c.getData()));
-                cel5 = new PdfPCell(new Paragraph(c.getSaida()));
-                cel6 = new PdfPCell(new Paragraph(c.getComosaida()));
-                cel7 = new PdfPCell(new Paragraph(c.getEntrada()));
-                cel8 = new PdfPCell(new Paragraph(c.getComoentrada()));
-                cel9 = new PdfPCell(new Paragraph(c.getDestino()));
-                cel10 = new PdfPCell(new Paragraph(c.getLacre()));
+                cel1 = new PdfPCell(new Paragraph(c.getCavalo(), fc ));
+                cel2 = new PdfPCell(new Paragraph(c.getCarreta(), fc ));
+                cel3 = new PdfPCell(new Paragraph(c.getNome(), fc ));
+                cel4 = new PdfPCell(new Paragraph(c.getData(), fc ));
+                cel5 = new PdfPCell(new Paragraph(c.getSaida(), fc ));
+                cel6 = new PdfPCell(new Paragraph(c.getComosaida(), fc ));
+                cel7 = new PdfPCell(new Paragraph(c.getEntrada(), fc ));
+                cel8 = new PdfPCell(new Paragraph(c.getComoentrada(), fc ));
+                cel9 = new PdfPCell(new Paragraph(c.getDestino(), fc ));
+                cel10 = new PdfPCell(new Paragraph(c.getLacre(), fc ));
+                
+                //Alinhamento do texto da table no centro de cada coluna            
+                cel1.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel2.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel3.setHorizontalAlignment(Element.ALIGN_JUSTIFIED);
+                cel4.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel5.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel6.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel7.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel8.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel9.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel10.setHorizontalAlignment(Element.ALIGN_CENTER);
 
                 tbl.addCell(cel1);
                 tbl.addCell(cel2);
@@ -977,9 +1066,20 @@ public class ViewMain extends javax.swing.JFrame {
                 tbl.addCell(cel8);
                 tbl.addCell(cel9);
                 tbl.addCell(cel10);
-
-                
             }
+             Image imagem = Image.getInstance(String.format("C:\\ControleRB\\src\\com\\rb\\img\\Rodoborges.png"));
+            imagem.scalePercent(20, 20);
+            imagem.setAlignment(Image.ALIGN_LEFT);
+            
+            Image imagem1 = Image.getInstance(String.format("C:\\ControleRB\\src\\com\\rb\\img\\3.png"));
+            imagem1.scalePercent(20, 20);
+            imagem1.setAlignment(Image.ALIGN_RIGHT);
+            
+            imagem1.setAbsolutePosition(550f, 800f);
+            
+            doc.add(imagem);
+            doc.add(imagem1);
+            doc.add(new Paragraph(""));
             doc.add(tbl);
             doc.close();
             
@@ -987,8 +1087,16 @@ public class ViewMain extends javax.swing.JFrame {
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, "Verificar Preenchimento", "ERROS", JOptionPane.ERROR_MESSAGE);
+            return;
         }
     }//GEN-LAST:event_btnPDFMouseClicked
+
+    private void btnAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdminMouseClicked
+       
+       LoginAdmin l = new LoginAdmin();
+       l.setVisible(true);
+        
+    }//GEN-LAST:event_btnAdminMouseClicked
 
    
     public static void main(String args[]) {
@@ -1001,6 +1109,7 @@ public class ViewMain extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel btnAdmin;
     private javax.swing.JButton btnCaminhaoTerceiros;
     private javax.swing.JButton btnChaves;
     private javax.swing.JButton btnDelete;
@@ -1030,6 +1139,7 @@ public class ViewMain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;

@@ -249,7 +249,7 @@ public class ViewLogin extends javax.swing.JFrame {
             return;
         }
         for (Login l : dao.listarL(usuario.getText(), password.getText())) {
-
+            
             if (l.getUser().equals(usuario.getText()) && l.getPass().equals(password.getText())) {
 
                 dispose();

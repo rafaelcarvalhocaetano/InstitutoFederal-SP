@@ -5,6 +5,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -278,7 +279,7 @@ public class ViewLeveRB extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         data.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        data.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        data.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         data.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 dataMouseClicked(evt);
@@ -410,18 +411,20 @@ public class ViewLeveRB extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(nome)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(destino)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(2, 2, 2)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(saida, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(kmsaida)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(2, 2, 2)
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(destino, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(saida, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+                                    .addComponent(kmsaida))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -437,7 +440,7 @@ public class ViewLeveRB extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(obs)
-                                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)))
+                                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(id)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -467,7 +470,7 @@ public class ViewLeveRB extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -483,10 +486,7 @@ public class ViewLeveRB extends javax.swing.JFrame {
                                         .addComponent(jLabel11)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(kmentrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(saida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel5)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel9)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -495,17 +495,17 @@ public class ViewLeveRB extends javax.swing.JFrame {
                                         .addComponent(jLabel12)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(obs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(destino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                                    .addComponent(jLabel6))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(46, 46, 46))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(destino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(saida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(26, 26, 26)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -702,16 +702,22 @@ public class ViewLeveRB extends javax.swing.JFrame {
     }//GEN-LAST:event_tblLeveKeyReleased
 
     private void pdfGeralMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pdfGeralMouseClicked
+        
         String nome = null;
         nome = JOptionPane.showInputDialog(null, "Nome do Arquivo", "Pergunta", JOptionPane.PLAIN_MESSAGE);
         
+        if(nome.isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Campo Obrigatórios", "OBRIGATÓRIO", JOptionPane.INFORMATION_MESSAGE);
+            nome = JOptionPane.showInputDialog(null, "Nome do Arquivo", "Pergunta", JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
         new File("C:\\Controle de Acesso").mkdir();
         String url = "C:\\Controle de Acesso\\"+nome+".pdf";
         
+        Document doc = new Document(PageSize.A4, 10, 10, 10,10);
+        
         VeiculoLeveDAO dao = new VeiculoLeveDAO();
         VeiculosLeveRB r = new VeiculosLeveRB();
-        
-        Document doc = new Document(PageSize.A4, 10, 10, 30,1);
         
         try {
             
@@ -719,29 +725,44 @@ public class ViewLeveRB extends javax.swing.JFrame {
             doc.open();
             
             PdfPTable tbl = new PdfPTable(9);
+            
+            float[] tams = {0.2f,0.2f,0.09f,0.07f,0.12f,0.09f, 0.13f, 0.25f, 0.2f};
+            tbl.setWidths(tams);
             tbl.setHorizontalAlignment(Element.ALIGN_CENTER);
             tbl.setWidthPercentage(100.0f);
             
             Font fc = FontFactory.getFont(FontFactory.TIMES_ROMAN, 7);
             Font fc1 = FontFactory.getFont(FontFactory.TIMES_ROMAN, 9, Element.ALIGN_CENTER);
             
-            PdfPCell cel = new PdfPCell(new Paragraph("Controle de Acesso Fiorino",fc1));
+            PdfPCell cel = new PdfPCell(new Paragraph("CONTROLE DE VEÍCULOS PARTICULÁRES DA RB",fc1));
             
             cel.setBackgroundColor(new BaseColor(100, 100, 100));
             cel.setHorizontalAlignment(Element.ALIGN_CENTER);
             cel.setColspan(9);
             
-            PdfPCell cel2 = new PdfPCell(new Paragraph("Nome", fc1));
-            PdfPCell cel3 = new PdfPCell(new Paragraph("Destino", fc1));
-            PdfPCell cel4 = new PdfPCell(new Paragraph("Data", fc1));
-            PdfPCell cel5 = new PdfPCell(new Paragraph("Saída", fc1));
-            PdfPCell cel6 = new PdfPCell(new Paragraph("KM Saída", fc1));
-            PdfPCell cel7 = new PdfPCell(new Paragraph("Entrada", fc1));
-            PdfPCell cel8 = new PdfPCell(new Paragraph("KM Entrada", fc1));
-            PdfPCell cel9 = new PdfPCell(new Paragraph("Aut", fc1));
-            PdfPCell cel10 = new PdfPCell(new Paragraph("Obs", fc1));
+            PdfPCell cel1 = new PdfPCell(new Paragraph("Nome", fc1));
+            PdfPCell cel2 = new PdfPCell(new Paragraph("Destino", fc1));
+            PdfPCell cel3 = new PdfPCell(new Paragraph("Data", fc1));
+            PdfPCell cel4 = new PdfPCell(new Paragraph("Saída", fc1));
+            PdfPCell cel5 = new PdfPCell(new Paragraph("KM Saída", fc1));
+            PdfPCell cel6 = new PdfPCell(new Paragraph("Entrada", fc1));
+            PdfPCell cel7 = new PdfPCell(new Paragraph("KM Entrada", fc1));
+            PdfPCell cel8 = new PdfPCell(new Paragraph("Aut", fc1));
+            PdfPCell cel9 = new PdfPCell(new Paragraph("Obs", fc1));
+            
+            //Alinhamento do texto da table no centro de cada coluna            
+            cel1.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel2.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel3.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel4.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel5.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel6.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel7.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel8.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel9.setHorizontalAlignment(Element.ALIGN_CENTER);
             
             tbl.addCell(cel);
+            tbl.addCell(cel1);
             tbl.addCell(cel2);
             tbl.addCell(cel3);
             tbl.addCell(cel4);
@@ -750,21 +771,32 @@ public class ViewLeveRB extends javax.swing.JFrame {
             tbl.addCell(cel7);
             tbl.addCell(cel8);
             tbl.addCell(cel9);
-            tbl.addCell(cel10);
            
             
-            for(VeiculosLeveRB c : dao.listar()){
-                
-               cel2 = new PdfPCell(new Paragraph(c.getNome(), fc));
-                cel3 = new PdfPCell(new Paragraph(c.getDestino(), fc));
-                cel4 = new PdfPCell(new Paragraph(c.getData(), fc));
-                cel5 = new PdfPCell(new Paragraph(c.getSaida(), fc));
-                cel6 = new PdfPCell(new Paragraph(c.getKmsaida(), fc));
-                cel7 = new PdfPCell(new Paragraph(c.getEntrada(), fc));
-                cel8 = new PdfPCell(new Paragraph(c.getKmentrada(), fc));
-                cel9 = new PdfPCell(new Paragraph(c.getAut(), fc));
-                cel10 = new PdfPCell(new Paragraph(c.getObs(), fc));
+            for (VeiculosLeveRB c : dao.listar()) {
 
+                cel1 = new PdfPCell(new Paragraph(c.getNome(), fc));
+                cel2 = new PdfPCell(new Paragraph(c.getDestino(), fc));
+                cel3 = new PdfPCell(new Paragraph(c.getData(), fc));
+                cel4 = new PdfPCell(new Paragraph(c.getSaida(), fc));
+                cel5 = new PdfPCell(new Paragraph(c.getKmsaida(), fc));
+                cel6 = new PdfPCell(new Paragraph(c.getEntrada(), fc));
+                cel7 = new PdfPCell(new Paragraph(c.getKmentrada(), fc));
+                cel8 = new PdfPCell(new Paragraph(c.getAut(), fc));
+                cel9 = new PdfPCell(new Paragraph(c.getObs(), fc));
+
+                //Alinhamento do texto da table no centro de cada coluna            
+                cel1.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel2.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel3.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel4.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel5.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel6.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel7.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel8.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel9.setHorizontalAlignment(Element.ALIGN_CENTER);
+
+                tbl.addCell(cel1);
                 tbl.addCell(cel2);
                 tbl.addCell(cel3);
                 tbl.addCell(cel4);
@@ -773,10 +805,21 @@ public class ViewLeveRB extends javax.swing.JFrame {
                 tbl.addCell(cel7);
                 tbl.addCell(cel8);
                 tbl.addCell(cel9);
-                tbl.addCell(cel10);
 
-                
             }
+             Image imagem = Image.getInstance(String.format("C:\\ControleRB\\src\\com\\rb\\img\\Rodoborges.png"));
+            imagem.scalePercent(20, 20);
+            imagem.setAlignment(Image.ALIGN_LEFT);
+            
+            Image imagem1 = Image.getInstance(String.format("C:\\ControleRB\\src\\com\\rb\\img\\3.png"));
+            imagem1.scalePercent(20, 20);
+            imagem1.setAlignment(Image.ALIGN_RIGHT);
+            
+            imagem1.setAbsolutePosition(550f, 800f);
+            
+            doc.add(imagem);
+            doc.add(imagem1);
+            doc.add(new Paragraph(""));
             doc.add(tbl);
             doc.close();
             
@@ -785,22 +828,25 @@ public class ViewLeveRB extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, "Verificar Preenchimento", "ERROS", JOptionPane.ERROR_MESSAGE);
         }
-        
-        
     }//GEN-LAST:event_pdfGeralMouseClicked
 
     private void listaPDFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaPDFMouseClicked
         String nome = null;
         nome = JOptionPane.showInputDialog(null, "Nome do Arquivo", "Pergunta", JOptionPane.PLAIN_MESSAGE);
         
+        if(nome.isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Campo Obrigatórios", "OBRIGATÓRIO", JOptionPane.INFORMATION_MESSAGE);
+            nome = JOptionPane.showInputDialog(null, "Nome do Arquivo", "Pergunta", JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
         new File("C:\\Controle de Acesso").mkdir();
         String url = "C:\\Controle de Acesso\\"+nome+".pdf";
+        
+        Document doc = new Document(PageSize.A4, 10, 10, 10,10);
         
         VeiculoLeveDAO dao = new VeiculoLeveDAO();
         VeiculosLeveRB r = new VeiculosLeveRB();
         r.setData(dataPDF.getText());
-        
-        Document doc = new Document(PageSize.A4, 10, 10, 30,1);
         
         try {
             
@@ -808,29 +854,44 @@ public class ViewLeveRB extends javax.swing.JFrame {
             doc.open();
             
             PdfPTable tbl = new PdfPTable(9);
+            
+            float[] tams = {0.2f,0.2f,0.09f,0.07f,0.12f,0.09f, 0.13f, 0.25f, 0.2f};
+            tbl.setWidths(tams);
             tbl.setHorizontalAlignment(Element.ALIGN_CENTER);
             tbl.setWidthPercentage(100.0f);
             
             Font fc = FontFactory.getFont(FontFactory.TIMES_ROMAN, 7);
             Font fc1 = FontFactory.getFont(FontFactory.TIMES_ROMAN, 9, Element.ALIGN_CENTER);
             
-            PdfPCell cel = new PdfPCell(new Paragraph("Controle de Acesso Fiorino",fc1));
+            PdfPCell cel = new PdfPCell(new Paragraph("CONTROLE DE VEÍCULOS PARTICULÁRES DA RB",fc1));
             
             cel.setBackgroundColor(new BaseColor(100, 100, 100));
             cel.setHorizontalAlignment(Element.ALIGN_CENTER);
             cel.setColspan(9);
             
-            PdfPCell cel2 = new PdfPCell(new Paragraph("Nome", fc1));
-            PdfPCell cel3 = new PdfPCell(new Paragraph("Destino", fc1));
-            PdfPCell cel4 = new PdfPCell(new Paragraph("Data", fc1));
-            PdfPCell cel5 = new PdfPCell(new Paragraph("Saída", fc1));
-            PdfPCell cel6 = new PdfPCell(new Paragraph("KM Saída", fc1));
-            PdfPCell cel7 = new PdfPCell(new Paragraph("Entrada", fc1));
-            PdfPCell cel8 = new PdfPCell(new Paragraph("KM Entrada", fc1));
-            PdfPCell cel9 = new PdfPCell(new Paragraph("Aut", fc1));
-            PdfPCell cel10 = new PdfPCell(new Paragraph("Obs", fc1));
+            PdfPCell cel1 = new PdfPCell(new Paragraph("Nome", fc1));
+            PdfPCell cel2 = new PdfPCell(new Paragraph("Destino", fc1));
+            PdfPCell cel3 = new PdfPCell(new Paragraph("Data", fc1));
+            PdfPCell cel4 = new PdfPCell(new Paragraph("Saída", fc1));
+            PdfPCell cel5 = new PdfPCell(new Paragraph("KM Saída", fc1));
+            PdfPCell cel6 = new PdfPCell(new Paragraph("Entrada", fc1));
+            PdfPCell cel7 = new PdfPCell(new Paragraph("KM Entrada", fc1));
+            PdfPCell cel8 = new PdfPCell(new Paragraph("Aut", fc1));
+            PdfPCell cel9 = new PdfPCell(new Paragraph("Obs", fc1));
+            
+            //Alinhamento do texto da table no centro de cada coluna            
+            cel1.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel2.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel3.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel4.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel5.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel6.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel7.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel8.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel9.setHorizontalAlignment(Element.ALIGN_CENTER);
             
             tbl.addCell(cel);
+            tbl.addCell(cel1);
             tbl.addCell(cel2);
             tbl.addCell(cel3);
             tbl.addCell(cel4);
@@ -839,21 +900,32 @@ public class ViewLeveRB extends javax.swing.JFrame {
             tbl.addCell(cel7);
             tbl.addCell(cel8);
             tbl.addCell(cel9);
-            tbl.addCell(cel10);
            
             
-            for(VeiculosLeveRB c : dao.listarData(r)){
-                
-                cel2 = new PdfPCell(new Paragraph(c.getNome(), fc));
-                cel3 = new PdfPCell(new Paragraph(c.getDestino(), fc));
-                cel4 = new PdfPCell(new Paragraph(c.getData(), fc));
-                cel5 = new PdfPCell(new Paragraph(c.getSaida(), fc));
-                cel6 = new PdfPCell(new Paragraph(c.getKmsaida(), fc));
-                cel7 = new PdfPCell(new Paragraph(c.getEntrada(), fc));
-                cel8 = new PdfPCell(new Paragraph(c.getKmentrada(), fc));
-                cel9 = new PdfPCell(new Paragraph(c.getAut(), fc));
-                cel10 = new PdfPCell(new Paragraph(c.getObs(), fc));
+            for (VeiculosLeveRB c : dao.listarData(r)) {
 
+                cel1 = new PdfPCell(new Paragraph(c.getNome(), fc));
+                cel2 = new PdfPCell(new Paragraph(c.getDestino(), fc));
+                cel3 = new PdfPCell(new Paragraph(c.getData(), fc));
+                cel4 = new PdfPCell(new Paragraph(c.getSaida(), fc));
+                cel5 = new PdfPCell(new Paragraph(c.getKmsaida(), fc));
+                cel6 = new PdfPCell(new Paragraph(c.getEntrada(), fc));
+                cel7 = new PdfPCell(new Paragraph(c.getKmentrada(), fc));
+                cel8 = new PdfPCell(new Paragraph(c.getAut(), fc));
+                cel9 = new PdfPCell(new Paragraph(c.getObs(), fc));
+
+                //Alinhamento do texto da table no centro de cada coluna            
+                cel1.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel2.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel3.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel4.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel5.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel6.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel7.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel8.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel9.setHorizontalAlignment(Element.ALIGN_CENTER);
+
+                tbl.addCell(cel1);
                 tbl.addCell(cel2);
                 tbl.addCell(cel3);
                 tbl.addCell(cel4);
@@ -862,10 +934,22 @@ public class ViewLeveRB extends javax.swing.JFrame {
                 tbl.addCell(cel7);
                 tbl.addCell(cel8);
                 tbl.addCell(cel9);
-                tbl.addCell(cel10);
 
-                
             }
+            
+             Image imagem = Image.getInstance(String.format("C:\\ControleRB\\src\\com\\rb\\img\\Rodoborges.png"));
+            imagem.scalePercent(20, 20);
+            imagem.setAlignment(Image.ALIGN_LEFT);
+            
+            Image imagem1 = Image.getInstance(String.format("C:\\ControleRB\\src\\com\\rb\\img\\3.png"));
+            imagem1.scalePercent(20, 20);
+            imagem1.setAlignment(Image.ALIGN_RIGHT);
+            
+            imagem1.setAbsolutePosition(550f, 800f);
+            
+            doc.add(imagem);
+            doc.add(imagem1);
+            doc.add(new Paragraph(""));
             doc.add(tbl);
             doc.close();
             
@@ -874,6 +958,7 @@ public class ViewLeveRB extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, "Verificar Preenchimento", "ERROS", JOptionPane.ERROR_MESSAGE);
         }
+        
     }//GEN-LAST:event_listaPDFMouseClicked
 
    

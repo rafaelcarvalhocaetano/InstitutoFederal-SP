@@ -7,6 +7,7 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -135,16 +136,16 @@ public class ViewCheves extends javax.swing.JFrame {
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("VIGILANTE");
 
-        nome.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        nome.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         nome.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         nome.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         nome.setSelectionColor(new java.awt.Color(0, 0, 0));
 
-        vigilante.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        vigilante.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         vigilante.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         vigilante.setSelectionColor(new java.awt.Color(0, 0, 0));
 
-        dataretirada.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        dataretirada.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         dataretirada.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         dataretirada.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         dataretirada.setSelectionColor(new java.awt.Color(0, 0, 0));
@@ -239,7 +240,7 @@ public class ViewCheves extends javax.swing.JFrame {
             }
         });
 
-        entrada.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        entrada.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         entrada.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         entrada.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -272,13 +273,14 @@ public class ViewCheves extends javax.swing.JFrame {
                 .addGap(22, 22, 22))
         );
 
-        setor.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        setor.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        setor.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         SETOR.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         SETOR.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         SETOR.setText("SETOR");
 
-        saida.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        saida.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         saida.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         saida.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -294,7 +296,7 @@ public class ViewCheves extends javax.swing.JFrame {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("DEVOLUÇÃO");
 
-        devolucao.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        devolucao.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         devolucao.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         devolucao.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -406,7 +408,7 @@ public class ViewCheves extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(entrada)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE))
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(devolucao)
@@ -442,7 +444,7 @@ public class ViewCheves extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(id)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(1, 1, 1)
@@ -477,7 +479,7 @@ public class ViewCheves extends javax.swing.JFrame {
                                 .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -681,83 +683,112 @@ public class ViewCheves extends javax.swing.JFrame {
         
         String nome = null;
         nome = JOptionPane.showInputDialog(null, "Nome do Arquivo", "Pergunta", JOptionPane.PLAIN_MESSAGE);
-        new File("C:\\Controle de Acesso").mkdir();
-
-        Document doc = new Document(PageSize.A4, 10, 10, 10,10);
-        ChaveDAO dao = new ChaveDAO();
         
+        if(nome.isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Campo Obrigatórios", "OBRIGATÓRIO", JOptionPane.INFORMATION_MESSAGE);
+            nome = JOptionPane.showInputDialog(null, "Nome do Arquivo", "Pergunta", JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
+        new File("C:\\Controle de Acesso").mkdir();
         String url = "C:\\Controle de Acesso\\"+nome+".pdf";
         
+        Document doc = new Document(PageSize.A4, 10, 10, 10,10);
+        ChaveDAO dao = new ChaveDAO();
+       
         try {
             
             PdfWriter.getInstance(doc, new FileOutputStream(url));
             doc.open();
             
             PdfPTable tbl = new PdfPTable(7);
+            float[] tams = {0.3f,0.10f,0.2f,0.1f,0.15f,0.15f,0.3f};
+            tbl.setWidths(tams);
             tbl.setHorizontalAlignment(Element.ALIGN_CENTER);
             tbl.setWidthPercentage(100.0f);
             
             Font fc = FontFactory.getFont(FontFactory.TIMES_ROMAN, 7);
             Font fc1 = FontFactory.getFont(FontFactory.TIMES_ROMAN, 9, Element.ALIGN_CENTER);
             
-            PdfPCell cel = new PdfPCell(new Paragraph("Controle de Chaves",fc1));
+            PdfPCell cel = new PdfPCell(new Paragraph("CONTROLE DE CHAVE",fc1));
             
             cel.setBackgroundColor(new BaseColor(100, 100, 100));
             cel.setHorizontalAlignment(Element.ALIGN_CENTER);
-            cel.setColspan(10);
+            cel.setColspan(7);
             
-            PdfPCell cel2 = new PdfPCell(new Paragraph("NOME", fc1));
-            PdfPCell cel3 = new PdfPCell(new Paragraph("SETOR", fc1));
-            PdfPCell cel4 = new PdfPCell(new Paragraph("DATA RETIRADA", fc1));
-            PdfPCell cel5 = new PdfPCell(new Paragraph("HORÁRIO SAÍDA", fc1));
-            PdfPCell cel6 = new PdfPCell(new Paragraph("HORÁRIO ENTRADA", fc1));
-            PdfPCell cel7 = new PdfPCell(new Paragraph("DATA DEVOLUÇÃO", fc1));
-            PdfPCell cel8 = new PdfPCell(new Paragraph("VIGILANETE", fc1));
+            PdfPCell cel1 = new PdfPCell(new Paragraph("Nome", fc1));
+            PdfPCell cel2 = new PdfPCell(new Paragraph("Setor", fc1));
+            PdfPCell cel3 = new PdfPCell(new Paragraph("Data da retirada", fc1));
+            PdfPCell cel4 = new PdfPCell(new Paragraph("Saída", fc1));
+            PdfPCell cel5 = new PdfPCell(new Paragraph("Entrada", fc1));
+            PdfPCell cel6 = new PdfPCell(new Paragraph("Devolução", fc1));
+            PdfPCell cel7 = new PdfPCell(new Paragraph("Vigilante", fc1));
             
-            cel2.setColspan(1);
-            cel3.setColspan(1);
-            cel4.setColspan(1);
-            cel5.setColspan(1);
-            cel6.setColspan(1);
-            cel7.setColspan(1);
-            cel8.setColspan(1);
+            //Alinhamento do texto da table no centro de cada coluna            
+            cel1.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel2.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel3.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel4.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel5.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel6.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel7.setHorizontalAlignment(Element.ALIGN_CENTER);
             
             
             tbl.addCell(cel);
+            tbl.addCell(cel1);
             tbl.addCell(cel2);
             tbl.addCell(cel3);
             tbl.addCell(cel4);
             tbl.addCell(cel5);
             tbl.addCell(cel6);
             tbl.addCell(cel7);
-            tbl.addCell(cel8);
             
             for(Chave c : dao.listar()){
                 
-                cel2 = new PdfPCell(new Paragraph(c.getNome(), fc));
-                cel3 = new PdfPCell(new Paragraph(c.getSetor(), fc));
-                cel4 = new PdfPCell(new Paragraph(c.getData(), fc));
-                cel5 = new PdfPCell(new Paragraph(c.getSaida(), fc));
-                cel6 = new PdfPCell(new Paragraph(c.getEntrada(), fc));
-                cel7 = new PdfPCell(new Paragraph(c.getDatadevolucao(), fc));
-                cel8 = new PdfPCell(new Paragraph(c.getVigilante(), fc));
+                cel1 = new PdfPCell(new Paragraph(c.getNome(), fc));
+                cel2 = new PdfPCell(new Paragraph(c.getSetor(), fc));
+                cel3 = new PdfPCell(new Paragraph(c.getData(), fc));
+                cel4 = new PdfPCell(new Paragraph(c.getSaida(), fc));
+                cel5 = new PdfPCell(new Paragraph(c.getEntrada(), fc));
+                cel6 = new PdfPCell(new Paragraph(c.getDatadevolucao(), fc));
+                cel7 = new PdfPCell(new Paragraph(c.getVigilante(), fc));
                 
+                 //Alinhamento do texto da table no centro de cada coluna            
+                cel1.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel2.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel3.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel4.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel5.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel6.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel7.setHorizontalAlignment(Element.ALIGN_CENTER);
+                
+                tbl.addCell(cel1);
                 tbl.addCell(cel2);
                 tbl.addCell(cel3);
                 tbl.addCell(cel4);
                 tbl.addCell(cel5);
                 tbl.addCell(cel6);
                 tbl.addCell(cel7);
-                tbl.addCell(cel8);
             }
+            Image imagem = Image.getInstance(String.format("C:\\ControleRB\\src\\com\\rb\\img\\Rodoborges.png"));
+            imagem.scalePercent(20, 20);
+            imagem.setAlignment(Image.ALIGN_LEFT);
+            
+            Image imagem1 = Image.getInstance(String.format("C:\\ControleRB\\src\\com\\rb\\img\\3.png"));
+            imagem1.scalePercent(20, 20);
+            imagem1.setAlignment(Image.ALIGN_RIGHT);
+            
+            imagem1.setAbsolutePosition(550f, 800f);
+            
+            doc.add(imagem);
+            doc.add(imagem1);
+            doc.add(new Paragraph(""));
             doc.add(tbl);
             doc.close();
             
             Desktop.getDesktop().open(new File(url));
             
         } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(rootPane, "Verificar Preenchimento", "ERROS", JOptionPane.ERROR_MESSAGE);
+           JOptionPane.showMessageDialog(rootPane, "Verificar Preenchimento", "ERROS", JOptionPane.ERROR_MESSAGE);
         }finally {
             doc.close();
         }
@@ -767,78 +798,107 @@ public class ViewCheves extends javax.swing.JFrame {
         
         String nome = null;
         nome = JOptionPane.showInputDialog(null, "Nome do Arquivo", "Pergunta", JOptionPane.PLAIN_MESSAGE);
+        
+        if(nome.isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Campo Obrigatórios", "OBRIGATÓRIO", JOptionPane.INFORMATION_MESSAGE);
+            nome = JOptionPane.showInputDialog(null, "Nome do Arquivo", "Pergunta", JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
         new File("C:\\Controle de Acesso").mkdir();
-
-        Document doc = new Document(PageSize.A4, 10, 10, 10,10);
-        
-        ChaveDAO dao = new ChaveDAO();
-        Chave cc = new Chave();
-        cc.setData(dataPDF.getText());
-        
         String url = "C:\\Controle de Acesso\\"+nome+".pdf";
         
+        Document doc = new Document(PageSize.A4, 10, 10, 10,10);
+        ChaveDAO dao = new ChaveDAO();
+        Chave ch = new Chave();
+        ch.setData(dataPDF.getText());
+       
         try {
             
             PdfWriter.getInstance(doc, new FileOutputStream(url));
             doc.open();
             
-            PdfPTable tbl = new PdfPTable(10);
+            PdfPTable tbl = new PdfPTable(7);
+            float[] tams = {0.3f,0.10f,0.2f,0.1f,0.15f,0.15f,0.3f};
+            tbl.setWidths(tams);
             tbl.setHorizontalAlignment(Element.ALIGN_CENTER);
             tbl.setWidthPercentage(100.0f);
             
             Font fc = FontFactory.getFont(FontFactory.TIMES_ROMAN, 7);
             Font fc1 = FontFactory.getFont(FontFactory.TIMES_ROMAN, 9, Element.ALIGN_CENTER);
             
-            PdfPCell cel = new PdfPCell(new Paragraph("Controle de Chaves",fc1));
+            PdfPCell cel = new PdfPCell(new Paragraph("CONTROLE DE CHAVE",fc1));
             
             cel.setBackgroundColor(new BaseColor(100, 100, 100));
             cel.setHorizontalAlignment(Element.ALIGN_CENTER);
-            cel.setColspan(10);
+            cel.setColspan(7);
             
-            PdfPCell cel2 = new PdfPCell(new Paragraph("NOME", fc1));
-            PdfPCell cel3 = new PdfPCell(new Paragraph("SETOR", fc1));
-            PdfPCell cel4 = new PdfPCell(new Paragraph("DATA RETIRADA", fc1));
-            PdfPCell cel5 = new PdfPCell(new Paragraph("HORÁRIO SAÍDA", fc1));
-            PdfPCell cel6 = new PdfPCell(new Paragraph("HORÁRIO ENTRADA", fc1));
-            PdfPCell cel7 = new PdfPCell(new Paragraph("DATA DEVOLUÇÃO", fc1));
-            PdfPCell cel8 = new PdfPCell(new Paragraph("VIGILANETE", fc1));
+            PdfPCell cel1 = new PdfPCell(new Paragraph("Nome", fc1));
+            PdfPCell cel2 = new PdfPCell(new Paragraph("Setor", fc1));
+            PdfPCell cel3 = new PdfPCell(new Paragraph("Data da retirada", fc1));
+            PdfPCell cel4 = new PdfPCell(new Paragraph("Saída", fc1));
+            PdfPCell cel5 = new PdfPCell(new Paragraph("Entrada", fc1));
+            PdfPCell cel6 = new PdfPCell(new Paragraph("Devolução", fc1));
+            PdfPCell cel7 = new PdfPCell(new Paragraph("Vigilante", fc1));
             
-            cel2.setColspan(1);
-            cel3.setColspan(1);
-            cel4.setColspan(1);
-            cel5.setColspan(1);
-            cel6.setColspan(1);
-            cel7.setColspan(1);
-            cel8.setColspan(1);
+            //Alinhamento do texto da table no centro de cada coluna            
+            cel1.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel2.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel3.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel4.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel5.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel6.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel7.setHorizontalAlignment(Element.ALIGN_CENTER);
             
             
             tbl.addCell(cel);
+            tbl.addCell(cel1);
             tbl.addCell(cel2);
             tbl.addCell(cel3);
             tbl.addCell(cel4);
             tbl.addCell(cel5);
             tbl.addCell(cel6);
             tbl.addCell(cel7);
-            tbl.addCell(cel8);
             
-            for(Chave c : dao.listarUS(cc)){
+            for(Chave c : dao.listarUS(ch)){
                 
-                cel2 = new PdfPCell(new Paragraph(c.getNome(), fc));
-                cel3 = new PdfPCell(new Paragraph(c.getSetor(), fc));
-                cel4 = new PdfPCell(new Paragraph(c.getData(), fc));
-                cel5 = new PdfPCell(new Paragraph(c.getSaida(), fc));
-                cel6 = new PdfPCell(new Paragraph(c.getEntrada(), fc));
-                cel7 = new PdfPCell(new Paragraph(c.getDatadevolucao(), fc));
-                cel8 = new PdfPCell(new Paragraph(c.getVigilante(), fc));
+                cel1 = new PdfPCell(new Paragraph(c.getNome(), fc));
+                cel2 = new PdfPCell(new Paragraph(c.getSetor(), fc));
+                cel3 = new PdfPCell(new Paragraph(c.getData(), fc));
+                cel4 = new PdfPCell(new Paragraph(c.getSaida(), fc));
+                cel5 = new PdfPCell(new Paragraph(c.getEntrada(), fc));
+                cel6 = new PdfPCell(new Paragraph(c.getDatadevolucao(), fc));
+                cel7 = new PdfPCell(new Paragraph(c.getVigilante(), fc));
                 
+                 //Alinhamento do texto da table no centro de cada coluna            
+                cel1.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel2.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel3.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel4.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel5.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel6.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel7.setHorizontalAlignment(Element.ALIGN_CENTER);
+                
+                tbl.addCell(cel1);
                 tbl.addCell(cel2);
                 tbl.addCell(cel3);
                 tbl.addCell(cel4);
                 tbl.addCell(cel5);
                 tbl.addCell(cel6);
                 tbl.addCell(cel7);
-                tbl.addCell(cel8);
             }
+            Image imagem = Image.getInstance(String.format("C:\\ControleRB\\src\\com\\rb\\img\\Rodoborges.png"));
+            imagem.scalePercent(20, 20);
+            imagem.setAlignment(Image.ALIGN_LEFT);
+            
+            Image imagem1 = Image.getInstance(String.format("C:\\ControleRB\\src\\com\\rb\\img\\3.png"));
+            imagem1.scalePercent(20, 20);
+            imagem1.setAlignment(Image.ALIGN_RIGHT);
+            
+            imagem1.setAbsolutePosition(550f, 800f);
+            
+            doc.add(imagem);
+            doc.add(imagem1);
+            doc.add(new Paragraph(""));
             doc.add(tbl);
             doc.close();
             

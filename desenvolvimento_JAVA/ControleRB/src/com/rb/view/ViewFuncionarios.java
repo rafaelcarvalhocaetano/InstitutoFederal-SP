@@ -5,6 +5,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -222,16 +223,16 @@ public class ViewFuncionarios extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(442, 442, 442)
+                .addGap(392, 392, 392)
                 .addComponent(jLabel2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addGap(22, 22, 22)
                 .addComponent(jLabel2)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -244,7 +245,7 @@ public class ViewFuncionarios extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         data.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        data.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        data.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         data.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 dataMouseClicked(evt);
@@ -258,7 +259,8 @@ public class ViewFuncionarios extends javax.swing.JFrame {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("MODELO");
 
-        saida.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        saida.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        saida.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         saida.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 saidaMouseClicked(evt);
@@ -273,7 +275,7 @@ public class ViewFuncionarios extends javax.swing.JFrame {
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("OBS");
 
-        obs.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        obs.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
 
         id.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         id.setText("ID");
@@ -398,7 +400,7 @@ public class ViewFuncionarios extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(obs)
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 213, Short.MAX_VALUE))
+                .addGap(0, 189, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -601,69 +603,100 @@ public class ViewFuncionarios extends javax.swing.JFrame {
         
         String nome = null;
         nome = JOptionPane.showInputDialog(null, "Nome do Arquivo", "Pergunta", JOptionPane.PLAIN_MESSAGE);
+        
+        if(nome.isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Campo Obrigatórios", "OBRIGATÓRIO", JOptionPane.INFORMATION_MESSAGE);
+            nome = JOptionPane.showInputDialog(null, "Nome do Arquivo", "Pergunta", JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
         new File("C:\\Controle de Acesso").mkdir();
+        String url = "C:\\Controle de Acesso\\"+nome+".pdf";
         
         Document doc = new Document(PageSize.A4, 10, 10, 10,10);
         FuncionarioDAO dao = new FuncionarioDAO();
-     
-        String url = "C:\\Controle de Acesso\\"+nome+".pdf";
-        
+      
         try {
             
             PdfWriter.getInstance(doc, new FileOutputStream(url));
             doc.open();
             
             PdfPTable tbl = new PdfPTable(6);
+            float[] tams = {0.3f,0.10f,0.07f,0.08f,0.08f,0.2f};
+            tbl.setWidths(tams);
             tbl.setHorizontalAlignment(Element.ALIGN_CENTER);
             tbl.setWidthPercentage(100.0f);
             
             Font fc = FontFactory.getFont(FontFactory.TIMES_ROMAN, 7);
             Font fc1 = FontFactory.getFont(FontFactory.TIMES_ROMAN, 9, Element.ALIGN_CENTER);
             
-            PdfPCell cel = new PdfPCell(new Paragraph("Controle de Acesso de Funcionários",fc1));
+            PdfPCell cel = new PdfPCell(new Paragraph("CONTROLE DE VEÍCULOS DE FUNCIONÁRIOS",fc1));
             
             cel.setBackgroundColor(new BaseColor(100, 100, 100));
             cel.setHorizontalAlignment(Element.ALIGN_CENTER);
             cel.setColspan(6);
             
-            PdfPCell cel2 = new PdfPCell(new Paragraph("Nome", fc1));
-            PdfPCell cel3 = new PdfPCell(new Paragraph("Modelo", fc1));
-            PdfPCell cel4 = new PdfPCell(new Paragraph("Data", fc1));
-            PdfPCell cel5 = new PdfPCell(new Paragraph("Horário Entrada", fc1));
-            PdfPCell cel6 = new PdfPCell(new Paragraph("Horário Saída", fc1));
-            PdfPCell cel7 = new PdfPCell(new Paragraph("Obs"));
+            PdfPCell cel1 = new PdfPCell(new Paragraph("Nome", fc1));
+            PdfPCell cel2 = new PdfPCell(new Paragraph("Modelo", fc1));
+            PdfPCell cel3 = new PdfPCell(new Paragraph("Data", fc1));
+            PdfPCell cel4 = new PdfPCell(new Paragraph("Entrada", fc1));
+            PdfPCell cel5 = new PdfPCell(new Paragraph("Saída", fc1));
+            PdfPCell cel6 = new PdfPCell(new Paragraph("Observações"));
             
-            cel7.setColspan(1);
-            cel4.getHorizontalAlignment();
-            cel5.getHorizontalAlignment();
+            //Alinhamento do texto da table no centro de cada coluna            
+            cel1.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel2.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel3.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel4.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel5.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel6.setHorizontalAlignment(Element.ALIGN_CENTER);            
             
             tbl.addCell(cel);
+            tbl.addCell(cel1);
             tbl.addCell(cel2);
             tbl.addCell(cel3);
             tbl.addCell(cel4);
             tbl.addCell(cel5);
             tbl.addCell(cel6);
-            tbl.addCell(cel7);
            
             
             for(FuncionariosRB c : dao.listar()){
                 
-                cel2 = new PdfPCell(new Paragraph(c.getNome()));
-                cel3 = new PdfPCell(new Paragraph(c.getModelo()));
-                cel4 = new PdfPCell(new Paragraph(c.getData()));
-                cel5 = new PdfPCell(new Paragraph(c.getEntrada()));
-                cel6 = new PdfPCell(new Paragraph(c.getSaida()));
-                cel7 = new PdfPCell(new Paragraph(c.getObs()));
+                cel1 = new PdfPCell(new Paragraph(c.getNome(), fc));
+                cel2 = new PdfPCell(new Paragraph(c.getModelo(), fc));
+                cel3 = new PdfPCell(new Paragraph(c.getData(), fc));
+                cel4 = new PdfPCell(new Paragraph(c.getEntrada(), fc));
+                cel5 = new PdfPCell(new Paragraph(c.getSaida(), fc));
+                cel6 = new PdfPCell(new Paragraph(c.getObs(), fc));
                 
+                //Alinhamento do texto da table no centro de cada coluna            
+                cel1.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel2.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel3.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel4.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel5.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel6.setHorizontalAlignment(Element.ALIGN_CENTER);
                 
+                tbl.addCell(cel1);
                 tbl.addCell(cel2);
                 tbl.addCell(cel3);
                 tbl.addCell(cel4);
                 tbl.addCell(cel5);
                 tbl.addCell(cel6);
-                tbl.addCell(cel7);
                 
             }
+             Image imagem = Image.getInstance(String.format("C:\\ControleRB\\src\\com\\rb\\img\\Rodoborges.png"));
+            imagem.scalePercent(20, 20);
+            imagem.setAlignment(Image.ALIGN_LEFT);
+            
+            Image imagem1 = Image.getInstance(String.format("C:\\ControleRB\\src\\com\\rb\\img\\3.png"));
+            imagem1.scalePercent(20, 20);
+            imagem1.setAlignment(Image.ALIGN_RIGHT);
+            
+            imagem1.setAbsolutePosition(550f, 800f);
+            
+            doc.add(imagem);
+            doc.add(imagem1);
+            doc.add(new Paragraph(""));
             doc.add(tbl);
             doc.close();
             
@@ -679,67 +712,102 @@ public class ViewFuncionarios extends javax.swing.JFrame {
         String nome = null;
         nome = JOptionPane.showInputDialog(null, "Nome do Arquivo", "Pergunta", JOptionPane.PLAIN_MESSAGE);
         
+        if(nome.isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Campo Obrigatórios", "OBRIGATÓRIO", JOptionPane.INFORMATION_MESSAGE);
+            nome = JOptionPane.showInputDialog(null, "Nome do Arquivo", "Pergunta", JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
         new File("C:\\Controle de Acesso").mkdir();
         String url = "C:\\Controle de Acesso\\"+nome+".pdf";
         
-        FuncionarioDAO dao = new FuncionarioDAO();
-        FuncionariosRB r = new FuncionariosRB();
-        r.setData(pdfdata.getText());
-        
         Document doc = new Document(PageSize.A4, 10, 10, 10,10);
-        
+        FuncionarioDAO dao = new FuncionarioDAO();
+        FuncionariosRB f = new FuncionariosRB();
+        f.setData(pdfdata.getText());
+      
         try {
             
             PdfWriter.getInstance(doc, new FileOutputStream(url));
             doc.open();
             
             PdfPTable tbl = new PdfPTable(6);
+            float[] tams = {0.3f,0.10f,0.07f,0.08f,0.08f,0.2f};
+            tbl.setWidths(tams);
             tbl.setHorizontalAlignment(Element.ALIGN_CENTER);
             tbl.setWidthPercentage(100.0f);
             
             Font fc = FontFactory.getFont(FontFactory.TIMES_ROMAN, 7);
             Font fc1 = FontFactory.getFont(FontFactory.TIMES_ROMAN, 9, Element.ALIGN_CENTER);
             
-            PdfPCell cel = new PdfPCell(new Paragraph("Controle de Acesso de Funcionários",fc1));
+            PdfPCell cel = new PdfPCell(new Paragraph("CONTROLE DE VEÍCULOS DE FUNCIONÁRIOS",fc1));
             
             cel.setBackgroundColor(new BaseColor(100, 100, 100));
             cel.setHorizontalAlignment(Element.ALIGN_CENTER);
             cel.setColspan(6);
             
-            PdfPCell cel2 = new PdfPCell(new Paragraph("Nome", fc1));
-            PdfPCell cel3 = new PdfPCell(new Paragraph("Modelo", fc1));
-            PdfPCell cel4 = new PdfPCell(new Paragraph("Data", fc1));
-            PdfPCell cel5 = new PdfPCell(new Paragraph("Horário Entrada", fc1));
-            PdfPCell cel6 = new PdfPCell(new Paragraph("Horário Saída", fc1));
-            PdfPCell cel7 = new PdfPCell(new Paragraph("Obs"));
+            PdfPCell cel1 = new PdfPCell(new Paragraph("Nome", fc1));
+            PdfPCell cel2 = new PdfPCell(new Paragraph("Modelo", fc1));
+            PdfPCell cel3 = new PdfPCell(new Paragraph("Data", fc1));
+            PdfPCell cel4 = new PdfPCell(new Paragraph("Entrada", fc1));
+            PdfPCell cel5 = new PdfPCell(new Paragraph("Saída", fc1));
+            PdfPCell cel6 = new PdfPCell(new Paragraph("Observações"));
+            
+            //Alinhamento do texto da table no centro de cada coluna            
+            cel1.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel2.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel3.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel4.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel5.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cel6.setHorizontalAlignment(Element.ALIGN_CENTER);            
             
             tbl.addCell(cel);
+            tbl.addCell(cel1);
             tbl.addCell(cel2);
             tbl.addCell(cel3);
             tbl.addCell(cel4);
             tbl.addCell(cel5);
             tbl.addCell(cel6);
-            tbl.addCell(cel7);
            
             
-            for(FuncionariosRB c : dao.listarUD(r)){
+            for(FuncionariosRB c : dao.listarUD(f)){
                 
-                cel2 = new PdfPCell(new Paragraph(c.getNome()));
-                cel3 = new PdfPCell(new Paragraph(c.getModelo()));
-                cel4 = new PdfPCell(new Paragraph(c.getData()));
-                cel5 = new PdfPCell(new Paragraph(c.getEntrada()));
-                cel6 = new PdfPCell(new Paragraph(c.getSaida()));
-                cel7 = new PdfPCell(new Paragraph(c.getObs()));
+                cel1 = new PdfPCell(new Paragraph(c.getNome(), fc));
+                cel2 = new PdfPCell(new Paragraph(c.getModelo(), fc));
+                cel3 = new PdfPCell(new Paragraph(c.getData(), fc));
+                cel4 = new PdfPCell(new Paragraph(c.getEntrada(), fc));
+                cel5 = new PdfPCell(new Paragraph(c.getSaida(), fc));
+                cel6 = new PdfPCell(new Paragraph(c.getObs(), fc));
                 
+                //Alinhamento do texto da table no centro de cada coluna            
+                cel1.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel2.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel3.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel4.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel5.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cel6.setHorizontalAlignment(Element.ALIGN_CENTER);
                 
+                tbl.addCell(cel1);
                 tbl.addCell(cel2);
                 tbl.addCell(cel3);
                 tbl.addCell(cel4);
                 tbl.addCell(cel5);
                 tbl.addCell(cel6);
-                tbl.addCell(cel7);
                 
             }
+            
+             Image imagem = Image.getInstance(String.format("C:\\ControleRB\\src\\com\\rb\\img\\Rodoborges.png"));
+            imagem.scalePercent(20, 20);
+            imagem.setAlignment(Image.ALIGN_LEFT);
+            
+            Image imagem1 = Image.getInstance(String.format("C:\\ControleRB\\src\\com\\rb\\img\\3.png"));
+            imagem1.scalePercent(20, 20);
+            imagem1.setAlignment(Image.ALIGN_RIGHT);
+            
+            imagem1.setAbsolutePosition(550f, 800f);
+            
+            doc.add(imagem);
+            doc.add(imagem1);
+            doc.add(new Paragraph(""));
             doc.add(tbl);
             doc.close();
             
