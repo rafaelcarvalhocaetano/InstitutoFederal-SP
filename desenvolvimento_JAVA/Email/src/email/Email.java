@@ -1,13 +1,22 @@
 
 package email;
 
+import com.sun.mail.imap.IMAPBodyPart;
+import java.io.File;
 import java.util.Properties;
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
 import javax.mail.Message;
+import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 
@@ -34,6 +43,8 @@ public class Email extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         msn = new javax.swing.JTextArea();
         attach = new javax.swing.JButton();
+        attach_path = new javax.swing.JTextField();
+        name_attach = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,14 +74,27 @@ public class Email extends javax.swing.JFrame {
             }
         });
 
+        attach_path.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                attach_pathActionPerformed(evt);
+            }
+        });
+
+        name_attach.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                name_attachActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(190, 190, 190)
+                        .addGap(8, 8, 8)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(14, 14, 14)
@@ -82,27 +106,33 @@ public class Email extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(from, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(182, 182, 182)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane1)
-                            .addComponent(sub, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(attach, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(258, Short.MAX_VALUE))
+                            .addComponent(sub, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(attach, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(name_attach, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(attach_path, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(42, 42, 42)
+                .addGap(41, 41, 41)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(jLabel1))
-                    .addComponent(from, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(from, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -110,14 +140,17 @@ public class Email extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(sub, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(attach))
-                .addContainerGap(70, Short.MAX_VALUE))
+                    .addComponent(jLabel3)
+                    .addComponent(attach)
+                    .addComponent(attach_path, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(name_attach, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(137, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -142,20 +175,18 @@ public class Email extends javax.swing.JFrame {
         String SUB = sub.getText();
         String MSN = msn.getText();
         
-        
-        
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.socketFactory.port", "465");
         props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
         props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.port", "true");
+        props.put("mail.smtp.port", "465");
         
         Session session = Session.getDefaultInstance(props,
                 new javax.mail.Authenticator() {
 
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("xyz@gmail.com", "password");
+                return new PasswordAuthentication("rapha.pse@gmail.com", "10Sistemas");
             }
         }
         );
@@ -165,11 +196,25 @@ public class Email extends javax.swing.JFrame {
             message.setFrom(new InternetAddress(From));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(TO));
             message.setSubject(SUB);
-            message.setText(MSN);
+            
+            MimeBodyPart bodyPart = new MimeBodyPart();
+            bodyPart.setText(MSN);
+            Multipart m = new MimeMultipart();
+            m.addBodyPart(bodyPart);
+            
+            bodyPart = new MimeBodyPart();
+            javax.activation.DataSource source = new FileDataSource(attachment_path);
+            bodyPart.setDataHandler(new DataHandler(source));
+            bodyPart.setFileName(name_attach.getText());
+            m.addBodyPart(bodyPart);
+            message.setContent(m);
+            
             Transport.send(message);
             
             JOptionPane.showMessageDialog(rootPane, "OK");
         } catch (Exception e) {
+            e.printStackTrace();
+                    
             JOptionPane.showMessageDialog(rootPane, e);
         }
         
@@ -177,10 +222,24 @@ public class Email extends javax.swing.JFrame {
 
     private void attachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_attachActionPerformed
         
+        JFileChooser chooser = new JFileChooser();
         
+        chooser.showOpenDialog(null);
+        File f = chooser.getSelectedFile();
+        attachment_path=f.getAbsolutePath();
+        
+        attach_path.setText(attachment_path);
         
         
     }//GEN-LAST:event_attachActionPerformed
+
+    private void attach_pathActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_attach_pathActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_attach_pathActionPerformed
+
+    private void name_attachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_name_attachActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_name_attachActionPerformed
 
    
     public static void main(String args[]) {
@@ -215,9 +274,12 @@ public class Email extends javax.swing.JFrame {
         });
     }
 
+    private File file;
+    String date1, date2, possibleaction, File_path, file_name1;
     String attachment_path;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton attach;
+    private javax.swing.JTextField attach_path;
     private javax.swing.JTextField from;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -226,6 +288,7 @@ public class Email extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea msn;
+    private javax.swing.JTextField name_attach;
     private javax.swing.JTextField sub;
     private javax.swing.JTextField to;
     // End of variables declaration//GEN-END:variables
