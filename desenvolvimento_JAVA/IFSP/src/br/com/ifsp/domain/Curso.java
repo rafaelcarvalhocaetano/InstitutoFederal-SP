@@ -8,15 +8,25 @@ package br.com.ifsp.domain;
 
 /**
  *
- * @author Developer
+ * @author Rafael Carvalho Caetano
  */
 public class Curso {
     
+    //variavel inteira responsavel pela identificação
     private int id;
+    //variavel inteira responsavel pela carga horária do curso
     private int cargaHoraria;
+    //variavel inteira responsavel pelo quantidade de vagas do curso
+    private int numeroVagas;
+    //variavel inteira responsavel pelo nome da disciplina
     private String nomeDisciplina;
+    //variavel inteira responsavel pela curso que pertence
     private String CursoPertence;
+    //variavel inteira responsavel pelo período
     private String periodo;
+    
+    
+    //Abaixo estão as varáveis acima encapsuladas com setters e getters
 
     /**
      * @return the id
@@ -86,6 +96,14 @@ public class Curso {
      */
     public void setPeriodo(String periodo) {
         this.periodo = periodo;
+    }
+
+    public int getNumeroVagas() {
+        return numeroVagas;
+    }
+
+    public void setNumeroVagas(int numeroVagas) {
+        this.numeroVagas = numeroVagas;
     }
     
     

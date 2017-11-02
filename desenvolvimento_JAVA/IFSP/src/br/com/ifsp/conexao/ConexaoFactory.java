@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Developer
+ * @author Rafael Carvalho Caetano
  */
 public class ConexaoFactory {
     
