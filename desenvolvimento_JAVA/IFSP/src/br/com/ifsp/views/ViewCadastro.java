@@ -169,6 +169,11 @@ public class ViewCadastro extends javax.swing.JFrame {
         btnExcluir.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         btnExcluir.setText("Excluir");
         btnExcluir.setBorder(null);
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         btnAtualizar.setBackground(new java.awt.Color(255, 255, 255));
         btnAtualizar.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
@@ -342,6 +347,38 @@ public class ViewCadastro extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_btnSalvarActionPerformed
+
+    //método responsável por excluir
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        
+        //adicionando as classes curso e cursodao para atribuir e excluir
+        Curso c = new Curso();
+        CursoDAO dao = new CursoDAO();
+        
+        //if que verificará se a tabela foi selecionada. Se a tabela foi ela adicionará as informações nas lebels
+        if(tabela.getSelectedRow() != -1){
+            //atribuindo os valores na label
+            c.setId( (int) tabela.getValueAt(tabela.getSelectedRow(), 0));
+            c.setNomeDisciplina(disci.getText());
+            c.setCargaHoraria(Integer.parseInt( cargaHoraria.getText() ));
+            c.setCursoPertence(cursoPertence.getText());
+            c.setNumeroVagas(Integer.parseInt( vagas.getText() ));
+            c.setPeriodo(periodo.getText());
+            //usando uma flag para verificação
+            int i=0;
+            //mensagem de confirmação das informações
+            i = JOptionPane.showConfirmDialog(null, "Deseja excluir estas informações ?", "EXCLUIR", JOptionPane.INFORMATION_MESSAGE);
+            //opção de exclusão, se clicar em ok será excluído se clicar em cancelar será cancelado
+            if(i == JOptionPane.YES_OPTION){
+                //excluindo
+                dao.excluir(c);
+                //realizando a leitura no banco
+                lerDB();
+            }else{
+                return;
+            }
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
      * método principal que executa a
