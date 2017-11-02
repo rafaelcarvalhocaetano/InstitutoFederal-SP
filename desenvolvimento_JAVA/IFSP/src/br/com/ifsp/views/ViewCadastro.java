@@ -144,7 +144,7 @@ public class ViewCadastro extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, true
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -153,6 +153,11 @@ public class ViewCadastro extends javax.swing.JFrame {
         });
         tabela.setGridColor(new java.awt.Color(255, 255, 255));
         tabela.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        tabela.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabela);
 
         btnSalvar.setBackground(new java.awt.Color(255, 255, 255));
@@ -380,8 +385,23 @@ public class ViewCadastro extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
+    //método responsavel por inserir as informações da tabela nas labels com clique sobre a informação desejada
+    private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
+        //verificação, se a tabela foi clicada ela disponibilizará as informações as labels
+        if(tabela.getSelectedRow() != -1){
+            
+            //settando as informações da posição onde foi clicada nas labels
+            disci.setText(tabela.getValueAt(tabela.getSelectedRow(), 1).toString());
+            cargaHoraria.setText(tabela.getValueAt(tabela.getSelectedRow(), 2).toString());
+            cursoPertence.setText(tabela.getValueAt(tabela.getSelectedRow(), 3).toString());
+            vagas.setText(tabela.getValueAt(tabela.getSelectedRow(), 4).toString());
+            periodo.setText(tabela.getValueAt(tabela.getSelectedRow(), 5).toString());
+        }
+        
+    }//GEN-LAST:event_tabelaMouseClicked
+
     /**
-     * método principal que executa a
+     * método principal que executa a interface gráfica juntamente com os métodos
      */
     public static void main(String args[]) {
         /* definindo a aparencia */
