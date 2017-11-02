@@ -6,6 +6,10 @@
 //******************************************************
 package br.com.ifsp.views;
 
+import br.com.ifsp.dao.CursoDAO;
+import br.com.ifsp.domain.Curso;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Rafael Carvalho Caetano
@@ -119,25 +123,35 @@ public class ViewCadastro extends javax.swing.JFrame {
         jTable1.setSelectionBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setViewportView(jTable1);
 
-        btnSalvar.setBackground(new java.awt.Color(4, 26, 39));
+        btnSalvar.setBackground(new java.awt.Color(255, 255, 255));
         btnSalvar.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         btnSalvar.setText("Salvar");
         btnSalvar.setBorder(null);
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
 
-        btnExcluir.setBackground(new java.awt.Color(4, 26, 39));
+        btnExcluir.setBackground(new java.awt.Color(255, 255, 255));
         btnExcluir.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         btnExcluir.setText("Excluir");
         btnExcluir.setBorder(null);
 
-        btnAtualizar.setBackground(new java.awt.Color(4, 26, 39));
+        btnAtualizar.setBackground(new java.awt.Color(255, 255, 255));
         btnAtualizar.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         btnAtualizar.setText("Atualizar");
         btnAtualizar.setBorder(null);
 
-        btnP2.setBackground(new java.awt.Color(4, 26, 39));
+        btnP2.setBackground(new java.awt.Color(255, 255, 255));
         btnP2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         btnP2.setText("View  Exclusão");
         btnP2.setBorder(null);
+        btnP2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnP2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -231,6 +245,37 @@ public class ViewCadastro extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    //botão que chama a tela de exclusão com o combobox
+    private void btnP2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnP2ActionPerformed
+        
+        ViewExcluir ve = new ViewExcluir();
+        //abre a tela ViewExcluir
+        ve.setVisible(true);
+        //fecha a tela atual
+        dispose();
+    }//GEN-LAST:event_btnP2ActionPerformed
+
+    //botão responsável pela submissão das informações ao banco de dados
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        //chamando a classe curso
+        Curso c = new Curso();
+        //chamando a classe dao
+        CursoDAO dao = new CursoDAO();
+        
+        //atribuindo os valores das label para as variaves da clesse curso
+        c.setNomeDisciplina(disci.getText());
+        //usando o Integer para pegar uma string e converter para int
+        c.setCargaHoraria(Integer.parseInt( cargaHoraria.getText() ));
+        c.setCursoPertence(cursoPertence.getText());
+         //usando o Integer para pegar uma string e converter para int
+        c.setNumeroVagas(Integer.parseInt( vagas.getText() ));
+        c.setPeriodo(periodo.getText());
+        
+        //recebendo os valores contidos das variaveis e armazenando no banco de dados
+        JOptionPane.showConfirmDialog(null, "Deseja realmente salvar essas informações", "INFORMAÇÃO", JOptionPane.INFORMATION_MESSAGE);
+        dao.salvar(c);
+    }//GEN-LAST:event_btnSalvarActionPerformed
 
     /**
      * método principal que executa a
