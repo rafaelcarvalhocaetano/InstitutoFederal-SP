@@ -8,6 +8,7 @@ package br.com.ifsp.dao;
 
 import br.com.ifsp.conexao.ConexaoFactory;
 import br.com.ifsp.domain.Curso;
+import br.com.ifsp.views.ViewExcluir;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -49,10 +50,10 @@ public class CursoDAO {
             //executa o comando informado na através da string
             ps.executeUpdate();
             //informa através de uma mensagem que as informações foram salvas
-            JOptionPane.showConfirmDialog(null, "Informações salvas com sucesso", "Salvo", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Informações salvas com sucesso", "Salvo", JOptionPane.INFORMATION_MESSAGE);
         }catch(SQLException e){
             //informa através de uma mensagem que as informações não foram salvas
-            JOptionPane.showConfirmDialog(null, "Erro ao salvar - "+e, "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Erro ao salvar - "+e, "Erro", JOptionPane.ERROR_MESSAGE);
         }finally{
             //fecha a conexão com meu banco de dados
             ConexaoFactory.fechaConexao(conexao);
@@ -61,6 +62,34 @@ public class CursoDAO {
     }
     //metodo responsável por excluir o item selecionado
     public void excluir(Curso c){
+        
+        //classe StringBuilder é capaz de armazenar muitas informações, apenas usando o metodo append para concatenas as string.
+        StringBuilder sql = new StringBuilder();
+         //SQL de armazenamento no banco de dados
+        sql.append("DELETE FROM disciplina WHERE  nomeDisciplina = ? ");
+        
+        try{
+            conexao = ConexaoFactory.getDB(); //abri a conexão com o meu banco
+            //prepara a conexao e recebe a string convertida para executar o comando sql
+            PreparedStatement ps = conexao.prepareStatement(sql.toString());
+            //setando os atributos responsavél por informar ao banco o que será buscado para excluir
+            ps.setString(1, c.getNomeDisciplina());
+            //executa o comando informado na através da string
+            ps.executeUpdate();
+             //informa através de uma mensagem que as informações foram excluído
+            JOptionPane.showConfirmDialog(null, "Excluído com sucesso", "EXCLUÍDO", JOptionPane.INFORMATION_MESSAGE);
+            
+        }catch(SQLException e){
+            //mensagem de erro
+            JOptionPane.showConfirmDialog(null, "Erro ao excluir - "+e, "excluir", JOptionPane.ERROR_MESSAGE);
+        }finally{
+            //fecha a conexão
+           ConexaoFactory.fechaConexao(conexao);
+        }
+        
+    }
+     //metodo responsável por excluir o item selecionado
+    public void excluirPorDisciplina(Curso c){
         
         //classe StringBuilder é capaz de armazenar muitas informações, apenas usando o metodo append para concatenas as string.
         StringBuilder sql = new StringBuilder();

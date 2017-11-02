@@ -23,6 +23,7 @@ public class ViewCadastro extends javax.swing.JFrame {
      */
     public ViewCadastro() {
         initComponents();
+        //realizando a leitura do banco de dados e povoando a tabela
         lerDB();
     }
     
@@ -441,9 +442,9 @@ public class ViewCadastro extends javax.swing.JFrame {
             int i=0;
             //mensagem de confirmação das informações
             i = JOptionPane.showConfirmDialog(null, "Deseja atualizar estas informações ?", "UPDATE", JOptionPane.INFORMATION_MESSAGE);
-            //opção de exclusão, se clicar em ok será excluído se clicar em cancelar será cancelado
+            //opção de atualização, se clicar em ok será atualizado se clicar em cancelar será cancelado
             if(i == JOptionPane.YES_OPTION){
-                //excluindo
+                //atualizando
                 dao.atualizar(c);
                 //realizando a leitura no banco
                 lerDB();
