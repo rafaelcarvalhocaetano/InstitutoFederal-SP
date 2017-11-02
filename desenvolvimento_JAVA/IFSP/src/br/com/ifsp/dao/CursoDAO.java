@@ -59,37 +59,50 @@ public class CursoDAO {
         }
         
     }
+    //metodo responsável por excluir o item selecionado
     public void excluir(Curso c){
-       
+        
+        //classe StringBuilder é capaz de armazenar muitas informações, apenas usando o metodo append para concatenas as string.
         StringBuilder sql = new StringBuilder();
-        sql.append("DELETE FROM disciplina WHERE id = ? ");
+         //SQL de armazenamento no banco de dados
+        sql.append("DELETE FROM disciplina WHERE  nomeDisciplina = ? ");
         
         try{
-            conexao = ConexaoFactory.getDB();
+            conexao = ConexaoFactory.getDB(); //abri a conexão com o meu banco
+            //prepara a conexao e recebe a string convertida para executar o comando sql
             PreparedStatement ps = conexao.prepareStatement(sql.toString());
-            ps.setInt(1, c.getId());
-            
+            //setando os atributos responsavél por informar ao banco o que será buscado para excluir
+            ps.setString(1, c.getNomeDisciplina());
+            //executa o comando informado na através da string
             ps.executeUpdate();
-            
+             //informa através de uma mensagem que as informações foram excluído
             JOptionPane.showConfirmDialog(null, "Excluído com sucesso", "EXCLUÍDO", JOptionPane.INFORMATION_MESSAGE);
             
         }catch(SQLException e){
+            //mensagem de erro
             JOptionPane.showConfirmDialog(null, "Erro ao excluir - "+e, "excluir", JOptionPane.ERROR_MESSAGE);
         }finally{
+            //fecha a conexão
            ConexaoFactory.fechaConexao(conexao);
         }
         
     }
+    //método responsável por atualizar o as informações no banco de dados
     public void atualizar(Curso c){
        
+        //classe que armazena muitos caracteres
         StringBuilder sql = new StringBuilder();
+        //método da classe stringbuilder que concatena as string
         sql.append("UPDATE disciplina SET ");
         sql.append("(nomeDisciplina = ?, cargaHoraria = ?, cursoPertencente = ?, numeroVagas = ?, periodo = ?) ");
         sql.append("WHERE id = ? ");
         
         try{
+            //abre conexão com meu banco
             conexao = ConexaoFactory.getDB();
+            //prepara a conexao com o comando informado na string para executar
             PreparedStatement ps = conexao.prepareStatement(sql.toString());
+            //atributos que serão atualizados no banco de dados
             ps.setString(1, c.getNomeDisciplina());
             ps.setInt(2, c.getCargaHoraria());
             ps.setString(3, c.getCursoPertence());
@@ -97,27 +110,36 @@ public class CursoDAO {
             ps.setString(5, c.getPeriodo());
             ps.setInt(6, c.getId());
             
+            //executa o comando informado na preparação da conexão juntamente com os atributos informados
             ps.executeUpdate();
-            
+            //mensagem de sucesso
             JOptionPane.showConfirmDialog(null, "Atualizado com sucesso", "UPDATE", JOptionPane.INFORMATION_MESSAGE);
         }catch(SQLException e){
+            //mensagem de erro
             JOptionPane.showConfirmDialog(null, "Erro ao atualizar - "+e, "UPDATE", JOptionPane.ERROR_MESSAGE);
         }finally{
+            //fecha a conexão com meu banco
             ConexaoFactory.fechaConexao(conexao);
         }
         
     }
+    //método responsável por listar todos os itens no meu banco de dados
     public List<Curso> listar() throws SQLException{
+        //classe stringbuilder capaz de armazenar muitos caracteres
         StringBuilder sql = new StringBuilder();
+        //string em forma de comando sql
         sql.append("SELECT * FROM disciplina ");
-       
-       
-        conexao = ConexaoFactory.getDB();
-        PreparedStatement ps = conexao.prepareStatement(sql.toString());
-        ResultSet rs = ps.executeQuery();
         
+        //abri a conexão com meu banco
+        conexao = ConexaoFactory.getDB();
+        //prepara a conexão para receber o comando informado na string
+        PreparedStatement ps = conexao.prepareStatement(sql.toString());
+        //uma tabela de dados que representa um conjunto no banco de dados
+        ResultSet rs = ps.executeQuery();
+        //informa-se um array para receber as informações do bloco while que passará o resultado do banco
         ArrayList<Curso> itens = new ArrayList<>();
 
+        //loop responsável por verificar se existe algo na tabela do resultset
         while (rs.next()) {
             Curso c = new Curso();
 
@@ -128,8 +150,10 @@ public class CursoDAO {
             c.setNumeroVagas(rs.getInt("numeroVagas"));
             c.setPeriodo(rs.getString("periodo"));
 
+            //método responsável por adicionar as informações acima no array
             itens.add(c);
         }
+        //retorna o resultado do banco no Array
         return itens;
     }
     
