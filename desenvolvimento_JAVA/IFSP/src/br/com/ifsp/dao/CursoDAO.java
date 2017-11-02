@@ -32,7 +32,7 @@ public class CursoDAO {
         StringBuilder sql = new StringBuilder();
          //SQL de armazenamento no banco de dados
         sql.append("INSERT INTO disciplina (nomeDisciplina, cargaHoraria, cursoPertencente, numeroVagas, periodo) ");
-        sql.append("VALUES (?, ?, ?, ?, ?, ?) ");
+        sql.append("VALUES (?, ?, ?, ?, ?) ");
         
         try{
             //abri a conexão com o meu banco

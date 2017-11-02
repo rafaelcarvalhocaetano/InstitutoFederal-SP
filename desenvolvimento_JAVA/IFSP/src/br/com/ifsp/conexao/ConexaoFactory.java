@@ -18,10 +18,10 @@ import javax.swing.JOptionPane;
 public class ConexaoFactory {
     
     //variavél responsável por conter o usuário do mysql
-    private static final String USUARIO = "root";
+    private static final String USER = "root";
     
     //variavél responsável por conter a senha do mysql
-    private static final String SENHA = "q1w2e3r4";
+    private static final String PASS = "q1w2e3r4";
     
     //variavél responsável por conter o endereço do banco de dados mysql
     private static final String URL = "jdbc:mysql://localhost:3306/cursos";
@@ -31,7 +31,7 @@ public class ConexaoFactory {
         
         try {
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-            Connection con = DriverManager.getConnection(URL, URL, USUARIO);  
+            Connection con = DriverManager.getConnection(URL, USER, PASS);
             return con;
         } catch (SQLException ex) {
             JOptionPane.showConfirmDialog(null, ex);

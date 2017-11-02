@@ -8,7 +8,9 @@ package br.com.ifsp.views;
 
 import br.com.ifsp.dao.CursoDAO;
 import br.com.ifsp.domain.Curso;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,6 +23,32 @@ public class ViewCadastro extends javax.swing.JFrame {
      */
     public ViewCadastro() {
         initComponents();
+        lerDB();
+    }
+    
+    //método responsável por inicializar a telaba com as informações do banco de dados
+    private void lerDB(){
+        DefaultTableModel tbl = (DefaultTableModel) tabela.getModel();
+        tbl.setNumRows(0);
+        
+        CursoDAO dao = new CursoDAO();
+        
+        try{
+        for(Curso c : dao.listar()){
+            
+            tbl.addRow(new Object[]{
+                c.getId(),
+                c.getNomeDisciplina(),
+                c.getCargaHoraria(),
+                c.getCursoPertence(),
+                c.getNumeroVagas(),
+                c.getPeriodo()
+            });
+        }
+        }catch(SQLException e){
+            System.out.println("Erro ao ler");
+        }
+        
     }
 
     /**
@@ -33,9 +61,7 @@ public class ViewCadastro extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         disci = new javax.swing.JTextField();
-        cargaHoraria = new javax.swing.JTextField();
         cursoPertence = new javax.swing.JTextField();
-        vagas = new javax.swing.JTextField();
         periodo = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -43,11 +69,13 @@ public class ViewCadastro extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabela = new javax.swing.JTable();
         btnSalvar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
         btnAtualizar = new javax.swing.JButton();
         btnP2 = new javax.swing.JButton();
+        cargaHoraria = new javax.swing.JFormattedTextField();
+        vagas = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -69,11 +97,7 @@ public class ViewCadastro extends javax.swing.JFrame {
 
         disci.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
 
-        cargaHoraria.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-
         cursoPertence.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-
-        vagas.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
 
         periodo.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
 
@@ -107,21 +131,29 @@ public class ViewCadastro extends javax.swing.JFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Período");
 
-        jTable1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabela.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Id", "Disciplina", "Carga Horária", "Curso que pertence", "Número de Vagas", "Período"
             }
-        ));
-        jTable1.setGridColor(new java.awt.Color(255, 255, 255));
-        jTable1.setSelectionBackground(new java.awt.Color(255, 255, 255));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabela.setGridColor(new java.awt.Color(255, 255, 255));
+        tabela.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setViewportView(tabela);
 
         btnSalvar.setBackground(new java.awt.Color(255, 255, 255));
         btnSalvar.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
@@ -153,6 +185,20 @@ public class ViewCadastro extends javax.swing.JFrame {
             }
         });
 
+        try {
+            cargaHoraria.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        cargaHoraria.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+
+        try {
+            vagas.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        vagas.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -179,16 +225,16 @@ public class ViewCadastro extends javax.swing.JFrame {
                                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cargaHoraria, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                                    .addComponent(cargaHoraria))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(cursoPertence)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(vagas)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(vagas))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(periodo)
@@ -205,21 +251,23 @@ public class ViewCadastro extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(disci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(cargaHoraria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cursoPertence, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cursoPertence, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cargaHoraria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(vagas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(29, 29, 29))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(periodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(periodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(vagas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(11, 11, 11)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -279,9 +327,18 @@ public class ViewCadastro extends javax.swing.JFrame {
         if(i == JOptionPane.YES_OPTION){
             //recebendo os valores contidos das variaveis e armazenando no banco de dados
             dao.salvar(c);
+            //chamando o método privado para fazer a leitura da tabela
+            lerDB();
         }else{
             return;
         }
+        
+        //limpando os campos das label
+        disci.setText("");
+        cargaHoraria.setText("");
+        cursoPertence.setText("");
+        vagas.setText("");
+        periodo.setText("");
         
         
     }//GEN-LAST:event_btnSalvarActionPerformed
@@ -326,7 +383,7 @@ public class ViewCadastro extends javax.swing.JFrame {
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnP2;
     private javax.swing.JButton btnSalvar;
-    private javax.swing.JTextField cargaHoraria;
+    private javax.swing.JFormattedTextField cargaHoraria;
     private javax.swing.JTextField cursoPertence;
     private javax.swing.JTextField disci;
     private javax.swing.JLabel jLabel1;
@@ -337,8 +394,8 @@ public class ViewCadastro extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField periodo;
-    private javax.swing.JTextField vagas;
+    private javax.swing.JTable tabela;
+    private javax.swing.JFormattedTextField vagas;
     // End of variables declaration//GEN-END:variables
 }
