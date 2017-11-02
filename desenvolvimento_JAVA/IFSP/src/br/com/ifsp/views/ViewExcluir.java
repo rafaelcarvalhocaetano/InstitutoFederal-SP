@@ -9,6 +9,9 @@ package br.com.ifsp.views;
 import br.com.ifsp.dao.CursoDAO;
 import br.com.ifsp.domain.Curso;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
@@ -24,7 +27,7 @@ public class ViewExcluir extends javax.swing.JFrame {
     public ViewExcluir() {
         initComponents();
         //realizando a leitura do banco de dados e povoando a tabela
-        combo.removeAllItems();
+        combo.updateUI();
         lerDB();
        
     }
@@ -187,13 +190,18 @@ public class ViewExcluir extends javax.swing.JFrame {
     //método responsável por excluir através da disciplina escolhida no combobox
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         
+        //chamando as duas classes dao  domain
         Curso c = new Curso();
         CursoDAO dao = new CursoDAO();      
        
-        c.setId(combo.getSelectedIndex());
-        dao.excluir(c);
+        //setando o atributo do combobox na variavel nomedisciplina
+        c.setNomeDisciplina(combo.getSelectedItem().toString());
         
+        //recebendo o valor do combo que será excluido
+        dao.excluirPorDisciplina(c);
+        //realizando uma leitura da tabela
         lerDB();
+       
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
