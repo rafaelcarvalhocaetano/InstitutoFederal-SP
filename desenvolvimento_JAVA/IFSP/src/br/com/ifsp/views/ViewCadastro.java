@@ -271,10 +271,19 @@ public class ViewCadastro extends javax.swing.JFrame {
          //usando o Integer para pegar uma string e converter para int
         c.setNumeroVagas(Integer.parseInt( vagas.getText() ));
         c.setPeriodo(periodo.getText());
+        //variavel que fará o papel de flag na mensagem do usuário
+        int i = 0;
+        //mensagem para o usuário 
+        i = JOptionPane.showConfirmDialog(null, "Deseja realmente salvar essas informações", "INFORMAÇÃO", JOptionPane.INFORMATION_MESSAGE);
+        //verifica se realmente deseja salvar se clicar em OK salvará, caso contrário não salvará
+        if(i == JOptionPane.YES_OPTION){
+            //recebendo os valores contidos das variaveis e armazenando no banco de dados
+            dao.salvar(c);
+        }else{
+            return;
+        }
         
-        //recebendo os valores contidos das variaveis e armazenando no banco de dados
-        JOptionPane.showConfirmDialog(null, "Deseja realmente salvar essas informações", "INFORMAÇÃO", JOptionPane.INFORMATION_MESSAGE);
-        dao.salvar(c);
+        
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     /**
