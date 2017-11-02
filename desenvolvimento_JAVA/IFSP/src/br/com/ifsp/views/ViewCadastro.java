@@ -87,23 +87,23 @@ public class ViewCadastro extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Viner Hand ITC", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("jLabel6");
+        jLabel6.setText("Controle de cursos do Instituto Federal de São Paulo");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(285, 285, 285)
+                .addGap(182, 182, 182)
                 .addComponent(jLabel6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(210, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(68, 68, 68)
+                .addGap(52, 52, 52)
                 .addComponent(jLabel6)
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
         disci.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -203,6 +203,11 @@ public class ViewCadastro extends javax.swing.JFrame {
         btnAtualizar.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         btnAtualizar.setText("Atualizar");
         btnAtualizar.setBorder(null);
+        btnAtualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtualizarActionPerformed(evt);
+            }
+        });
 
         btnP2.setBackground(new java.awt.Color(255, 255, 255));
         btnP2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
@@ -246,7 +251,7 @@ public class ViewCadastro extends javax.swing.JFrame {
                                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(cargaHoraria))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -416,6 +421,43 @@ public class ViewCadastro extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_tabelaMouseClicked
+
+    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
+        //adicionando as classes curso e cursodao para atribuir e excluir
+        Curso c = new Curso();
+        CursoDAO dao = new CursoDAO();
+        
+        //if que verificará se a tabela foi selecionada. Se a tabela foi ela adicionará as informações nas lebels
+        if(tabela.getSelectedRow() != -1){
+            //atribuindo os valores na label
+            c.setId( (int) tabela.getValueAt(tabela.getSelectedRow(), 0));
+            
+            c.setNomeDisciplina(disci.getText());
+            c.setCargaHoraria(Integer.parseInt( cargaHoraria.getText() ));
+            c.setCursoPertence(cursoPertence.getText());
+            c.setNumeroVagas(Integer.parseInt( vagas.getText() ));
+            c.setPeriodo(periodo.getText());
+            //usando uma flag para verificação
+            int i=0;
+            //mensagem de confirmação das informações
+            i = JOptionPane.showConfirmDialog(null, "Deseja atualizar estas informações ?", "UPDATE", JOptionPane.INFORMATION_MESSAGE);
+            //opção de exclusão, se clicar em ok será excluído se clicar em cancelar será cancelado
+            if(i == JOptionPane.YES_OPTION){
+                //excluindo
+                dao.atualizar(c);
+                //realizando a leitura no banco
+                lerDB();
+                //limpando os campos das label
+                disci.setText("");
+                cargaHoraria.setText("");
+                cursoPertence.setText("");
+                vagas.setText("");
+                periodo.setText("");
+            }else{
+                return;
+            }
+        }
+    }//GEN-LAST:event_btnAtualizarActionPerformed
 
     /**
      * método principal que executa a interface gráfica juntamente com os métodos

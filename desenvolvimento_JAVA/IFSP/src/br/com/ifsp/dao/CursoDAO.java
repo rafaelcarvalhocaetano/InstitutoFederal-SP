@@ -94,7 +94,7 @@ public class CursoDAO {
         StringBuilder sql = new StringBuilder();
         //método da classe stringbuilder que concatena as string
         sql.append("UPDATE disciplina SET ");
-        sql.append("(nomeDisciplina = ?, cargaHoraria = ?, cursoPertencente = ?, numeroVagas = ?, periodo = ?) ");
+        sql.append(" nomeDisciplina = ?, cargaHoraria = ?, cursoPertencente = ?, numeroVagas = ?, periodo = ? ");
         sql.append("WHERE id = ? ");
         
         try{
@@ -115,6 +115,7 @@ public class CursoDAO {
             //mensagem de sucesso
             JOptionPane.showConfirmDialog(null, "Atualizado com sucesso", "UPDATE", JOptionPane.INFORMATION_MESSAGE);
         }catch(SQLException e){
+            e.printStackTrace();
             //mensagem de erro
             JOptionPane.showConfirmDialog(null, "Erro ao atualizar - "+e, "UPDATE", JOptionPane.ERROR_MESSAGE);
         }finally{
