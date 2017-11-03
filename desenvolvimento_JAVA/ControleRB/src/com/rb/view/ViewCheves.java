@@ -39,7 +39,7 @@ public class ViewCheves extends javax.swing.JFrame {
        
     }
     public void img(){
-        ImageIcon imagemTituloJanela = new ImageIcon("C:\\ControleRB\\img\\logoRB.png");
+        ImageIcon imagemTituloJanela = new ImageIcon("C:\\Program Files\\ControleRB\\img\\logoRB.png");
         setIconImage(imagemTituloJanela.getImage());
     }
     
@@ -562,7 +562,6 @@ public class ViewCheves extends javax.swing.JFrame {
             entrada.setText("");
             devolucao.setText("");
             vigilante.setText("");
-            
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
@@ -592,21 +591,17 @@ public class ViewCheves extends javax.swing.JFrame {
             entrada.setText("");
             devolucao.setText("");
             vigilante.setText("");
-            
-
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         
         Chave c = new Chave();
-        ChaveDAO dao = new ChaveDAO();
-        
+        ChaveDAO dao = new ChaveDAO();        
         int i;
         if (tblChaves.getSelectedRow() != -1) {
 
-            c.setId((int) tblChaves.getValueAt(tblChaves.getSelectedRow(), 0));
-            
+            c.setId((int) tblChaves.getValueAt(tblChaves.getSelectedRow(), 0));            
             c.setNome(nome.getText());
             c.setSetor(setor.getText());
             c.setData(dataretirada.getText());
@@ -614,7 +609,6 @@ public class ViewCheves extends javax.swing.JFrame {
             c.setEntrada(entrada.getText());
             c.setDatadevolucao(devolucao.getText());
             c.setVigilante(vigilante.getText());
-            
 
             i = JOptionPane.showConfirmDialog(rootPane, "Deseja Excluir este item", "Excluir", JOptionPane.INFORMATION_MESSAGE);
             
@@ -639,8 +633,7 @@ public class ViewCheves extends javax.swing.JFrame {
     private void tblChavesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblChavesMouseClicked
         
         
-        if(tblChaves.getSelectedRow() != -1){
-            
+        if(tblChaves.getSelectedRow() != -1){            
             id.setText(tblChaves.getValueAt(tblChaves.getSelectedRow(), 0).toString());
             nome.setText(tblChaves.getValueAt(tblChaves.getSelectedRow(), 1).toString());
             setor.setText(tblChaves.getValueAt(tblChaves.getSelectedRow(), 2).toString());
@@ -648,15 +641,13 @@ public class ViewCheves extends javax.swing.JFrame {
             saida.setText(tblChaves.getValueAt(tblChaves.getSelectedRow(), 4).toString());
             entrada.setText(tblChaves.getValueAt(tblChaves.getSelectedRow(), 5).toString());
             devolucao.setText(tblChaves.getValueAt(tblChaves.getSelectedRow(), 6).toString());            
-            vigilante.setText(tblChaves.getValueAt(tblChaves.getSelectedRow(), 7).toString());
-            
+            vigilante.setText(tblChaves.getValueAt(tblChaves.getSelectedRow(), 7).toString());            
         }
     }//GEN-LAST:event_tblChavesMouseClicked
 
     private void tblChavesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblChavesKeyReleased
 
         if (tblChaves.getSelectedRow() != -1) {
-
             id.setText(tblChaves.getValueAt(tblChaves.getSelectedRow(), 0).toString());
             nome.setText(tblChaves.getValueAt(tblChaves.getSelectedRow(), 1).toString());
             setor.setText(tblChaves.getValueAt(tblChaves.getSelectedRow(), 2).toString());
@@ -665,7 +656,6 @@ public class ViewCheves extends javax.swing.JFrame {
             entrada.setText(tblChaves.getValueAt(tblChaves.getSelectedRow(), 5).toString());
             devolucao.setText(tblChaves.getValueAt(tblChaves.getSelectedRow(), 6).toString());
             vigilante.setText(tblChaves.getValueAt(tblChaves.getSelectedRow(), 7).toString());
-
         }
     }//GEN-LAST:event_tblChavesKeyReleased
 
@@ -775,11 +765,11 @@ public class ViewCheves extends javax.swing.JFrame {
                 tbl.addCell(cel6);
                 tbl.addCell(cel7);
             }
-            Image imagem = Image.getInstance(String.format("C:\\ControleRB\\img\\rb.png"));
+            Image imagem = Image.getInstance(String.format("C:\\Program Files\\ControleRB\\img\\rb.png"));
             imagem.scalePercent(20, 20);
             imagem.setAlignment(Image.ALIGN_LEFT);
             
-            Image imagem1 = Image.getInstance(String.format("C:\\ControleRB\\img\\logoFLC.png"));
+            Image imagem1 = Image.getInstance(String.format("C:\\Program Files\\ControleRB\\img\\logoFLC.png"));
             imagem1.scalePercent(5, 5);
             imagem1.setAlignment(Image.ALIGN_RIGHT);            
             imagem1.setAbsolutePosition(550f, 806f);
@@ -891,11 +881,11 @@ public class ViewCheves extends javax.swing.JFrame {
                 tbl.addCell(cel6);
                 tbl.addCell(cel7);
             }
-            Image imagem = Image.getInstance(String.format("C:\\ControleRB\\img\\rb.png"));
+            Image imagem = Image.getInstance(String.format("C:\\Program Files\\ControleRB\\img\\rb.png"));
             imagem.scalePercent(20, 20);
             imagem.setAlignment(Image.ALIGN_LEFT);
             
-            Image imagem1 = Image.getInstance(String.format("C:\\ControleRB\\img\\logoFLC.png"));
+            Image imagem1 = Image.getInstance(String.format("C:\\Program Files\\ControleRB\\img\\logoFLC.png"));
             imagem1.scalePercent(5, 5);
             imagem1.setAlignment(Image.ALIGN_RIGHT);
             imagem1.setAbsolutePosition(550f, 806f);

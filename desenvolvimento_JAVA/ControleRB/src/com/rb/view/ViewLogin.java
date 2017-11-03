@@ -17,7 +17,7 @@ public class ViewLogin extends javax.swing.JFrame {
     }
 
     public void img(){
-        ImageIcon imagemTituloJanela = new ImageIcon("C:\\ControleRB\\img\\logoRB.png");
+        ImageIcon imagemTituloJanela = new ImageIcon("C:\\Program Files\\ControleRB\\img\\logoRB.png");
         setIconImage(imagemTituloJanela.getImage());
     }
     
@@ -246,7 +246,6 @@ public class ViewLogin extends javax.swing.JFrame {
         boolean flag = false;
 
         Login l1 = new Login();
-
         l1.setUser(usuario.getText());
         l1.setPass(password.getText());
 
@@ -254,15 +253,12 @@ public class ViewLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Campos Obrigatórios", "Campos Obrigatórios", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        for (Login l : dao.listarL(usuario.getText(), password.getText())) {
-            
+        for (Login l : dao.listarL(usuario.getText(), password.getText())) {            
             if (l.getUser().equals(usuario.getText()) && l.getPass().equals(password.getText())) {
-
                 dispose();
                 flag = true;
                 ViewMain vm = new ViewMain();
                 vm.setVisible(flag);
-
             }
         }
         usuario.setText("");

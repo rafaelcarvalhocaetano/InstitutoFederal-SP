@@ -35,7 +35,7 @@ public class ViewMain extends javax.swing.JFrame {
         img();
     }
     public void img(){
-        ImageIcon imagemTituloJanela = new ImageIcon("C:\\ControleRB\\img\\logoRB.png");
+        ImageIcon imagemTituloJanela = new ImageIcon("C:\\Program Files\\ControleRB\\img\\logoRB.png");
         setIconImage(imagemTituloJanela.getImage());
     }
     private void read(){
@@ -699,7 +699,6 @@ public class ViewMain extends javax.swing.JFrame {
         
         if(tblCRB.getSelectedRow() != -1){
             
-            
             id.setText(tblCRB.getValueAt(tblCRB.getSelectedRow(), 0).toString());
             cavalo.setText(tblCRB.getValueAt(tblCRB.getSelectedRow(), 1).toString());
             carreta.setText(tblCRB.getValueAt(tblCRB.getSelectedRow(), 2).toString());
@@ -935,11 +934,11 @@ public class ViewMain extends javax.swing.JFrame {
                 tbl.addCell(cel9);
                 tbl.addCell(cel10);
             }
-             Image imagem = Image.getInstance(String.format("C:\\ControleRB\\img\\rb.png"));
+             Image imagem = Image.getInstance(String.format("C:\\Program Files\\ControleRB\\img\\rb.png"));
             imagem.scalePercent(20, 20);
             imagem.setAlignment(Image.ALIGN_LEFT);
             
-            Image imagem1 = Image.getInstance(String.format("C:\\ControleRB\\img\\logoFLC.png"));
+            Image imagem1 = Image.getInstance(String.format("C:\\Program Files\\ControleRB\\img\\logoFLC.png"));
             imagem1.scalePercent(5, 5);
             imagem1.setAlignment(Image.ALIGN_RIGHT);            
             imagem1.setAbsolutePosition(550f, 806f);
@@ -1068,11 +1067,11 @@ public class ViewMain extends javax.swing.JFrame {
                 tbl.addCell(cel9);
                 tbl.addCell(cel10);
             }
-             Image imagem = Image.getInstance(String.format("C:\\ControleRB\\img\\rb.png"));
+             Image imagem = Image.getInstance(String.format("C:\\Program Files\\ControleRB\\img\\rb.png"));
             imagem.scalePercent(20, 20);
             imagem.setAlignment(Image.ALIGN_LEFT);
             
-            Image imagem1 = Image.getInstance(String.format("C:\\ControleRB\\img\\logoFLC.png"));
+            Image imagem1 = Image.getInstance(String.format("C:\\Program Files\\ControleRB\\img\\logoFLC.png"));
             imagem1.scalePercent(5, 5);
             imagem1.setAlignment(Image.ALIGN_RIGHT);            
             imagem1.setAbsolutePosition(550f, 806f);

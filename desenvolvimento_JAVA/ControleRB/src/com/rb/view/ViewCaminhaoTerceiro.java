@@ -8,13 +8,11 @@ import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.rb.dao.CaminhaoTerDAO;
 import com.rb.domain.CaminhaoT;
-import java.awt.Color;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -37,7 +35,7 @@ public class ViewCaminhaoTerceiro extends javax.swing.JFrame {
         img();
     }
     public void img(){
-        ImageIcon imagemTituloJanela = new ImageIcon("C:\\ControleRB\\img\\logoRB.png");
+        ImageIcon imagemTituloJanela = new ImageIcon("C:\\Program Files\\ControleRB\\img\\logoRB.png");
         setIconImage(imagemTituloJanela.getImage());
     }
     
@@ -832,11 +830,11 @@ public class ViewCaminhaoTerceiro extends javax.swing.JFrame {
                 tbl.addCell(cel10);
                 
             }
-             Image imagem = Image.getInstance(String.format("C:\\ControleRB\\img\\rb.png"));
+             Image imagem = Image.getInstance(String.format("C:\\Program Files\\ControleRB\\img\\rb.png"));
             imagem.scalePercent(20, 20);
             imagem.setAlignment(Image.ALIGN_LEFT);
             
-            Image imagem1 = Image.getInstance(String.format("C:\\ControleRB\\img\\logoFLC.png"));
+            Image imagem1 = Image.getInstance(String.format("C:\\Program Files\\ControleRB\\img\\logoFLC.png"));
             imagem1.scalePercent(5, 5);
             imagem1.setAlignment(Image.ALIGN_RIGHT);            
             imagem1.setAbsolutePosition(550f, 806f);
@@ -963,11 +961,11 @@ public class ViewCaminhaoTerceiro extends javax.swing.JFrame {
                 tbl.addCell(cel10);
                 
             }
-            Image imagem = Image.getInstance(String.format("C:\\ControleRB\\img\\rb.png"));
+            Image imagem = Image.getInstance(String.format("C:\\Program Files\\ControleRB\\img\\rb.png"));
             imagem.scalePercent(20, 20);
             imagem.setAlignment(Image.ALIGN_LEFT);
             
-            Image imagem1 = Image.getInstance(String.format("C:\\ControleRB\\img\\logoFLC.png"));
+            Image imagem1 = Image.getInstance(String.format("C:\\Program Files\\ControleRB\\img\\logoFLC.png"));
             imagem1.scalePercent(5, 5);
             imagem1.setAlignment(Image.ALIGN_RIGHT);            
             imagem1.setAbsolutePosition(550f, 806f);

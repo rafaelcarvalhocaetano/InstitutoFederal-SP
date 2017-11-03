@@ -15,7 +15,7 @@ public class ConexaoFactory {
     public static Connection db() throws SQLException{
         try {
             Class.forName("org.sqlite.JDBC");
-             String url = "jdbc:sqlite:C:\\ControleRB\\db\\AcessControl.db";
+             String url = "jdbc:sqlite:C:\\Program Files\\ControleRB\\db\\AcessControl.db";
             Connection con = DriverManager.getConnection(url);
             
             return con;

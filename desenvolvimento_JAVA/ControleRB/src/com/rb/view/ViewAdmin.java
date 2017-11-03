@@ -25,7 +25,7 @@ public class ViewAdmin extends javax.swing.JFrame {
         img();
     }
     public void img(){
-        ImageIcon imagemTituloJanela = new ImageIcon("C:\\ControleRB\\img\\logoRB.png");
+        ImageIcon imagemTituloJanela = new ImageIcon("C:\\Program Files\\ControleRB\\img\\logoRB.png");
         setIconImage(imagemTituloJanela.getImage());
     }
     

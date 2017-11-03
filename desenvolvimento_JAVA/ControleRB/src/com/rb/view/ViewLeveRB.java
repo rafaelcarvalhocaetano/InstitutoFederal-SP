@@ -35,7 +35,7 @@ public class ViewLeveRB extends javax.swing.JFrame {
         read();
     }
     public void img(){
-        ImageIcon imagemTituloJanela = new ImageIcon("C:\\ControleRB\\img\\logoRB.png");
+        ImageIcon imagemTituloJanela = new ImageIcon("C:\\Program Files\\ControleRB\\img\\logoRB.png");
         setIconImage(imagemTituloJanela.getImage());
     }
     
@@ -94,10 +94,8 @@ public class ViewLeveRB extends javax.swing.JFrame {
         data = new javax.swing.JFormattedTextField();
         destino = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        kmsaida = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        kmentrada = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         obs = new javax.swing.JTextField();
         id = new javax.swing.JLabel();
@@ -106,6 +104,8 @@ public class ViewLeveRB extends javax.swing.JFrame {
         dataPDF = new javax.swing.JFormattedTextField();
         jPanel4 = new javax.swing.JPanel();
         pdfGeral = new javax.swing.JLabel();
+        kmsaida = new javax.swing.JFormattedTextField();
+        kmentrada = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -296,9 +296,6 @@ public class ViewLeveRB extends javax.swing.JFrame {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("DESTINO");
 
-        kmsaida.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        kmsaida.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
         jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("KM SAÍDA");
@@ -307,14 +304,11 @@ public class ViewLeveRB extends javax.swing.JFrame {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("KM ENTRADA");
 
-        kmentrada.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        kmentrada.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
         jLabel12.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("OBS");
 
-        obs.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        obs.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
 
         id.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         id.setText("ID");
@@ -385,6 +379,12 @@ public class ViewLeveRB extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        kmsaida.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#########"))));
+        kmsaida.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+
+        kmentrada.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("##########"))));
+        kmentrada.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -412,6 +412,12 @@ public class ViewLeveRB extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(id)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(nome)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE))
@@ -427,16 +433,16 @@ public class ViewLeveRB extends javax.swing.JFrame {
                                         .addComponent(saida, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
-                                    .addComponent(kmsaida))
+                                    .addComponent(kmsaida)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(entrada, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(kmentrada)
-                                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(kmentrada))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(aut)
@@ -444,13 +450,7 @@ public class ViewLeveRB extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(obs)
-                                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(id)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE))))
                         .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
@@ -474,33 +474,29 @@ public class ViewLeveRB extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel8)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(kmsaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel8)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel7)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(entrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel11)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(kmentrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel11)
                                     .addComponent(jLabel5)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel9)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(aut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(aut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(kmentrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel12)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(obs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jLabel6))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(46, 46, 46))
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -509,7 +505,8 @@ public class ViewLeveRB extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(destino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(saida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(saida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(kmsaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(26, 26, 26)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -667,7 +664,6 @@ public class ViewLeveRB extends javax.swing.JFrame {
 
     private void tblLeveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblLeveMouseClicked
         
-        
         if(tblLeve.getSelectedRow() != -1){
             
             id.setText(tblLeve.getValueAt(tblLeve.getSelectedRow(), 0).toString());
@@ -675,14 +671,11 @@ public class ViewLeveRB extends javax.swing.JFrame {
             destino.setText(tblLeve.getValueAt(tblLeve.getSelectedRow(), 2).toString());
            
             saida.setText(tblLeve.getValueAt(tblLeve.getSelectedRow(), 4).toString());
-            kmsaida.setText(tblLeve.getValueAt(tblLeve.getSelectedRow(), 5).toString());
-            
+            kmsaida.setText(tblLeve.getValueAt(tblLeve.getSelectedRow(), 5).toString());            
             entrada.setText(tblLeve.getValueAt(tblLeve.getSelectedRow(), 6).toString());
-            kmentrada.setText(tblLeve.getValueAt(tblLeve.getSelectedRow(), 7).toString());
-            
+            kmentrada.setText(tblLeve.getValueAt(tblLeve.getSelectedRow(), 7).toString());            
             obs.setText(tblLeve.getValueAt(tblLeve.getSelectedRow(), 8).toString());
-            aut.setText(tblLeve.getValueAt(tblLeve.getSelectedRow(), 9).toString());
-            
+            aut.setText(tblLeve.getValueAt(tblLeve.getSelectedRow(), 9).toString());            
         }
     }//GEN-LAST:event_tblLeveMouseClicked
 
@@ -691,17 +684,14 @@ public class ViewLeveRB extends javax.swing.JFrame {
             
             id.setText(tblLeve.getValueAt(tblLeve.getSelectedRow(), 0).toString());
             nome.setText(tblLeve.getValueAt(tblLeve.getSelectedRow(), 1).toString());
-            destino.setText(tblLeve.getValueAt(tblLeve.getSelectedRow(), 2).toString());
-           
+            destino.setText(tblLeve.getValueAt(tblLeve.getSelectedRow(), 2).toString()); 
+            
             saida.setText(tblLeve.getValueAt(tblLeve.getSelectedRow(), 4).toString());
-            kmsaida.setText(tblLeve.getValueAt(tblLeve.getSelectedRow(), 5).toString());
-            
+            kmsaida.setText(tblLeve.getValueAt(tblLeve.getSelectedRow(), 5).toString());            
             entrada.setText(tblLeve.getValueAt(tblLeve.getSelectedRow(), 6).toString());
-            kmentrada.setText(tblLeve.getValueAt(tblLeve.getSelectedRow(), 7).toString());
-            
+            kmentrada.setText(tblLeve.getValueAt(tblLeve.getSelectedRow(), 7).toString());            
             obs.setText(tblLeve.getValueAt(tblLeve.getSelectedRow(), 8).toString());
-            aut.setText(tblLeve.getValueAt(tblLeve.getSelectedRow(), 9).toString());
-            
+            aut.setText(tblLeve.getValueAt(tblLeve.getSelectedRow(), 9).toString());            
         }
     }//GEN-LAST:event_tblLeveKeyReleased
 
@@ -811,11 +801,11 @@ public class ViewLeveRB extends javax.swing.JFrame {
                 tbl.addCell(cel9);
 
             }
-            Image imagem = Image.getInstance(String.format("C:\\ControleRB\\img\\rb.png"));
+            Image imagem = Image.getInstance(String.format("C:\\Program Files\\ControleRB\\img\\rb.png"));
             imagem.scalePercent(20, 20);
             imagem.setAlignment(Image.ALIGN_LEFT);
             
-            Image imagem1 = Image.getInstance(String.format("C:\\ControleRB\\img\\logoFLC.png"));
+            Image imagem1 = Image.getInstance(String.format("C:\\Program Files\\ControleRB\\img\\logoFLC.png"));
             imagem1.scalePercent(5, 5);
             imagem1.setAlignment(Image.ALIGN_RIGHT);            
             imagem1.setAbsolutePosition(550f, 806f);
@@ -940,11 +930,11 @@ public class ViewLeveRB extends javax.swing.JFrame {
 
             }
             
-            Image imagem = Image.getInstance(String.format("C:\\ControleRB\\img\\rb.png"));
+            Image imagem = Image.getInstance(String.format("C:\\Program Files\\ControleRB\\img\\rb.png"));
             imagem.scalePercent(20, 20);
             imagem.setAlignment(Image.ALIGN_LEFT);
             
-            Image imagem1 = Image.getInstance(String.format("C:\\ControleRB\\img\\logoFLC.png"));
+            Image imagem1 = Image.getInstance(String.format("C:\\Program Files\\ControleRB\\img\\logoFLC.png"));
             imagem1.scalePercent(5, 5);
             imagem1.setAlignment(Image.ALIGN_RIGHT);            
             imagem1.setAbsolutePosition(550f, 806f);
@@ -1000,8 +990,8 @@ public class ViewLeveRB extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField kmentrada;
-    private javax.swing.JTextField kmsaida;
+    private javax.swing.JFormattedTextField kmentrada;
+    private javax.swing.JFormattedTextField kmsaida;
     private javax.swing.JLabel listaPDF;
     private javax.swing.JTextField nome;
     private javax.swing.JTextField obs;

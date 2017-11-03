@@ -37,7 +37,7 @@ public class ViewVisitante extends javax.swing.JFrame {
         img();
     }
     public void img(){
-        ImageIcon imagemTituloJanela = new ImageIcon("C:\\ControleRB\\img\\logoRB.png");
+        ImageIcon imagemTituloJanela = new ImageIcon("C:\\Program Files\\ControleRB\\img\\logoRB.png");
         setIconImage(imagemTituloJanela.getImage());
     }
     
@@ -586,7 +586,6 @@ public class ViewVisitante extends javax.swing.JFrame {
 
     private void tblVisitanteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblVisitanteMouseClicked
         
-        
         if(tblVisitante.getSelectedRow() != -1){
             
             id.setText(tblVisitante.getValueAt(tblVisitante.getSelectedRow(), 0).toString());
@@ -598,8 +597,6 @@ public class ViewVisitante extends javax.swing.JFrame {
             //data.setText(tblVisitante.getValueAt(tblVisitante.getSelectedRow(), 6).toString());
             entrada.setText(tblVisitante.getValueAt(tblVisitante.getSelectedRow(), 7).toString());
             saida.setText(tblVisitante.getValueAt(tblVisitante.getSelectedRow(), 8).toString());
-            
-            
         }
     }//GEN-LAST:event_tblVisitanteMouseClicked
 
@@ -608,8 +605,7 @@ public class ViewVisitante extends javax.swing.JFrame {
         if (tblVisitante.getSelectedRow() != -1) {
 
             id.setText(tblVisitante.getValueAt(tblVisitante.getSelectedRow(), 0).toString());
-            placa.setText(tblVisitante.getValueAt(tblVisitante.getSelectedRow(), 1).toString());
-            
+            placa.setText(tblVisitante.getValueAt(tblVisitante.getSelectedRow(), 1).toString());            
             modelo.setText(tblVisitante.getValueAt(tblVisitante.getSelectedRow(), 2).toString());
             nome.setText(tblVisitante.getValueAt(tblVisitante.getSelectedRow(), 3).toString());
             rg.setText(tblVisitante.getValueAt(tblVisitante.getSelectedRow(), 4).toString());
@@ -727,6 +723,7 @@ public class ViewVisitante extends javax.swing.JFrame {
     private void pdfGeralMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pdfGeralMouseClicked
        
         String nome = null;
+        String dir = "C:\\Controle de Acesso";
         nome = JOptionPane.showInputDialog(null, "Nome do Arquivo", "Pergunta", JOptionPane.PLAIN_MESSAGE);
         
         if(nome.isEmpty()){
@@ -734,8 +731,9 @@ public class ViewVisitante extends javax.swing.JFrame {
             nome = JOptionPane.showInputDialog(null, "Nome do Arquivo", "Pergunta", JOptionPane.PLAIN_MESSAGE);
             return;
         }
-        new File("C:\\Controle de Acesso").mkdir();
-        String url = "C:\\Controle de Acesso\\"+nome+".pdf";        
+        new File(dir).mkdir();
+        String url = "C:\\Controle de Acesso\\"+nome+".pdf";    
+        JOptionPane.showMessageDialog(null, "Seu Arquivo foi salvo em "+dir);
         Document doc = new Document(PageSize.A4, 10, 10, 10,10);
         
         VisitanteDAO dao = new VisitanteDAO();
@@ -821,11 +819,11 @@ public class ViewVisitante extends javax.swing.JFrame {
                 tbl.addCell(cel8);
                 
             }
-             Image imagem = Image.getInstance(String.format("C:\\ControleRB\\img\\rb.png"));
+             Image imagem = Image.getInstance(String.format("C:\\Program Files\\ControleRB\\img\\rb.png"));
             imagem.scalePercent(20, 20);
             imagem.setAlignment(Image.ALIGN_LEFT);
             
-            Image imagem1 = Image.getInstance(String.format("C:\\ControleRB\\img\\logoFLC.png"));
+            Image imagem1 = Image.getInstance(String.format("C:\\Program Files\\ControleRB\\img\\logoFLC.png"));
             imagem1.scalePercent(5, 5);
             imagem1.setAlignment(Image.ALIGN_RIGHT);            
             imagem1.setAbsolutePosition(550f, 800f);
@@ -945,11 +943,11 @@ public class ViewVisitante extends javax.swing.JFrame {
                 tbl.addCell(cel8);
                 
             }
-             Image imagem = Image.getInstance(String.format("C:\\ControleRB\\img\\rb.png"));
+             Image imagem = Image.getInstance(String.format("C:\\Program Files\\ControleRB\\img\\rb.png"));
             imagem.scalePercent(20, 20);
             imagem.setAlignment(Image.ALIGN_LEFT);
             
-            Image imagem1 = Image.getInstance(String.format("C:\\ControleRB\\img\\logoFLC.png"));
+            Image imagem1 = Image.getInstance(String.format("C:\\Program Files\\ControleRB\\img\\logoFLC.png"));
             imagem1.scalePercent(5, 5);
             imagem1.setAlignment(Image.ALIGN_RIGHT);            
             imagem1.setAbsolutePosition(550f, 806f);

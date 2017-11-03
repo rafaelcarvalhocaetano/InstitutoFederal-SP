@@ -35,7 +35,7 @@ public class ViewFuncionarios extends javax.swing.JFrame {
         img();
     }
     public void img(){
-        ImageIcon imagemTituloJanela = new ImageIcon("C:\\ControleRB\\img\\logoRB.png");
+        ImageIcon imagemTituloJanela = new ImageIcon("C:\\Program Files\\ControleRB\\img\\logoRB.png");
         setIconImage(imagemTituloJanela.getImage());
     }
     private void read(){
@@ -498,8 +498,7 @@ public class ViewFuncionarios extends javax.swing.JFrame {
         if(data.getText().isEmpty() || nome.getText().isEmpty()){
             JOptionPane.showMessageDialog(rootPane, "Campos Obrigatórios", "ERRO", JOptionPane.ERROR_MESSAGE);
             return;
-        }
-        
+        }        
         f.setNome(nome.getText());
         f.setModelo(modelo.getText());
         f.setData(data.getText());
@@ -689,11 +688,11 @@ public class ViewFuncionarios extends javax.swing.JFrame {
                 tbl.addCell(cel6);
                 
             }
-            Image imagem = Image.getInstance(String.format("C:\\ControleRB\\img\\rb.png"));
+            Image imagem = Image.getInstance(String.format("C:\\Program Files\\ControleRB\\img\\rb.png"));
             imagem.scalePercent(20, 20);
             imagem.setAlignment(Image.ALIGN_LEFT);
             
-            Image imagem1 = Image.getInstance(String.format("C:\\ControleRB\\img\\logoFLC.png"));
+            Image imagem1 = Image.getInstance(String.format("C:\\Program Files\\ControleRB\\img\\logoFLC.png"));
             imagem1.scalePercent(5, 5);
             imagem1.setAlignment(Image.ALIGN_RIGHT);            
             imagem1.setAbsolutePosition(550f, 804f);
@@ -771,7 +770,6 @@ public class ViewFuncionarios extends javax.swing.JFrame {
             tbl.addCell(cel4);
             tbl.addCell(cel5);
             tbl.addCell(cel6);
-           
             
             for(FuncionariosRB c : dao.listarUD(f)){
                 
@@ -780,8 +778,7 @@ public class ViewFuncionarios extends javax.swing.JFrame {
                 cel3 = new PdfPCell(new Paragraph(c.getData(), fc));
                 cel4 = new PdfPCell(new Paragraph(c.getEntrada(), fc));
                 cel5 = new PdfPCell(new Paragraph(c.getSaida(), fc));
-                cel6 = new PdfPCell(new Paragraph(c.getObs(), fc));
-                
+                cel6 = new PdfPCell(new Paragraph(c.getObs(), fc));                
                 //Alinhamento do texto da table no centro de cada coluna            
                 cel1.setHorizontalAlignment(Element.ALIGN_CENTER);
                 cel2.setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -799,11 +796,11 @@ public class ViewFuncionarios extends javax.swing.JFrame {
                 
             }
             
-            Image imagem = Image.getInstance(String.format("C:\\ControleRB\\img\\rb.png"));
+            Image imagem = Image.getInstance(String.format("C:\\Program Files\\ControleRB\\img\\rb.png"));
             imagem.scalePercent(20, 20);
             imagem.setAlignment(Image.ALIGN_LEFT);
             
-            Image imagem1 = Image.getInstance(String.format("C:\\ControleRB\\img\\logoFLC.png"));
+            Image imagem1 = Image.getInstance(String.format("C:\\Program Files\\ControleRB\\img\\logoFLC.png"));
             imagem1.scalePercent(5, 5);
             imagem1.setAlignment(Image.ALIGN_RIGHT);            
             imagem1.setAbsolutePosition(550f, 806f);
