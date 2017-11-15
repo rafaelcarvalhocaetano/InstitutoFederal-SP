@@ -114,16 +114,19 @@ public class Partidos extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(0, 102, 204));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btn-novo.png"))); // NOI18N
         jButton1.setText("Novo");
 
         jButton2.setBackground(new java.awt.Color(0, 102, 204));
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/sair-menu-2.png"))); // NOI18N
         jButton2.setText("Excluir");
 
         jButton3.setBackground(new java.awt.Color(0, 102, 204));
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btn-excluir.png"))); // NOI18N
         jButton3.setText("Salvar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
