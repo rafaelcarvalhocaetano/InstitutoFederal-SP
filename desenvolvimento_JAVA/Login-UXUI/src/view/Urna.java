@@ -92,6 +92,12 @@ public class Urna extends javax.swing.JFrame {
 
         jLabel3.setText("CPF");
 
+        try {
+            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         jLabel4.setText("Número do Candidato");
 
         jButton1.setBackground(new java.awt.Color(0, 153, 51));
